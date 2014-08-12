@@ -22,7 +22,7 @@
 //==================================== FORWARD DECLARATION ======================================//
 //===============================================================================================//
 
-namespace TemplateNs
+namespace StringNs
 {
 	class TemplateClass;
 }
@@ -47,9 +47,8 @@ namespace TemplateNs
 namespace StringNs
 {
 	
-	//! @brief		Brief description of class.
+	//! @brief		String class.
 	//! @details	Detailed description of class.
-	//! @note		Not pre-scheduler safe.
 	class String
 	{	
 		
@@ -60,17 +59,27 @@ namespace StringNs
 			//======================================================================================//
 					
 			//! @brief		Constructor.
-			//! @details	Detailed description of method.
+			//! @details	Allocates memory for the string and copies the provided cString into this memory.
 			//! @param		cString		C-style string to populate string with.
 			//! @note
 			String(const char * cString);
+
+			//! @brief		Destructor.
+			//! @details	Deletes memory that was allocated for the string.
+			~String();
 						
+			//! @brief		Searches for a particular character in the string.
+			//! @returns	If character is found in string, returns the 0-based index of the first
+			//!				occurrance. If character is not found in string, returns -1.
+			int32_t Find(char charToFind);
 
 			//======================================================================================//
 			//================================= PUBLIC VARIABLES ===================================//
 			//======================================================================================//
 				
-			//! @brief		Pointer to internal memory where C-style string is stored.
+			//! @brief		Pointer to internal memory where C-style string is stored. Guaranteed
+			//!				to be null-terminated.
+			//! @details	Access this to pass in string when a C-style function is called.
 			char * cStringPtr;
 				
 		private:

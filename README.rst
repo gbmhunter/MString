@@ -12,7 +12,7 @@ A C++ string object specifically designed for embedded applications.
 - Author: gbmhunter <gbmhunter@gmail.com> (http://www.cladlab.com)
 - First Ever Commit: 2014-08-12
 - Last Modified: 2014-08-12
-- Version: v1.0.0.0
+- Version: v1.1.0.0
 - Company: CladLabs
 - Project: Free Code Libraries
 - Language: C++
@@ -31,8 +31,8 @@ String-Cpp is a C++ string object specifically designed for embedded application
 Features:
 
 - Dynamic allocation and resize capabilities (with data preservation)
-- Automatic memory management
 - Embedded (microcontroller) support
+- Small flash/RAM memory footprint (no depedance on the C++ std::string class)
 - Unit tests
 - Doxygen-style well-documented API.
 - Portability
@@ -63,5 +63,6 @@ Changelog
 ======== ========== ===================================================================================================
 Version  Date       Comment
 ======== ========== ===================================================================================================
+v1.1.0.0 2014-08-12 Added 'String::Find()' method which allows you to search for a particular character in the sting, and added associated unit tests, closes #1. Destructor now deletes memory that was allocated in the constructor, closes #2.
 v1.0.0.0 2014-08-12 Initial commit, basic constructor of string object from C-style string has been implemented with one unit test.
 ======== ========== ===================================================================================================
