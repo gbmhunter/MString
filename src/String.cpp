@@ -54,7 +54,36 @@ namespace StringNs
 	String::String(const String &obj) :
 		String(obj.cStringPtr)
 	{
+		// Copy constructor
 		// Nothing here
+	}
+
+	String & String::operator= (const String & other)
+	{
+		// Assignment operator
+		if (this != &other) // protect against invalid self-assignment
+		{
+			// Deallocate current memory
+			delete[] this->cStringPtr;
+
+			// Copy length
+			this->length = other.length;
+
+			// Do a deep copy of the cStringPtr
+			if(other.cStringPtr)
+			{
+				// allocate memory for our copy
+				this->cStringPtr = new char[this->length + 1];
+
+				// Copy the parameter the newly allocated memory
+				strncpy(this->cStringPtr, other.cStringPtr, this->length);
+			}
+			else
+				this->cStringPtr = nullptr;
+		}
+
+		// Return *this for chaining
+		return *this;
 	}
 
 

@@ -68,6 +68,9 @@ namespace StringNs
 			//! @details	Delegates to normal constructor.
 			String(const String &obj);
 
+			//! @brief		Assignment operator overload.
+			String & operator= (const String & other);
+
 			//! @brief		Destructor.
 			//! @details	Deletes memory that was allocated for the string.
 			~String();
