@@ -51,6 +51,13 @@ namespace StringNs
 		memcpy((void *)this->cStringPtr, (const void *)cString, this->length);
 	}
 
+	String::String(const String &obj) :
+		String(obj.cStringPtr)
+	{
+		// Nothing here
+	}
+
+
 	String::~String()
 	{
 		// Delete memory that was allocated in the constructor.

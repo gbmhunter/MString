@@ -64,6 +64,10 @@ namespace StringNs
 			//! @note
 			String(const char * cString);
 
+			//! @brief		Copy constructor.
+			//! @details	Delegates to normal constructor.
+			String(const String &obj);
+
 			//! @brief		Destructor.
 			//! @details	Deletes memory that was allocated for the string.
 			~String();
