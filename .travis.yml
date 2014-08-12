@@ -1,6 +1,5 @@
 language: cpp
 compiler:
-  - clang
   - gcc
 
 # Setup different environments to test

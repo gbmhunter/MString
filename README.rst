@@ -12,7 +12,7 @@ A C++ string object specifically designed for embedded applications.
 - Author: gbmhunter <gbmhunter@gmail.com> (http://www.cladlab.com)
 - First Ever Commit: 2014-08-12
 - Last Modified: 2014-08-12
-- Version: v1.3.3.0
+- Version: v1.3.4.0
 - Company: CladLabs
 - Project: Free Code Libraries
 - Language: C++
@@ -63,6 +63,7 @@ Changelog
 ======== ========== ===================================================================================================
 Version  Date       Comment
 ======== ========== ===================================================================================================
+v1.3.4.0 2014-08-12 Fifth attempt at fixing TravisCI issue.
 v1.3.3.0 2014-08-12 Fourth attempt at fixing TravisCI issue.
 v1.3.2.0 2014-08-12 Third attempt at fixing TravisCI issue.
 v1.3.1.0 2014-08-12 Second attempt at fixing TravisCI issue.
