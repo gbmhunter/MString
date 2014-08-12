@@ -31,5 +31,19 @@ namespace StringTestsNs
 			CHECK_EQUAL("Testing", myString2.cStringPtr);
 		}
 
+		TEST(CopyAssignmentTest)
+		{
+			StringNs::String myString1("Testing");
+
+			// Do a copy-assignment
+			StringNs::String myString2 = myString1;
+
+			// Change memory in myString1 to make sure deep copy worked
+			myString1.cStringPtr[0] = 'a';
+
+			// myString2 should not be affected by above change to myString1!
+			CHECK_EQUAL("Testing", myString2.cStringPtr);
+		}
+
 	} // SUITE(CopyTests)
 } // namespace StringTestsNs

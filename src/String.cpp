@@ -16,11 +16,8 @@
 //===============================================================================================//
 
 // System libraries
-//#include <cstdint>		// int8_t, int32_t e.t.c
-//#include <cstdio>			// snprintf()
-//#include <cstdlib>		// realloc(), malloc(), free()
-//#include <iostream>		// std::cin, cout, e.t.c
-#include <cstring>			// strlen()
+#include <cstdint>		// int8_t, int32_t e.t.c
+#include <cstring>		// strlen(), strncpy()
 
 // User libraries
 // none
@@ -48,11 +45,14 @@ namespace StringNs
 		this->cStringPtr = new char[this->length + 1];
 
 		// Now copy string across
-		memcpy((void *)this->cStringPtr, (const void *)cString, this->length);
+		strncpy(this->cStringPtr, cString, this->length);
+
+		// Make sure it is null terminated
+		this->cStringPtr[this->length] = '\0';
 	}
 
 	String::String(const String &obj) :
-		String(obj.cStringPtr)
+		String(obj.cStringPtr)	// Delegate to base constructor, passing in the C-style string
 	{
 		// Copy constructor
 		// Nothing here
