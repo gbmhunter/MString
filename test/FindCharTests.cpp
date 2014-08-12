@@ -1,8 +1,8 @@
 //!
-//! @file 			FindTests.cpp
+//! @file 			FindCharTests.cpp
 //! @author 		Geoffrey Hunter <gbmhunter@gmail.com> (www.cladlab.com)
 //! @created		2014-08-12
-//! @last-modified 	2014-08-12
+//! @last-modified 	2014-08-13
 //! @brief 			Makes sure the String::Find() method works as expected.
 //! @details
 //!					See README.rst in root dir for more info.
@@ -15,7 +15,7 @@
 
 namespace StringTestsNs
 {
-	SUITE(FindTests)
+	SUITE(FindCharTests)
 	{
 
 

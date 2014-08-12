@@ -12,7 +12,7 @@ A C++ string object specifically designed for embedded applications.
 - Author: gbmhunter <gbmhunter@gmail.com> (http://www.cladlab.com)
 - First Ever Commit: 2014-08-12
 - Last Modified: 2014-08-13
-- Version: v1.3.5.0
+- Version: v1.4.0.0
 - Company: CladLabs
 - Project: Free Code Libraries
 - Language: C++
@@ -63,6 +63,7 @@ Changelog
 ======== ========== ===================================================================================================
 Version  Date       Comment
 ======== ========== ===================================================================================================
+v1.4.0.0 2014-08-13 Added ability to search for a string within string using overloads of the 'Find()' method and associated unit tests, closes #9. Renamed 'test/FindTests.cpp' to 'test/FindCharTests.cpp'. 
 v1.3.5.0 2014-08-13 Added copy-assignment unit test in 'test/CopyTests.cpp', closes #5. Replaced memcpy() in String constructor with strncpy(), closes #8. Made sure memory for string is null terminated in constructor, closes #7.
 v1.3.4.0 2014-08-12 Fifth attempt at fixing TravisCI issue.
 v1.3.3.0 2014-08-12 Fourth attempt at fixing TravisCI issue.

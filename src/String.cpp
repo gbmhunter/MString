@@ -118,6 +118,26 @@ namespace StringNs
 
 	}
 
+	int32_t String::Find(const char * cStringToFind, uint32_t startPos)
+	{
+		// Look for stringToFind inside string, offsetting string by startPos
+		char * ptrToFirstOccurance = strstr(this->cStringPtr + startPos, cStringToFind);
+
+		if(ptrToFirstOccurance == nullptr)
+			// stringToFind not found inside string, return -1.
+			return -1;
+		else
+			// Return offset of pointer to matched string from start of searched-in string,
+			// this will be the index
+			return ptrToFirstOccurance - this->cStringPtr;
+	}
+
+	int32_t String::Find(String & stringToFind, uint32_t startPos)
+	{
+		// Call base method, passing in C-style string
+		return this->Find(stringToFind.cStringPtr, startPos);
+	}
+
 	//============================================================================================//
 	//============================== PRIVATE METHOD DEFINITIONS ==================================//
 	//============================================================================================//

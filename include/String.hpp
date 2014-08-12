@@ -77,8 +77,24 @@ namespace StringNs
 						
 			//! @brief		Searches for a particular character in the string.
 			//! @returns	If character is found in string, returns the 0-based index of the first
-			//!				occurrance. If character is not found in string, returns -1.
+			//!				occurrence. If character is not found in string, returns -1.
 			int32_t Find(char charToFind);
+
+			//! @brief		Looks for first occurrence of cStringToFind inside this string, starting at startPos.
+			//! @param		cStringToFind	The string to search for.
+			//!	@param		startPos		The 0-based index to start searching from.
+			//! @returns	If cStringToFind is found in string, returns the 0-based index of the first
+			//!				occurrence. If stringToFind is not found in string, returns -1.
+			int32_t Find(const char * cStringToFind, uint32_t startPos = 0);
+
+			//! @brief		Looks for stringToFind inside this string.
+			//! @details	Calls int32_t Find(const char * cStringToFind, uint32_t startPos = 0),
+			//!				passing in the C style string of stringToFind.
+			//! @param		stringToFind	The string to search for.
+			//!	@param		startPos		The 0-based index to start searching from.
+			//! @returns	If stringToFind is found in string, returns the 0-based index of the first
+			//!				occurrence. If stringToFind is not found in string, returns -1.
+			int32_t Find(String & stringToFind, uint32_t startPos = 0);
 
 			//======================================================================================//
 			//================================= PUBLIC VARIABLES ===================================//
