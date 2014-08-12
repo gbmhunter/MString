@@ -12,7 +12,7 @@ A C++ string object specifically designed for embedded applications.
 - Author: gbmhunter <gbmhunter@gmail.com> (http://www.cladlab.com)
 - First Ever Commit: 2014-08-12
 - Last Modified: 2014-08-12
-- Version: v1.3.0.0
+- Version: v1.3.1.0
 - Company: CladLabs
 - Project: Free Code Libraries
 - Language: C++
@@ -63,6 +63,7 @@ Changelog
 ======== ========== ===================================================================================================
 Version  Date       Comment
 ======== ========== ===================================================================================================
+v1.3.1.0 2014-08-12 Second attempt at fixing TravisCI issue.
 v1.3.0.0 2014-08-12 Added assignment operator overload for String class, and added associated unit test, closes #4. Modified .travis.yml file in the hope of compiling with GCC version v4.7 or later to fix TravisCI bug.
 v1.2.0.0 2014-08-12 Added copy constructor for String class, and added associated unit test that makes sure the deep copy works correctly, closes #3.
 v1.1.0.0 2014-08-12 Added 'String::Find()' method which allows you to search for a particular character in the sting, and added associated unit tests, closes #1. Destructor now deletes memory that was allocated in the constructor, closes #2.
