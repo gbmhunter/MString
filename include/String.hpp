@@ -74,6 +74,10 @@ namespace StringNs
 			//! @brief		Destructor.
 			//! @details	Deletes memory that was allocated for the string.
 			~String();
+
+			//! @brief		Call to find how many characters are in the string (excluding the null character).
+			//! @returns	The number of characters in the string, excluding the terminating-null character.
+			uint32_t GetLength();
 						
 			//! @brief		Searches for a particular character in the string.
 			//! @returns	If character is found in string, returns the 0-based index of the first
@@ -94,7 +98,11 @@ namespace StringNs
 			//!	@param		startPos		The 0-based index to start searching from.
 			//! @returns	If stringToFind is found in string, returns the 0-based index of the first
 			//!				occurrence. If stringToFind is not found in string, returns -1.
-			int32_t Find(String & stringToFind, uint32_t startPos = 0);
+			int32_t Find(const String & stringToFind, uint32_t startPos = 0);
+
+			void Append(const char * stringToAppend);
+
+			friend String operator+(String & lhs, String & rhs);
 
 			//======================================================================================//
 			//================================= PUBLIC VARIABLES ===================================//

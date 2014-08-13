@@ -93,6 +93,12 @@ namespace StringNs
 		delete[] this->cStringPtr;
 	}
 
+	uint32_t String::GetLength()
+	{
+		// Easy, just return the internal length variable
+		return this->length;
+	}
+
 	int32_t String::Find(char charToFind, uint32_t startPos)
 	{
 		// Check if char to find is null, in that case, return -1 straight away
@@ -136,10 +142,44 @@ namespace StringNs
 			return ptrToFirstOccurance - this->cStringPtr;
 	}
 
-	int32_t String::Find(String & stringToFind, uint32_t startPos)
+	int32_t String::Find(const String & stringToFind, uint32_t startPos)
 	{
 		// Call base method, passing in C-style string
 		return this->Find(stringToFind.cStringPtr, startPos);
+	}
+
+	void String::Append(const char * cStringToAppend)
+	{
+		// Get length of stringToAppend
+		uint32_t appendStringLength = strlen(cStringToAppend);
+
+		// Allocate memory for new string
+		char * newCStringPtr = new char[this->length + appendStringLength + 1];
+
+		// Copy across first section
+		strncpy(newCStringPtr, this->cStringPtr, this->length);
+
+		// Copy across second section
+		strncpy(newCStringPtr + this->length, cStringToAppend, appendStringLength);
+
+		// Free old memory
+		delete this->cStringPtr;
+
+		// Save new pointer
+		this->cStringPtr = newCStringPtr;
+
+		// Update length
+		this->length += appendStringLength;
+
+	}
+
+	String operator+(String & lhs, String & rhs)
+	{
+		// + operator overload between two strings,
+		// joins the two strings together
+		String result(lhs.cStringPtr);
+		result.Append(rhs.cStringPtr);
+		return result;
 	}
 
 	//============================================================================================//
