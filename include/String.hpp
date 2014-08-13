@@ -2,8 +2,8 @@
 //! @file				String.hpp
 //! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.cladlab.com)
 //! @created			2014-08-12
-//! @last-modified		2014-08-12
-//! @brief
+//! @last-modified		2014-08-13
+//! @brief				Contains the declarations for the String class.
 //! @details
 //!						See README.rst in repo root dir for more info.
 
@@ -24,7 +24,7 @@
 
 namespace StringNs
 {
-	class TemplateClass;
+	class String;
 }
 
 //===============================================================================================//
@@ -47,13 +47,45 @@ namespace StringNs
 namespace StringNs
 {
 	
-	//! @brief		String class.
-	//! @details	Detailed description of class.
+	//! @brief		String class designed for embedded applications.
+	//! @details	Exceptions are not used.
 	class String
 	{	
 		
 		public:
-									
+
+			//======================================================================================//
+			//============================ PUBLIC OPERATOR OVERLOAD DECLARATIONS ===================//
+			//======================================================================================//
+
+			//! @brief		Assignment operator overload. Allows you to make one string equal another.
+			//! @details	Copies the contents of the RHS string into the LHS, so that they both have
+			//!				the same contents (but do not point to the same memory!).
+			String & operator= (const String & other);
+
+			//! @brief		Equality operator overload. Allows you to compare one string object and
+			//!				one C-style string for equality.
+			//! @details	Used by the other equality operator overload and the inequality operator overload.
+			friend bool operator==(String & lhs, const char * rhs);
+
+			//! @brief		Equality operator overload. Allows you to compare two string objects for equality.
+			//! @details	Calls the overload with one string object and one C-style string.
+			//!				Also used by the inequality operator overload.
+			friend bool operator==(String & lhs, String & rhs);
+
+			//! @brief		Inequality operator overload. Allows you to compare one string and
+			//!				one C-style string for inequality.
+			//! @details	Internally calls the equality operator overload.
+			friend bool operator!=(String & lhs, const char * rhs);
+
+			//! @brief		Inequality operator overload. Allows you to compare two strings for inequality.
+			//! @details	Internally calls the equality operator overload.
+			friend bool operator!=(String & lhs, String & rhs);
+
+			//! @brief		Allows you to concatenate two strings together.
+			//! @details	Calls the Append() method.
+			friend String operator+(String & lhs, String & rhs);
+
 			//======================================================================================//
 			//==================================== PUBLIC METHODS ==================================//
 			//======================================================================================//
@@ -71,9 +103,6 @@ namespace StringNs
 			//! @brief		Copy constructor.
 			//! @details	Delegates to normal constructor.
 			String(const String &obj);
-
-			//! @brief		Assignment operator overload.
-			String & operator= (const String & other);
 
 			//! @brief		Destructor.
 			//! @details	Deletes memory that was allocated for the string.
@@ -116,10 +145,6 @@ namespace StringNs
 			//! @param		numOfChars	The number of characters to erase. If numOfChars > string length
 			//!							then all characters will be erased.
 			void Erase(uint32_t startPos, int32_t numOfChars = -1);
-
-			//! @brief		Allows you to concatenate two strings together.
-			//! @details	Calls the Append() method.
-			friend String operator+(String & lhs, String & rhs);
 
 			//======================================================================================//
 			//================================= PUBLIC VARIABLES ===================================//

@@ -2,8 +2,8 @@
 //! @file				String.cpp
 //! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.cladlab.com)
 //! @created			2014-08-12
-//! @last-modified		2014-08-12
-//! @brief
+//! @last-modified		2014-08-13
+//! @brief				Contains the definitions for the String class.
 //! @details
 //!						See README.rst in repo root dir for more info.
 
@@ -31,6 +31,53 @@
 
 namespace StringNs
 {
+
+	//============================================================================================//
+	//======================= PUBLIC OPERATOR OVERLOAD DEFINITIONS ===============================//
+	//============================================================================================//
+
+	bool operator==(String & lhs, const char * rhs)
+	{
+		// Use strcmp function, returns 0 (false) if strings match, so note
+		// the logic inversion that takes place here!
+		if(strcmp(lhs.cStringPtr, rhs))
+			return false;
+		else
+			return true;
+	}
+
+	bool operator==(String & lhs, String & rhs)
+	{
+		// Call the overload with one string obj and one c-style string
+		return (lhs == rhs.cStringPtr);
+	}
+
+	bool operator!=(String & lhs, const char * rhs)
+	{
+		// Use the equality overload to perform the inequality overload
+		if(lhs == rhs)
+			return false;
+		else
+			return true;
+	}
+
+	bool operator!=(String & lhs, String & rhs)
+	{
+		// Call the inquality overload with one string object
+		// and one C-style string
+		return (lhs != rhs.cStringPtr);
+	}
+
+	String operator+(String & lhs, String & rhs)
+	{
+		// + operator overload between two strings,
+		// joins the two strings together
+		String result(lhs.cStringPtr);
+		result.Append(rhs.cStringPtr);
+		return result;
+	}
+
+
 
 	//============================================================================================//
 	//=============================== PUBLIC METHOD DEFINITIONS ==================================//
@@ -235,14 +282,6 @@ namespace StringNs
 
 	}
 
-	String operator+(String & lhs, String & rhs)
-	{
-		// + operator overload between two strings,
-		// joins the two strings together
-		String result(lhs.cStringPtr);
-		result.Append(rhs.cStringPtr);
-		return result;
-	}
 
 	//============================================================================================//
 	//============================== PRIVATE METHOD DEFINITIONS ==================================//
