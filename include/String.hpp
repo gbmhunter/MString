@@ -64,6 +64,10 @@ namespace StringNs
 			//! @note
 			String(const char * cString);
 
+			//! @brief		Simplified constructor.
+			//! @details	Creates string object that only contains one character, the null char.
+			String();
+
 			//! @brief		Copy constructor.
 			//! @details	Delegates to normal constructor.
 			String(const String &obj);
@@ -100,8 +104,21 @@ namespace StringNs
 			//!				occurrence. If stringToFind is not found in string, returns -1.
 			int32_t Find(const String & stringToFind, uint32_t startPos = 0);
 
-			void Append(const char * stringToAppend);
+			//! @brief		Append a C-style string onto the end of the current string.
+			//! @param		cStringToAppend		A null-terminated C-style string to append onto the
+			//!									end of the current string.
+			void Append(const char * cStringToAppend);
 
+			//! @brief		Erases a specific number of characters from the string.
+			//! @details	Similar to std::string::Erase(), except that it does not throw any exceptions.
+			//! @param		startPos	The 0-indexed position to start erasing characters from. If startPos
+			//!							> string length then no characters will be erased.
+			//! @param		numOfChars	The number of characters to erase. If numOfChars > string length
+			//!							then all characters will be erased.
+			void Erase(uint32_t startPos, int32_t numOfChars = -1);
+
+			//! @brief		Allows you to concatenate two strings together.
+			//! @details	Calls the Append() method.
 			friend String operator+(String & lhs, String & rhs);
 
 			//======================================================================================//

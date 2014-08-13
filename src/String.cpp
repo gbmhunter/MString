@@ -51,6 +51,12 @@ namespace StringNs
 		this->cStringPtr[this->length] = '\0';
 	}
 
+	String::String() :
+			String("") // Delegate to base constructor, passing in empty C-style string
+	{
+		// No code needed here
+	}
+
 	String::String(const String &obj) :
 		String(obj.cStringPtr)	// Delegate to base constructor, passing in the C-style string
 	{
@@ -162,14 +168,70 @@ namespace StringNs
 		// Copy across second section
 		strncpy(newCStringPtr + this->length, cStringToAppend, appendStringLength);
 
+		// Make sure new string is null terminated
+		newCStringPtr[this->length + appendStringLength] = '\0';
+
 		// Free old memory
-		delete this->cStringPtr;
+		delete[] this->cStringPtr;
 
 		// Save new pointer
 		this->cStringPtr = newCStringPtr;
 
 		// Update length
 		this->length += appendStringLength;
+
+	}
+
+	void String::Erase(uint32_t startPos, int32_t numOfChars)
+	{
+		// Make sure start position is not > length,
+		// if so, return
+		if(startPos > this->length)
+			return;
+
+		// Calculate actual number of chars to remove
+		// (assuming startPos + numOfChars could be > length)
+		uint32_t actualNumOfCharsToErase;
+
+		// See if we are erasing everything from startPos to the end of string,
+		// or there will be a second section kept after the bit that is erased
+		if((numOfChars < 0) || (startPos + numOfChars > this->length))
+			// Want to erase everything from startPos to end of string
+			actualNumOfCharsToErase = this->length - startPos;
+		else
+			actualNumOfCharsToErase = numOfChars;
+
+		// Calculate new string length
+		uint32_t newStringLength = this->length - actualNumOfCharsToErase;
+
+		// Allocate memory for new string, + 1 for null char
+		char * newCStringPtr = new char[newStringLength + 1];
+
+		// Copy first section into new string, note startPos could be zero,
+		// in this case this call won't do anything
+		strncpy(newCStringPtr, this->cStringPtr, startPos);
+
+		// Copy second section (the bit after the erased section) into new string,
+		// if second section exists
+		if((numOfChars >= 0) || (startPos + numOfChars < this->length))
+		{
+			strncpy(
+				newCStringPtr + startPos,
+				this->cStringPtr + startPos + actualNumOfCharsToErase,
+				this->length - actualNumOfCharsToErase);
+		}
+
+		// Make sure new string is null terminated
+		newCStringPtr[newStringLength] = '\0';
+
+		// Free old memory
+		delete[] this->cStringPtr;
+
+		// Save new pointer
+		this->cStringPtr = newCStringPtr;
+
+		// Update length
+		this->length = newStringLength;
 
 	}
 
