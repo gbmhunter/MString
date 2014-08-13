@@ -93,7 +93,7 @@ namespace StringNs
 		delete[] this->cStringPtr;
 	}
 
-	int32_t String::Find(char charToFind)
+	int32_t String::Find(char charToFind, uint32_t startPos)
 	{
 		// Check if char to find is null, in that case, return -1 straight away
 		if(charToFind == '\0')
@@ -103,6 +103,10 @@ namespace StringNs
 		// because strstr() requires the string to find to be null-terminated
 		char stringToFind[2] = {0};
 		stringToFind[0] = charToFind;
+
+		return this->Find(stringToFind, startPos);
+
+		/*
 
 		// Search for character using C std library call strstr()
 		char * ptrToFirstOccurance = strstr(this->cStringPtr, stringToFind);
@@ -114,7 +118,7 @@ namespace StringNs
 			// Return offset of pointer to matched string from start of searched-in string,
 			// this will be the index
 			return ptrToFirstOccurance - this->cStringPtr;
-		}
+		}*/
 
 	}
 

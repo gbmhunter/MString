@@ -41,6 +41,17 @@ namespace StringTestsNs
 
 			// Find should return first occurance of 'b'
 			CHECK_EQUAL(3, myString.Find('b'));
+
+			// Find should return second occurance of 'b'
+			CHECK_EQUAL(4, myString.Find('b', 4));
+		}
+
+		TEST(LookForCharBeyondStringFindTest)
+		{
+			StringNs::String myString("aaabbaaa");
+
+			// A startPos of 30 exceeds string lengh, we should not find anything
+			CHECK_EQUAL(-1, myString.Find('b', 30));
 		}
 
 		TEST(LookForNullFindTest)
