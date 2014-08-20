@@ -1,6 +1,6 @@
 //!
 //! @file				String.hpp
-//! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.cladlab.com)
+//! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created			2014-08-12
 //! @last-modified		2014-08-13
 //! @brief				Contains the declarations for the String class.
@@ -84,7 +84,12 @@ namespace StringNs
 
 			//! @brief		Allows you to concatenate two strings together.
 			//! @details	Calls the Append() method.
+			friend String operator+(String & lhs, const char * rhs);
+
+			//! @brief		Allows you to concatenate a string object and a C-style string together.
+			//! @details	Calls the Append() method.
 			friend String operator+(String & lhs, String & rhs);
+
 
 			//======================================================================================//
 			//==================================== PUBLIC METHODS ==================================//

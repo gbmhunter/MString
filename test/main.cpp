@@ -1,55 +1,29 @@
 //!
 //! @file 			main.cpp
-//! @author 		Geoffrey Hunter <gbmhunter@gmail.com> (www.cladlab.com)
+//! @author 		Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created		2014-08-12
-//! @last-modified 	2014-08-12
+//! @last-modified 	2014-08-21
 //! @brief 			Contains main entry point for unit tests.
 //! @details
 //!					See README.rst in root dir for more info.
 
+// System libraries
 #include <stdio.h>
 
-#include "../api/StringApi.hpp"
-
+// User libraries
 #include "../lib/UnitTest++/src/UnitTest++.h"
 #include "../lib/UnitTest++/src/TestReporterStdout.h"
 
-class Printer
-{
-	public:/*
-		void PrintDebug(const char* msg)
-		{
-			std::cout << msg;
-		}
+// User source
+#include "../api/StringApi.hpp"
 
-		void PrintCmdLine(const char* msg)
-		{
-			std::cout << msg;
-		}
-
-		void PrintError(const char* msg)
-		{
-			std::cout << msg;
-		}*/
-};
 
 int main()
 {
-/*
-	Printer printer;
-
-	// Set up printing
-	Clide::Print::AssignCallbacks(
-			SlotMachine::CallbackGen<Printer, void, const char*>(&printer, &Printer::PrintDebug),
-			SlotMachine::CallbackGen<Printer, void, const char*>(&printer, &Printer::PrintCmdLine),
-			SlotMachine::CallbackGen<Printer, void, const char*>(&printer, &Printer::PrintError));
-
-	Clide::Print::enableCmdLinePrinting = false;
-	Clide::Print::enableErrorPrinting = false;
-	Clide::Print::enableDebugInfoPrinting = false;*/
 
 	return UnitTest::RunAllTests();
 	
+	/*
 	try
     {
         UnitTest::TestReporterStdout reporter;
@@ -66,6 +40,6 @@ int main()
     {
          printf("%s", e.what());
          // If you are feeling mad (not in main) you could rethrow! 
-    }
+    }*/
 	
 }

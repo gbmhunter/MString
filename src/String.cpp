@@ -1,8 +1,8 @@
 //!
 //! @file				String.cpp
-//! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.cladlab.com)
+//! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created			2014-08-12
-//! @last-modified		2014-08-13
+//! @last-modified		2014-08-21
 //! @brief				Contains the definitions for the String class.
 //! @details
 //!						See README.rst in repo root dir for more info.
@@ -18,6 +18,8 @@
 // System libraries
 #include <cstdint>		// int8_t, int32_t e.t.c
 #include <cstring>		// strlen(), strncpy()
+#include <cstdio>
+//#include <iostream>		//!< @debug
 
 // User libraries
 // none
@@ -68,6 +70,16 @@ namespace StringNs
 		return (lhs != rhs.cStringPtr);
 	}
 
+
+	String operator+(String & lhs, const char * rhs)
+	{
+		// + operator overload between a strings object and a C-style string
+		String result(lhs.cStringPtr);
+		result.Append(rhs);
+		return result;
+
+	}
+
 	String operator+(String & lhs, String & rhs)
 	{
 		// + operator overload between two strings,
@@ -113,26 +125,40 @@ namespace StringNs
 
 	String & String::operator= (const String & other)
 	{
+		//std::cerr << "Assignment operator overload called.\r\n";
+
 		// Assignment operator
 		if (this != &other) // protect against invalid self-assignment
 		{
+			// Make sure C-string ptr is valid
+			if(!other.cStringPtr)
+				return *this;
+
+			//std::cerr << "LHS.cStr = '" << this->cStringPtr << "'. Length = '" <<
+			//		this->length << "'.\r\n" << std::endl;
+			//std::cerr << "RHS.cStr = '" << other.cStringPtr << "'. Length = '" <<
+			//					other.length << "'.\r\n" << std::endl;
+
 			// Deallocate current memory
 			delete[] this->cStringPtr;
 
 			// Copy length
 			this->length = other.length;
 
-			// Do a deep copy of the cStringPtr
-			if(other.cStringPtr)
-			{
-				// allocate memory for our copy
-				this->cStringPtr = new char[this->length + 1];
+			// allocate memory for our copy
+			this->cStringPtr = new char[this->length + 1];
 
-				// Copy the parameter the newly allocated memory
-				strncpy(this->cStringPtr, other.cStringPtr, this->length);
-			}
-			else
-				this->cStringPtr = nullptr;
+			// Copy the parameter the newly allocated memory
+			strncpy(this->cStringPtr, other.cStringPtr, this->length + 1);
+
+			// Make sure a null is inserted at the end
+			// This should never be required and strncpy should always insert it,
+			// but better to be safe than sorry
+			this->cStringPtr[this->length] = '\0';
+
+			//std::cerr << "New LHS.cStr = '" << this->cStringPtr << "'. New Length = '" <<
+			//					this->length << "'.\r\n" << std::endl;
+
 		}
 
 		// Return *this for chaining
@@ -231,6 +257,12 @@ namespace StringNs
 
 	void String::Erase(uint32_t startPos, int32_t numOfChars)
 	{
+		//std::cerr << "String::Erase() called." << std::endl;
+		//std::cerr << "this->cStr = '" << this->cStringPtr << "'." << std::endl;
+		//std::cerr << "this->length = '" << this->length << "'." << std::endl;
+		//std::cerr << "startPos = '" << startPos << "'." << std::endl;
+		//std::cerr << "numOfChars = '" << numOfChars << "'." << std::endl;
+
 		// Make sure start position is not > length,
 		// if so, return
 		if(startPos > this->length)
@@ -248,20 +280,34 @@ namespace StringNs
 		else
 			actualNumOfCharsToErase = numOfChars;
 
+		//std::cerr << "Actual num chars to erase = '" << actualNumOfCharsToErase << "'." << std::endl;
+
 		// Calculate new string length
 		uint32_t newStringLength = this->length - actualNumOfCharsToErase;
 
+		//std::cerr << "New string length = '" << newStringLength << "'." << std::endl;
+
 		// Allocate memory for new string, + 1 for null char
 		char * newCStringPtr = new char[newStringLength + 1];
+
+		//================= FIRST SECTION ===============//
 
 		// Copy first section into new string, note startPos could be zero,
 		// in this case this call won't do anything
 		strncpy(newCStringPtr, this->cStringPtr, startPos);
 
+		//std::cerr << "New cPtr = '" << newCStringPtr << "'." << std::endl;
+
 		// Copy second section (the bit after the erased section) into new string,
 		// if second section exists
-		if((numOfChars >= 0) || (startPos + numOfChars < this->length))
+		//if((numOfChars >= 0) && (startPos + numOfChars < this->length))
+		if(startPos + actualNumOfCharsToErase < this->length)
 		{
+			//std::cerr << "There is a second segment to copy (erase didn't go the the end)." << std::endl;
+			//std::cerr << "To string start = '" << startPos <<
+			//		"'. From str start ='" << startPos + actualNumOfCharsToErase <<
+			//		". Num chars = '" << this->length - actualNumOfCharsToErase << "'." << std::endl;
+
 			strncpy(
 				newCStringPtr + startPos,
 				this->cStringPtr + startPos + actualNumOfCharsToErase,
@@ -271,11 +317,18 @@ namespace StringNs
 		// Make sure new string is null terminated
 		newCStringPtr[newStringLength] = '\0';
 
+		//std::cerr << "Freeing old memory." << std::endl;
+
 		// Free old memory
 		delete[] this->cStringPtr;
 
+		//std::cerr << "Saving new pointer." << std::endl;
+
 		// Save new pointer
 		this->cStringPtr = newCStringPtr;
+
+		//std::cerr << "Final string = '" << this->cStringPtr << "'." << std::endl;
+		//std::cerr << "Updating length." << std::endl;
 
 		// Update length
 		this->length = newStringLength;

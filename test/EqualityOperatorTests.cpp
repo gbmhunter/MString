@@ -1,17 +1,17 @@
 //!
 //! @file 			EqualityOperatorTests.cpp
-//! @author 		Geoffrey Hunter <gbmhunter@gmail.com> (www.cladlab.com)
+//! @author 		Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created		2014-08-13
-//! @last-modified 	2014-08-13
+//! @last-modified 	2014-08-21
 //! @brief 			Contains unit tests that makes sure the equality (and inequality) operator overloads work correctly.
 //! @details
 //!					See README.rst in root dir for more info.
 
-#include <stdio.h>
-
-#include "../api/StringApi.hpp"
-
+// User libraries
 #include "../lib/UnitTest++/src/UnitTest++.h"
+
+// User source
+#include "../api/StringApi.hpp"
 
 namespace StringTestsNs
 {

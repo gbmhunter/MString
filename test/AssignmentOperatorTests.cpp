@@ -1,8 +1,8 @@
 //!
 //! @file 			AssignmentOperatorTests.cpp
-//! @author 		Geoffrey Hunter <gbmhunter@gmail.com> (www.cladlab.com)
+//! @author 		Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created		2014-08-12
-//! @last-modified 	2014-08-12
+//! @last-modified 	2014-08-21
 //! @brief 			Makes sure the assignment operator overloads for String work as expected.
 //! @details
 //!					See README.rst in root dir for more info.

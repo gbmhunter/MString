@@ -11,8 +11,8 @@ A C++ string object specifically designed for embedded applications.
 
 - Author: gbmhunter <gbmhunter@gmail.com> (http://www.cladlab.com)
 - First Ever Commit: 2014-08-12
-- Last Modified: 2014-08-13
-- Version: v1.7.0.0
+- Last Modified: 2014-08-21
+- Version: v1.7.1.0
 - Company: CladLabs
 - Project: Free Code Libraries
 - Language: C++
@@ -63,6 +63,7 @@ Changelog
 ======== ========== ===================================================================================================
 Version  Date       Comment
 ======== ========== ===================================================================================================
+v1.7.1.0 2014-08-21 Added 'test/ABitOfEverythingTests.cpp' which performes tests all functionality at once, closes #26. Got rid of 'if(other.cStringPtr)' in String assignment operator overload, this could potentially make C string ptr equal nullptr, closes #27. Fixed bug in assignment operator which cause the resultant C-string not to be null terminated. Fixed bug in 'String::Erase()' which meant that invalid memory was overwritten, closes #25. Added more unit tests to 'test/EraseTests.cpp' which insert negative numbers, closes #30. Updated URL from 'www.cladlab.com' to 'www.mbedded.ninja', closes #31.
 v1.7.0.0 2014-08-13 Added equality and inequaltiy operator overloads so that we can compare two string objects with one another and also compare one string object to one C-style string, closes #20. Also added associated unit tests.
 v1.6.0.0 2014-08-13 Added 'String::Erase()' method and associated unit tests, closes #15. Changed 'delete' to 'delete[]' in 'String::Append()', closes #16. Add no-parameter constructor which creates a string with just a null char present, closes #17. Added unit tests that make sure String constructors work correctly, closes #18.
 v1.5.0.0 2014-08-13 Added 'String::Append()' method. Added overloaded '+' operator so that it concatenates two strings together, closes #11. Added 'String::GetLength()' method, closes #13. Added 'const' qualifier to String variable reference passed into 'String::Find()', closes #12.
