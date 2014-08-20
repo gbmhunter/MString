@@ -9,10 +9,10 @@ A C++ string object specifically designed for embedded applications.
 .. image:: https://api.travis-ci.org/mbedded-ninja/String-Cpp.png?branch=master   
 	:target: https://travis-ci.org/mbedded-ninja/String-Cpp
 
-- Author: gbmhunter <gbmhunter@gmail.com> (http://www.cladlab.com)
+- Author: gbmhunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 - First Ever Commit: 2014-08-12
 - Last Modified: 2014-08-21
-- Version: v1.7.1.1
+- Version: v1.7.1.2
 - Company: CladLabs
 - Project: Free Code Libraries
 - Language: C++
@@ -63,6 +63,7 @@ Changelog
 ======== ========== ===================================================================================================
 Version  Date       Comment
 ======== ========== ===================================================================================================
+v1.7.1.2 2014-08-21 Changed link in README from 'www.cladlab.com' to 'www.mbedded.ninja', closes #33.
 v1.7.1.1 2014-08-21 Fixed link to TravisCI image in README, closes #32.
 v1.7.1.0 2014-08-21 Added 'test/ABitOfEverythingTests.cpp' which performes tests all functionality at once, closes #26. Got rid of 'if(other.cStringPtr)' in String assignment operator overload, this could potentially make C string ptr equal nullptr, closes #27. Fixed bug in assignment operator which cause the resultant C-string not to be null terminated. Fixed bug in 'String::Erase()' which meant that invalid memory was overwritten, closes #25. Added more unit tests to 'test/EraseTests.cpp' which insert negative numbers, closes #30. Updated URL from 'www.cladlab.com' to 'www.mbedded.ninja', closes #31.
 v1.7.0.0 2014-08-13 Added equality and inequaltiy operator overloads so that we can compare two string objects with one another and also compare one string object to one C-style string, closes #20. Also added associated unit tests.
