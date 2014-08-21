@@ -63,6 +63,14 @@ namespace StringNs
 			//!				the same contents (but do not point to the same memory!).
 			String & operator= (const String & other);
 
+			//! @brief		Subscript operator overload. Allows individual char access.
+			//! @returns	Reference to char located at position 'index'. Performs bounds checking, only
+			//!				allows chars and terminating null to be indexed, any other number is out
+			//!				of bounds. If index is out-of-bounds, the first character in the array will be
+			//!				returned. We shouldn't be allowed to write to the terminating null, but
+			//!				we have to provide access for read operations.
+			char & operator[] (const uint32_t index);
+
 			//! @brief		Equality operator overload. Allows you to compare one string object and
 			//!				one C-style string for equality.
 			//! @details	Used by the other equality operator overload and the inequality operator overload.
@@ -150,6 +158,12 @@ namespace StringNs
 			//! @param		numOfChars	The number of characters to erase. If numOfChars > string length
 			//!							then all characters will be erased.
 			void Erase(uint32_t startPos, int32_t numOfChars = -1);
+
+			//! @brief		Trims white-space from both ends of the string.
+			//! @details	Characters which count as white space: ' ', '\r', '\n', '\t'.
+			//!				Calls Erase().
+			//void Trim(String charsToMatch = " \r\n\t");
+
 
 			//======================================================================================//
 			//================================= PUBLIC VARIABLES ===================================//

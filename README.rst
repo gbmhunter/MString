@@ -11,8 +11,8 @@ A C++ string object specifically designed for embedded applications.
 
 - Author: gbmhunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 - First Ever Commit: 2014-08-12
-- Last Modified: 2014-08-21
-- Version: v1.7.1.2
+- Last Modified: 2014-08-22
+- Version: v1.8.0.0
 - Company: CladLabs
 - Project: Free Code Libraries
 - Language: C++
@@ -63,6 +63,7 @@ Changelog
 ======== ========== ===================================================================================================
 Version  Date       Comment
 ======== ========== ===================================================================================================
+v1.8.0.0 2014-08-22 Added overload for subscript operator, providing access to the individual chars in the string, and added associated unit tests, closes #36.
 v1.7.1.2 2014-08-21 Changed link in README from 'www.cladlab.com' to 'www.mbedded.ninja', closes #33.
 v1.7.1.1 2014-08-21 Fixed link to TravisCI image in README, closes #32.
 v1.7.1.0 2014-08-21 Added 'test/ABitOfEverythingTests.cpp' which performes tests all functionality at once, closes #26. Got rid of 'if(other.cStringPtr)' in String assignment operator overload, this could potentially make C string ptr equal nullptr, closes #27. Fixed bug in assignment operator which cause the resultant C-string not to be null terminated. Fixed bug in 'String::Erase()' which meant that invalid memory was overwritten, closes #25. Added more unit tests to 'test/EraseTests.cpp' which insert negative numbers, closes #30. Updated URL from 'www.cladlab.com' to 'www.mbedded.ninja', closes #31.

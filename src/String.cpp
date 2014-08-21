@@ -165,6 +165,24 @@ namespace StringNs
 		return *this;
 	}
 
+	char & String::operator[] (const uint32_t index)
+	{
+
+		// Check if index is > length (e.g. past null char)
+		if(index > this->length)
+		{
+			//! @todo Add assert No bounds checking!
+
+			// Index is out of bounds, the best we can do is return
+			// something is in bounds, so let's return
+			// the last char. This could cause unexpected behaviour,
+			// so an assert() needs to be added!
+			return this->cStringPtr[0];
+		}
+
+	    return this->cStringPtr[index];
+	}
+
 
 	String::~String()
 	{
@@ -334,7 +352,27 @@ namespace StringNs
 		this->length = newStringLength;
 
 	}
+/*
+	void String::Trim(String charsToMatch)
+	{
+		// TRIM FROM START
 
+		// Find out how many characters match pattern
+		uint32_t x;
+		for(x = 0; x < this->length; x++)
+		{
+			if((*this)[x] != ' ')
+				// Char that doesn't match stuff to trim found, let's stop here!
+				break;
+
+		}
+
+		// x should be the number of chars we want to erase from the start of the string
+
+		// Erase number of chars found
+
+	}
+*/
 
 	//============================================================================================//
 	//============================== PRIVATE METHOD DEFINITIONS ==================================//
