@@ -20,9 +20,9 @@ namespace StringTestsNs
 
 		TEST(AssignmentOperatorTest)
 		{
-			mNinja::String myString1("Testing");
+			MbeddedNinja::String myString1("Testing");
 
-			mNinja::String myString2("Other stuff");
+			MbeddedNinja::String myString2("Other stuff");
 
 			myString2 = myString1;
 

@@ -21,7 +21,7 @@ namespace StringTestsNs
 
 		TEST(CharPresentFindTest)
 		{
-			mNinja::String myString("Testing");
+			MbeddedNinja::String myString("Testing");
 
 			// Char should be found, and Find() return 0-based index to first occurance
 			CHECK_EQUAL(2, myString.Find('s'));
@@ -29,7 +29,7 @@ namespace StringTestsNs
 
 		TEST(CharNotPresentFindTest)
 		{
-			mNinja::String myString("Testing");
+			MbeddedNinja::String myString("Testing");
 
 			// Char should not be found, and Find() should return -1
 			CHECK_EQUAL(-1, myString.Find('z'));
@@ -37,7 +37,7 @@ namespace StringTestsNs
 
 		TEST(CharPresentMultipleTimesFindTest)
 		{
-			mNinja::String myString("aaabbaaa");
+			MbeddedNinja::String myString("aaabbaaa");
 
 			// Find should return first occurance of 'b'
 			CHECK_EQUAL(3, myString.Find('b'));
@@ -48,7 +48,7 @@ namespace StringTestsNs
 
 		TEST(LookForCharBeyondStringFindTest)
 		{
-			mNinja::String myString("aaabbaaa");
+			MbeddedNinja::String myString("aaabbaaa");
 
 			// A startPos of 30 exceeds string lengh, we should not find anything
 			CHECK_EQUAL(-1, myString.Find('b', 30));
@@ -56,7 +56,7 @@ namespace StringTestsNs
 
 		TEST(LookForNullFindTest)
 		{
-			mNinja::String myString("Testing");
+			MbeddedNinja::String myString("Testing");
 
 			// Null should not be found, and Find() should return -1
 			CHECK_EQUAL(-1, myString.Find('\0'));

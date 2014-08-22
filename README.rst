@@ -12,7 +12,7 @@ A C++ string object specifically designed for embedded applications.
 - Author: gbmhunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 - First Ever Commit: 2014-08-12
 - Last Modified: 2014-08-22
-- Version: v1.10.1.0
+- Version: v1.10.2.0
 - Company: CladLabs
 - Project: Free Code Libraries
 - Language: C++
@@ -63,7 +63,8 @@ Changelog
 ========= ========== ===================================================================================================
 Version   Date       Comment
 ========= ========== ===================================================================================================
-v1.10.1.0 2014-08-22 Reanmed namespace from 'StringNs' to 'mNinja', closes #38.
+v1.10.2.0 2014-08-22 Renamed namespace from 'mNinja' to 'MbeddedNinja', closes #39.
+v1.10.1.0 2014-08-22 Renamed namespace from 'StringNs' to 'mNinja', closes #38.
 v1.10.0.0 2014-08-22 Added type conversion overload from 'String' to 'const char *' and added relevant unit tests, closes #29.
 v1.9.2.0  2014-08-22 Added compount assignment operator overload ('+=') for String class, closes #34. Modified the '+' overload so that chaining is supported, added associated unit tests, closes #37.
 v1.9.1.0  2014-08-22 Renamed 'String::cStringPtr' to 'String::cStr', which is faster to type and drops the pointer qualification as this is implicit, closes #24.

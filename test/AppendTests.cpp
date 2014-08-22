@@ -20,7 +20,7 @@ namespace StringTestsNs
 
 		TEST(BasicAppendTest)
 		{
-			mNinja::String myString("Hello");
+			MbeddedNinja::String myString("Hello");
 
 			myString.Append(", world!");
 
@@ -29,7 +29,7 @@ namespace StringTestsNs
 
 		TEST(AppendNothingTest)
 		{
-			mNinja::String myString("Hello");
+			MbeddedNinja::String myString("Hello");
 
 			myString.Append("");
 
@@ -38,7 +38,7 @@ namespace StringTestsNs
 
 		TEST(LengthCorrectCheckTest)
 		{
-			mNinja::String myString("Hello");
+			MbeddedNinja::String myString("Hello");
 
 			myString.Append(", world!");
 
@@ -47,22 +47,22 @@ namespace StringTestsNs
 
 		TEST(BasicAppendThroughPlusOperatorTest)
 		{
-			mNinja::String myString1("Hello");
+			MbeddedNinja::String myString1("Hello");
 
-			mNinja::String myString2(", world!");
+			MbeddedNinja::String myString2(", world!");
 
-			mNinja::String myString3 = myString1 + myString2;
+			MbeddedNinja::String myString3 = myString1 + myString2;
 
 			CHECK_EQUAL("Hello, world!", myString3.cStr);
 		}
 
 		TEST(LongChainTest)
 		{
-			mNinja::String myString1("Hello");
+			MbeddedNinja::String myString1("Hello");
 
-			mNinja::String myString2(", world!");
+			MbeddedNinja::String myString2(", world!");
 
-			mNinja::String myString3 =
+			MbeddedNinja::String myString3 =
 					(myString1 + myString2) + " And some more stuff!" + " Even more stuff!";
 
 			CHECK_EQUAL("Hello, world! And some more stuff! Even more stuff!", myString3.cStr);
@@ -70,11 +70,11 @@ namespace StringTestsNs
 
 		TEST(LongChainLotsOfEmptyStringsTest)
 		{
-			mNinja::String myString1("Hello");
+			MbeddedNinja::String myString1("Hello");
 
-			mNinja::String myString2(", world!");
+			MbeddedNinja::String myString2(", world!");
 
-			mNinja::String myString3 =
+			MbeddedNinja::String myString3 =
 					myString1 + myString2 + "" + "" + "";
 
 			CHECK_EQUAL("Hello, world!", myString3.cStr);
@@ -82,9 +82,9 @@ namespace StringTestsNs
 
 		TEST(AppendThroughCompoundAssignmentOperatorWithStringTest)
 		{
-			mNinja::String myString1("Hello");
+			MbeddedNinja::String myString1("Hello");
 
-			mNinja::String myString2(", world!");
+			MbeddedNinja::String myString2(", world!");
 
 			myString1 += myString2;
 
@@ -93,7 +93,7 @@ namespace StringTestsNs
 
 		TEST(AppendThroughCompoundAssignmentOperatorWithConstCharTest)
 		{
-			mNinja::String myString1("Hello");
+			MbeddedNinja::String myString1("Hello");
 
 			myString1 += ", world!";
 

@@ -21,7 +21,7 @@ namespace StringTestsNs
 
 		TEST(SubscriptOperatorReadTest)
 		{
-			mNinja::String myString1("Testing");
+			MbeddedNinja::String myString1("Testing");
 
 			CHECK_EQUAL('T', myString1[0]);
 			CHECK_EQUAL('i', myString1[4]);
@@ -33,7 +33,7 @@ namespace StringTestsNs
 
 		TEST(SubscriptOperatorWriteTest)
 		{
-			mNinja::String myString1("Testing");
+			MbeddedNinja::String myString1("Testing");
 			myString1[4] = 'z';
 
 			// Check to make sure write was successful
@@ -42,7 +42,7 @@ namespace StringTestsNs
 
 		TEST(OutOfBoundsTest)
 		{
-			mNinja::String myString1("Testing");
+			MbeddedNinja::String myString1("Testing");
 
 			// Lets try and write to something out-of-bounds
 			myString1[287] = 'z';

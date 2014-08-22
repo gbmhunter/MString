@@ -20,9 +20,9 @@ namespace StringTestsNs
 
 		TEST(DeepCopyTest)
 		{
-			mNinja::String myString1("Testing");
+			MbeddedNinja::String myString1("Testing");
 
-			mNinja::String myString2(myString1);
+			MbeddedNinja::String myString2(myString1);
 
 			// Change memory in myString1 to make sure deep copy worked
 			myString1.cStr[0] = 'a';
@@ -33,10 +33,10 @@ namespace StringTestsNs
 
 		TEST(CopyAssignmentTest)
 		{
-			mNinja::String myString1("Testing");
+			MbeddedNinja::String myString1("Testing");
 
 			// Do a copy-assignment
-			mNinja::String myString2 = myString1;
+			MbeddedNinja::String myString2 = myString1;
 
 			// Change memory in myString1 to make sure deep copy worked
 			myString1.cStr[0] = 'a';

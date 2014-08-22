@@ -20,7 +20,7 @@ namespace StringTestsNs
 
 		TEST(NoParamConstructorTest)
 		{
-			mNinja::String myString;
+			MbeddedNinja::String myString;
 
 			// Check constructor worked correctly
 			CHECK_EQUAL("", myString.cStr);
@@ -28,7 +28,7 @@ namespace StringTestsNs
 
 		TEST(EmptyStringConstructorTest)
 		{
-			mNinja::String myString("");
+			MbeddedNinja::String myString("");
 
 			// Check constructor worked correctly
 			CHECK_EQUAL("", myString.cStr);

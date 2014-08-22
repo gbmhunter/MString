@@ -20,7 +20,7 @@ namespace StringTestsNs
 
 		TEST(CStringPresentFindTest)
 		{
-			mNinja::String myString("Looking for the needle in the haystack.");
+			MbeddedNinja::String myString("Looking for the needle in the haystack.");
 
 			// "needle" should be found, and Find() return 0-based index to first occurance
 			CHECK_EQUAL(16, myString.Find("needle"));
@@ -28,9 +28,9 @@ namespace StringTestsNs
 
 		TEST(StringPresentFindTest)
 		{
-			mNinja::String myString("Looking for the needle in the haystack.");
+			MbeddedNinja::String myString("Looking for the needle in the haystack.");
 
-			mNinja::String stringToFind("needle");
+			MbeddedNinja::String stringToFind("needle");
 
 			// "needle" should be found, and Find() return 0-based index to first occurance
 			CHECK_EQUAL(16, myString.Find(stringToFind));
@@ -38,9 +38,9 @@ namespace StringTestsNs
 
 		TEST(StringNotPresentFindTest)
 		{
-			mNinja::String myString("Looking for the needle in the haystack.");
+			MbeddedNinja::String myString("Looking for the needle in the haystack.");
 
-			mNinja::String stringToFind("noneedle");
+			MbeddedNinja::String stringToFind("noneedle");
 
 			// Char should not be found, and Find() should return -1
 			CHECK_EQUAL(-1, myString.Find(stringToFind));
@@ -48,9 +48,9 @@ namespace StringTestsNs
 
 		TEST(StringPresentMultipleTimesFindTest)
 		{
-			mNinja::String myString("Looking for the needle in the haystack full of needles.");
+			MbeddedNinja::String myString("Looking for the needle in the haystack full of needles.");
 
-			mNinja::String stringToFind("needle");
+			MbeddedNinja::String stringToFind("needle");
 
 			// Find should return first occurrance of "needle"
 			CHECK_EQUAL(16, myString.Find(stringToFind));
