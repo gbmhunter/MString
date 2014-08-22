@@ -24,7 +24,7 @@ namespace StringTestsNs
 
 			myString.Append(", world!");
 
-			CHECK_EQUAL("Hello, world!", myString.cStringPtr);
+			CHECK_EQUAL("Hello, world!", myString.cStr);
 		}
 
 		TEST(LengthCorrectCheckTest)
@@ -44,7 +44,7 @@ namespace StringTestsNs
 
 			StringNs::String myString3 = myString1 + myString2;
 
-			CHECK_EQUAL("Hello, world!", myString3.cStringPtr);
+			CHECK_EQUAL("Hello, world!", myString3.cStr);
 		}
 
 	} // SUITE(AppendTests)

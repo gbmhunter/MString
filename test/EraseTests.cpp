@@ -25,7 +25,7 @@ namespace StringTestsNs
 			// Erase everything after "Hello"
 			myString.Erase(5);
 
-			CHECK_EQUAL("Hello", myString.cStringPtr);
+			CHECK_EQUAL("Hello", myString.cStr);
 		}
 
 		TEST(LengthCorrectCheckTest)
@@ -45,7 +45,7 @@ namespace StringTestsNs
 			// Erase the comma and space
 			myString.Erase(5, 2);
 
-			CHECK_EQUAL("Helloworld!", myString.cStringPtr);
+			CHECK_EQUAL("Helloworld!", myString.cStr);
 			CHECK_EQUAL(11, myString.GetLength());
 		}
 
@@ -57,7 +57,7 @@ namespace StringTestsNs
 			// should do nothing
 			myString.Erase(30);
 
-			CHECK_EQUAL("Hello, world!", myString.cStringPtr);
+			CHECK_EQUAL("Hello, world!", myString.cStr);
 			CHECK_EQUAL(13, myString.GetLength());
 		}
 
@@ -69,7 +69,7 @@ namespace StringTestsNs
 			// should do nothing
 			myString.Erase(30, 10);
 
-			CHECK_EQUAL("Hello, world!", myString.cStringPtr);
+			CHECK_EQUAL("Hello, world!", myString.cStr);
 			CHECK_EQUAL(13, myString.GetLength());
 		}
 
@@ -80,7 +80,7 @@ namespace StringTestsNs
 			// Try and erase 30 chars starting from pos 5, should just erase what we can
 			myString.Erase(5, 30);
 
-			CHECK_EQUAL("Hello", myString.cStringPtr);
+			CHECK_EQUAL("Hello", myString.cStr);
 		}
 
 		TEST(EraseAllTest)
@@ -90,12 +90,12 @@ namespace StringTestsNs
 			// Erase all characters
 			myString.Erase(0);
 
-			CHECK_EQUAL("", myString.cStringPtr);
+			CHECK_EQUAL("", myString.cStr);
 
 			// Lets try and erase again, should do nothing
 			myString.Erase(10);
 
-			CHECK_EQUAL("", myString.cStringPtr);
+			CHECK_EQUAL("", myString.cStr);
 		}
 
 		TEST(EraseNegativeNumberTest1)
@@ -108,7 +108,7 @@ namespace StringTestsNs
 			myString.Erase(-2);
 
 			// Make sure nothing was erased
-			CHECK_EQUAL("Hello, world!", myString.cStringPtr);
+			CHECK_EQUAL("Hello, world!", myString.cStr);
 		}
 
 		TEST(EraseNegativeNumberTest2)
@@ -121,7 +121,7 @@ namespace StringTestsNs
 			myString.Erase(-2, -3);
 
 			// Make sure nothing was erased
-			CHECK_EQUAL("Hello, world!", myString.cStringPtr);
+			CHECK_EQUAL("Hello, world!", myString.cStr);
 		}
 
 	} // SUITE(EraseTests)

@@ -27,7 +27,7 @@ namespace StringTestsNs
 			myString2 = myString1;
 
 			// myString2 should now be equal to myString1
-			CHECK_EQUAL("Testing", myString2.cStringPtr);
+			CHECK_EQUAL("Testing", myString2.cStr);
 		}
 
 	} // SUITE(AssignmentOperatorTests)

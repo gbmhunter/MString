@@ -25,10 +25,10 @@ namespace StringTestsNs
 			StringNs::String myString2(myString1);
 
 			// Change memory in myString1 to make sure deep copy worked
-			myString1.cStringPtr[0] = 'a';
+			myString1.cStr[0] = 'a';
 
 			// myString2 should not be affected by above change to myString1!
-			CHECK_EQUAL("Testing", myString2.cStringPtr);
+			CHECK_EQUAL("Testing", myString2.cStr);
 		}
 
 		TEST(CopyAssignmentTest)
@@ -39,10 +39,10 @@ namespace StringTestsNs
 			StringNs::String myString2 = myString1;
 
 			// Change memory in myString1 to make sure deep copy worked
-			myString1.cStringPtr[0] = 'a';
+			myString1.cStr[0] = 'a';
 
 			// myString2 should not be affected by above change to myString1!
-			CHECK_EQUAL("Testing", myString2.cStringPtr);
+			CHECK_EQUAL("Testing", myString2.cStr);
 		}
 
 	} // SUITE(CopyTests)

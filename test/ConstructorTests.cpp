@@ -23,7 +23,7 @@ namespace StringTestsNs
 			StringNs::String myString;
 
 			// Check constructor worked correctly
-			CHECK_EQUAL("", myString.cStringPtr);
+			CHECK_EQUAL("", myString.cStr);
 		}
 
 		TEST(EmptyStringConstructorTest)
@@ -31,7 +31,7 @@ namespace StringTestsNs
 			StringNs::String myString("");
 
 			// Check constructor worked correctly
-			CHECK_EQUAL("", myString.cStringPtr);
+			CHECK_EQUAL("", myString.cStr);
 		}
 
 	} // SUITE(ConstructorTests)

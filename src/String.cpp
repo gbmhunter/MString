@@ -42,7 +42,7 @@ namespace StringNs
 	{
 		// Use strcmp function, returns 0 (false) if strings match, so note
 		// the logic inversion that takes place here!
-		if(strcmp(lhs.cStringPtr, rhs))
+		if(strcmp(lhs.cStr, rhs))
 			return false;
 		else
 			return true;
@@ -51,7 +51,7 @@ namespace StringNs
 	bool operator==(String & lhs, String & rhs)
 	{
 		// Call the overload with one string obj and one c-style string
-		return (lhs == rhs.cStringPtr);
+		return (lhs == rhs.cStr);
 	}
 
 	bool operator!=(String & lhs, const char * rhs)
@@ -67,14 +67,14 @@ namespace StringNs
 	{
 		// Call the inquality overload with one string object
 		// and one C-style string
-		return (lhs != rhs.cStringPtr);
+		return (lhs != rhs.cStr);
 	}
 
 
 	String operator+(String & lhs, const char * rhs)
 	{
 		// + operator overload between a strings object and a C-style string
-		String result(lhs.cStringPtr);
+		String result(lhs.cStr);
 		result.Append(rhs);
 		return result;
 
@@ -84,8 +84,8 @@ namespace StringNs
 	{
 		// + operator overload between two strings,
 		// joins the two strings together
-		String result(lhs.cStringPtr);
-		result.Append(rhs.cStringPtr);
+		String result(lhs.cStr);
+		result.Append(rhs.cStr);
 		return result;
 	}
 
@@ -101,13 +101,13 @@ namespace StringNs
 		this->length = strlen(cString);
 
 		// Allocate memory to store this string, + 1 to store null char
-		this->cStringPtr = new char[this->length + 1];
+		this->cStr = new char[this->length + 1];
 
 		// Now copy string across
-		strncpy(this->cStringPtr, cString, this->length);
+		strncpy(this->cStr, cString, this->length);
 
 		// Make sure it is null terminated
-		this->cStringPtr[this->length] = '\0';
+		this->cStr[this->length] = '\0';
 	}
 
 	String::String() :
@@ -117,7 +117,7 @@ namespace StringNs
 	}
 
 	String::String(const String &obj) :
-		String(obj.cStringPtr)	// Delegate to base constructor, passing in the C-style string
+		String(obj.cStr)	// Delegate to base constructor, passing in the C-style string
 	{
 		// Copy constructor
 		// Nothing here
@@ -131,7 +131,7 @@ namespace StringNs
 		if (this != &other) // protect against invalid self-assignment
 		{
 			// Make sure C-string ptr is valid
-			if(!other.cStringPtr)
+			if(!other.cStr)
 				return *this;
 
 			//std::cerr << "LHS.cStr = '" << this->cStringPtr << "'. Length = '" <<
@@ -140,21 +140,21 @@ namespace StringNs
 			//					other.length << "'.\r\n" << std::endl;
 
 			// Deallocate current memory
-			delete[] this->cStringPtr;
+			delete[] this->cStr;
 
 			// Copy length
 			this->length = other.length;
 
 			// allocate memory for our copy
-			this->cStringPtr = new char[this->length + 1];
+			this->cStr = new char[this->length + 1];
 
 			// Copy the parameter the newly allocated memory
-			strncpy(this->cStringPtr, other.cStringPtr, this->length + 1);
+			strncpy(this->cStr, other.cStr, this->length + 1);
 
 			// Make sure a null is inserted at the end
 			// This should never be required and strncpy should always insert it,
 			// but better to be safe than sorry
-			this->cStringPtr[this->length] = '\0';
+			this->cStr[this->length] = '\0';
 
 			//std::cerr << "New LHS.cStr = '" << this->cStringPtr << "'. New Length = '" <<
 			//					this->length << "'.\r\n" << std::endl;
@@ -177,17 +177,17 @@ namespace StringNs
 			// something is in bounds, so let's return
 			// the last char. This could cause unexpected behaviour,
 			// so an assert() needs to be added!
-			return this->cStringPtr[0];
+			return this->cStr[0];
 		}
 
-	    return this->cStringPtr[index];
+	    return this->cStr[index];
 	}
 
 
 	String::~String()
 	{
 		// Delete memory that was allocated in the constructor.
-		delete[] this->cStringPtr;
+		delete[] this->cStr;
 	}
 
 	uint32_t String::GetLength()
@@ -228,7 +228,7 @@ namespace StringNs
 	int32_t String::Find(const char * cStringToFind, uint32_t startPos)
 	{
 		// Look for stringToFind inside string, offsetting string by startPos
-		char * ptrToFirstOccurance = strstr(this->cStringPtr + startPos, cStringToFind);
+		char * ptrToFirstOccurance = strstr(this->cStr + startPos, cStringToFind);
 
 		if(ptrToFirstOccurance == nullptr)
 			// stringToFind not found inside string, return -1.
@@ -236,13 +236,13 @@ namespace StringNs
 		else
 			// Return offset of pointer to matched string from start of searched-in string,
 			// this will be the index
-			return ptrToFirstOccurance - this->cStringPtr;
+			return ptrToFirstOccurance - this->cStr;
 	}
 
 	int32_t String::Find(const String & stringToFind, uint32_t startPos)
 	{
 		// Call base method, passing in C-style string
-		return this->Find(stringToFind.cStringPtr, startPos);
+		return this->Find(stringToFind.cStr, startPos);
 	}
 
 	void String::Append(const char * cStringToAppend)
@@ -254,7 +254,7 @@ namespace StringNs
 		char * newCStringPtr = new char[this->length + appendStringLength + 1];
 
 		// Copy across first section
-		strncpy(newCStringPtr, this->cStringPtr, this->length);
+		strncpy(newCStringPtr, this->cStr, this->length);
 
 		// Copy across second section
 		strncpy(newCStringPtr + this->length, cStringToAppend, appendStringLength);
@@ -263,10 +263,10 @@ namespace StringNs
 		newCStringPtr[this->length + appendStringLength] = '\0';
 
 		// Free old memory
-		delete[] this->cStringPtr;
+		delete[] this->cStr;
 
 		// Save new pointer
-		this->cStringPtr = newCStringPtr;
+		this->cStr = newCStringPtr;
 
 		// Update length
 		this->length += appendStringLength;
@@ -312,7 +312,7 @@ namespace StringNs
 
 		// Copy first section into new string, note startPos could be zero,
 		// in this case this call won't do anything
-		strncpy(newCStringPtr, this->cStringPtr, startPos);
+		strncpy(newCStringPtr, this->cStr, startPos);
 
 		//std::cerr << "New cPtr = '" << newCStringPtr << "'." << std::endl;
 
@@ -328,7 +328,7 @@ namespace StringNs
 
 			strncpy(
 				newCStringPtr + startPos,
-				this->cStringPtr + startPos + actualNumOfCharsToErase,
+				this->cStr + startPos + actualNumOfCharsToErase,
 				this->length - actualNumOfCharsToErase);
 		}
 
@@ -338,12 +338,12 @@ namespace StringNs
 		//std::cerr << "Freeing old memory." << std::endl;
 
 		// Free old memory
-		delete[] this->cStringPtr;
+		delete[] this->cStr;
 
 		//std::cerr << "Saving new pointer." << std::endl;
 
 		// Save new pointer
-		this->cStringPtr = newCStringPtr;
+		this->cStr = newCStringPtr;
 
 		//std::cerr << "Final string = '" << this->cStringPtr << "'." << std::endl;
 		//std::cerr << "Updating length." << std::endl;

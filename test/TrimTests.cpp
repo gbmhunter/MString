@@ -27,7 +27,7 @@ namespace StringTestsNs
 			// Trim white space
 			myString1.Trim();
 
-			CHECK_EQUAL("There is white space before me.", myString1.cStringPtr);
+			CHECK_EQUAL("There is white space before me.", myString1.cStr);
 		}
 
 		TEST(TrimJustCarriageReturnsFromStartTest)
@@ -37,7 +37,7 @@ namespace StringTestsNs
 			// Trim string
 			myString1.Trim();
 
-			CHECK_EQUAL("There are carriage returns before me.", myString1.cStringPtr);
+			CHECK_EQUAL("There are carriage returns before me.", myString1.cStr);
 		}
 
 		TEST(TrimJustNewLinesFromStartTest)
@@ -47,7 +47,7 @@ namespace StringTestsNs
 			// Trim string
 			myString1.Trim();
 
-			CHECK_EQUAL("There are new lines before me.", myString1.cStringPtr);
+			CHECK_EQUAL("There are new lines before me.", myString1.cStr);
 		}
 
 		TEST(TrimJustTabsFromStartTest)
@@ -57,7 +57,7 @@ namespace StringTestsNs
 			// Trim string
 			myString1.Trim();
 
-			CHECK_EQUAL("There are tabs before me.", myString1.cStringPtr);
+			CHECK_EQUAL("There are tabs before me.", myString1.cStr);
 		}
 
 		TEST(TrimAMixtureOfWhiteSpaceFromStartTest)
@@ -67,7 +67,7 @@ namespace StringTestsNs
 			// Trim string
 			myString1.Trim();
 
-			CHECK_EQUAL("There is a mixture of white-space chars before me.", myString1.cStringPtr);
+			CHECK_EQUAL("There is a mixture of white-space chars before me.", myString1.cStr);
 		}
 
 		//======================== TRIM FROM END TESTS ====================//
@@ -79,7 +79,7 @@ namespace StringTestsNs
 			// Trim white space
 			myString1.Trim();
 
-			CHECK_EQUAL("There is white space after me.", myString1.cStringPtr);
+			CHECK_EQUAL("There is white space after me.", myString1.cStr);
 		}
 
 		TEST(TrimJustCarriageReturnsFromEndTest)
@@ -89,7 +89,7 @@ namespace StringTestsNs
 			// Trim string
 			myString1.Trim();
 
-			CHECK_EQUAL("There are carriage returns after me.", myString1.cStringPtr);
+			CHECK_EQUAL("There are carriage returns after me.", myString1.cStr);
 		}
 
 		TEST(TrimJustNewLinesFromEndTest)
@@ -99,7 +99,7 @@ namespace StringTestsNs
 			// Trim string
 			myString1.Trim();
 
-			CHECK_EQUAL("There are new lines after me.", myString1.cStringPtr);
+			CHECK_EQUAL("There are new lines after me.", myString1.cStr);
 		}
 
 		TEST(TrimJustTabsFromEndTest)
@@ -109,7 +109,7 @@ namespace StringTestsNs
 			// Trim string
 			myString1.Trim();
 
-			CHECK_EQUAL("There are tabs after me.", myString1.cStringPtr);
+			CHECK_EQUAL("There are tabs after me.", myString1.cStr);
 		}
 
 		TEST(TrimAMixtureOfWhiteSpaceFromEndTest)
@@ -119,7 +119,7 @@ namespace StringTestsNs
 			// Trim string
 			myString1.Trim();
 
-			CHECK_EQUAL("There is a mixture of white-space chars after me.", myString1.cStringPtr);
+			CHECK_EQUAL("There is a mixture of white-space chars after me.", myString1.cStr);
 		}
 
 		//======================== TRIM FROM BOTH ENDS TESTS ====================//
@@ -131,7 +131,7 @@ namespace StringTestsNs
 			// Trim string
 			myString1.Trim();
 
-			CHECK_EQUAL("There is a mixture of white-space chars before and after me.", myString1.cStringPtr);
+			CHECK_EQUAL("There is a mixture of white-space chars before and after me.", myString1.cStr);
 		}
 
 		//======================== DOESN'T TRIM FROM MIDDLE TESTS ====================//
@@ -144,7 +144,7 @@ namespace StringTestsNs
 			myString1.Trim();
 
 			//  String should now start the the 'a' char.
-			CHECK_EQUAL("a\r b\t cdef gh", myString1.cStringPtr);
+			CHECK_EQUAL("a\r b\t cdef gh", myString1.cStr);
 		}
 
 		//======================== ONLY TRIM WHAT I'M TOLD TO TESTS ====================//
@@ -159,7 +159,7 @@ namespace StringTestsNs
 
 			CHECK_EQUAL(
 				"There is a mixture of white-space chars before and after me.\r  \t\n\n ",
-				myString1.cStringPtr);
+				myString1.cStr);
 		}
 
 		TEST(OnlyTrimFromRightTest)
@@ -172,7 +172,7 @@ namespace StringTestsNs
 
 			CHECK_EQUAL(
 				"   \t \r\nThere is a mixture of white-space chars before and after me.",
-				myString1.cStringPtr);
+				myString1.cStr);
 		}
 
 		//======================== SPECIFYING WHAT TO TRIM TESTS ====================//
@@ -187,7 +187,7 @@ namespace StringTestsNs
 
 			CHECK_EQUAL(
 				"There are some 'a' before and after me.\r  \t\n\n ",
-				myString1.cStringPtr);
+				myString1.cStr);
 		}
 
 		//======================== EDGE-CASE TRIM TESTS ====================//
@@ -200,7 +200,7 @@ namespace StringTestsNs
 			myString1.Trim();
 
 			//  String should now be empty.
-			CHECK_EQUAL("", myString1.cStringPtr);
+			CHECK_EQUAL("", myString1.cStr);
 		}
 
 		TEST(TrimEmptyStringWithEmptyMatchingCharsTest)
@@ -211,7 +211,7 @@ namespace StringTestsNs
 			myString1.Trim(StringNs::String());
 
 			//  String should still be empty.
-			CHECK_EQUAL("", myString1.cStringPtr);
+			CHECK_EQUAL("", myString1.cStr);
 		}
 
 		TEST(TrimStringWithEmptyMatchingCharsTest)
@@ -222,7 +222,7 @@ namespace StringTestsNs
 			myString1.Trim(StringNs::String());
 
 			//  String should of not been modified
-			CHECK_EQUAL("Please don't hurt me!", myString1.cStringPtr);
+			CHECK_EQUAL("Please don't hurt me!", myString1.cStr);
 		}
 
 		TEST(AllWhiteSpaceTest)
@@ -233,7 +233,7 @@ namespace StringTestsNs
 			myString1.Trim();
 
 			//  String should now be empty.
-			CHECK_EQUAL("", myString1.cStringPtr);
+			CHECK_EQUAL("", myString1.cStr);
 		}
 
 	} // SUITE(TrimTests)

@@ -65,9 +65,6 @@ namespace StringNs
 		
 		public:
 
-
-
-
 			//======================================================================================//
 			//==================================== PUBLIC METHODS ==================================//
 			//======================================================================================//
@@ -193,7 +190,7 @@ namespace StringNs
 			//! @brief		Pointer to internal memory where C-style string is stored. Guaranteed
 			//!				to be null-terminated.
 			//! @details	Access this to pass in string when a C-style function is called.
-			char * cStringPtr;
+			char * cStr;
 				
 		private:
 						

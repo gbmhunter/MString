@@ -24,7 +24,7 @@ namespace StringTestsNs
 			StringNs::String myString("Testing");
 
 			// Check capacity is calculated correctly
-			CHECK_EQUAL("Testing", myString.cStringPtr);
+			CHECK_EQUAL("Testing", myString.cStr);
 		}
 
 

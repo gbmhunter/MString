@@ -37,7 +37,7 @@ namespace StringTestsNs
 			myString1[4] = 'z';
 
 			// Check to make sure write was successful
-			CHECK_EQUAL("Testzng", myString1.cStringPtr);
+			CHECK_EQUAL("Testzng", myString1.cStr);
 		}
 
 		TEST(OutOfBoundsTest)
@@ -48,7 +48,7 @@ namespace StringTestsNs
 			myString1[287] = 'z';
 
 			// Specified behaviour when out-of-bounds is to return the first char.
-			CHECK_EQUAL("zesting", myString1.cStringPtr);
+			CHECK_EQUAL("zesting", myString1.cStr);
 		}
 
 	} // SUITE(SubscriptOperatorTests)
