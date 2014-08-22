@@ -156,6 +156,16 @@ namespace StringNs
 			//!				we have to provide access for read operations.
 			char & operator[] (const uint32_t index);
 
+			//! @brief		Compound assignment operator overload.
+			//! @details	Appends the RHS C-style string onto the LHS string object.
+			//!				Used by the "+" operator overload.
+			String & operator+=(const char * rhs);
+
+			//! @brief		Compound assignment operator overload.
+			//! @details	Appends the RHS string onto the LHS string.
+			//!				Used by the "+" operator overload.
+			String & operator+=(const String &rhs);
+
 			//! @brief		Equality operator overload. Allows you to compare one string object and
 			//!				one C-style string for equality.
 			//! @details	Used by the other equality operator overload and the inequality operator overload.
@@ -177,11 +187,14 @@ namespace StringNs
 
 			//! @brief		Allows you to concatenate two strings together.
 			//! @details	Calls the Append() method.
-			friend String operator+(String & lhs, const char * rhs);
+			friend String operator+(String lhs, const char * rhs);
 
 			//! @brief		Allows you to concatenate a string object and a C-style string together.
-			//! @details	Calls the Append() method.
-			friend String operator+(String & lhs, String & rhs);
+			//! @details	Calls the += operaotr which in turn calls the Append() method.
+			//!				Pass LHS by value to allow to better optimisation.
+			friend String operator+(String lhs, String & rhs);
+
+
 
 			//======================================================================================//
 			//================================= PUBLIC VARIABLES ===================================//

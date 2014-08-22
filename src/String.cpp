@@ -2,7 +2,7 @@
 //! @file				String.cpp
 //! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created			2014-08-12
-//! @last-modified		2014-08-21
+//! @last-modified		2014-08-22
 //! @brief				Contains the definitions for the String class.
 //! @details
 //!						See README.rst in repo root dir for more info.
@@ -34,94 +34,11 @@
 namespace StringNs
 {
 
-	//============================================================================================//
-	//======================= PUBLIC OPERATOR OVERLOAD DEFINITIONS ===============================//
-	//============================================================================================//
+	//===========================================================================================//
+	//=========================== PUBLIC OPERATOR OVERLOAD DEFINITIONS ==========================//
+	//===========================================================================================//
 
-	bool operator==(String & lhs, const char * rhs)
-	{
-		// Use strcmp function, returns 0 (false) if strings match, so note
-		// the logic inversion that takes place here!
-		if(strcmp(lhs.cStr, rhs))
-			return false;
-		else
-			return true;
-	}
-
-	bool operator==(String & lhs, String & rhs)
-	{
-		// Call the overload with one string obj and one c-style string
-		return (lhs == rhs.cStr);
-	}
-
-	bool operator!=(String & lhs, const char * rhs)
-	{
-		// Use the equality overload to perform the inequality overload
-		if(lhs == rhs)
-			return false;
-		else
-			return true;
-	}
-
-	bool operator!=(String & lhs, String & rhs)
-	{
-		// Call the inquality overload with one string object
-		// and one C-style string
-		return (lhs != rhs.cStr);
-	}
-
-
-	String operator+(String & lhs, const char * rhs)
-	{
-		// + operator overload between a strings object and a C-style string
-		String result(lhs.cStr);
-		result.Append(rhs);
-		return result;
-
-	}
-
-	String operator+(String & lhs, String & rhs)
-	{
-		// + operator overload between two strings,
-		// joins the two strings together
-		String result(lhs.cStr);
-		result.Append(rhs.cStr);
-		return result;
-	}
-
-
-
-	//============================================================================================//
-	//=============================== PUBLIC METHOD DEFINITIONS ==================================//
-	//============================================================================================//
-
-	String::String(const char * cString)
-	{
-		// Get length of cString
-		this->length = strlen(cString);
-
-		// Allocate memory to store this string, + 1 to store null char
-		this->cStr = new char[this->length + 1];
-
-		// Now copy string across
-		strncpy(this->cStr, cString, this->length);
-
-		// Make sure it is null terminated
-		this->cStr[this->length] = '\0';
-	}
-
-	String::String() :
-			String("") // Delegate to base constructor, passing in empty C-style string
-	{
-		// No code needed here
-	}
-
-	String::String(const String &obj) :
-		String(obj.cStr)	// Delegate to base constructor, passing in the C-style string
-	{
-		// Copy constructor
-		// Nothing here
-	}
+	//=========================================== ASSIGNMENT ====================================//
 
 	String & String::operator= (const String & other)
 	{
@@ -165,6 +82,8 @@ namespace StringNs
 		return *this;
 	}
 
+	//====================================== SUBSCRIPT OPERATOR =================================//
+
 	char & String::operator[] (const uint32_t index)
 	{
 
@@ -180,8 +99,118 @@ namespace StringNs
 			return this->cStr[0];
 		}
 
-	    return this->cStr[index];
+		return this->cStr[index];
 	}
+
+	//================================ COMPOUND ASSIGNMENT OVERLOADS ============================//
+
+	String & String::operator+=(const char * rhs)
+	{
+		// Compound assignment operator overload
+		// Append RHS to current string (LHS)
+		this->Append(rhs);
+		return *this;
+	}
+
+	String & String::operator+=(const String &rhs)
+	{
+		// Compound assignment operator overload
+		// Append RHS to current string (LHS)
+		this->Append(rhs.cStr);
+		return *this;
+	}
+
+	//============================= COMPARITIVE OPERAOTOR OVERLOADS =============================//
+
+	bool operator==(String & lhs, const char * rhs)
+	{
+		// Use strcmp function, returns 0 (false) if strings match, so note
+		// the logic inversion that takes place here!
+		if(strcmp(lhs.cStr, rhs))
+			return false;
+		else
+			return true;
+	}
+
+	bool operator==(String & lhs, String & rhs)
+	{
+		// Call the overload with one string obj and one c-style string
+		return (lhs == rhs.cStr);
+	}
+
+	bool operator!=(String & lhs, const char * rhs)
+	{
+		// Use the equality overload to perform the inequality overload
+		if(lhs == rhs)
+			return false;
+		else
+			return true;
+	}
+
+	bool operator!=(String & lhs, String & rhs)
+	{
+		// Call the inquality overload with one string object
+		// and one C-style string
+		return (lhs != rhs.cStr);
+	}
+
+
+	String operator+(String lhs, const char * rhs)
+	{
+		// + operator overload between a strings object and a C-style string
+		//String result(lhs.cStr);
+		//result.Append(rhs);
+		//return result;
+		return lhs += rhs;
+	}
+
+	String operator+(String lhs, String & rhs)
+	{
+		// + operator overload between two strings,
+		// joins the two strings together
+		//String result(lhs.cStr);
+		//result.Append(rhs.cStr);
+		//return result;
+		return lhs += rhs;
+	}
+
+
+
+
+
+	//============================================================================================//
+	//=============================== PUBLIC METHOD DEFINITIONS ==================================//
+	//============================================================================================//
+
+	String::String(const char * cString)
+	{
+		// Get length of cString
+		this->length = strlen(cString);
+
+		// Allocate memory to store this string, + 1 to store null char
+		this->cStr = new char[this->length + 1];
+
+		// Now copy string across
+		strncpy(this->cStr, cString, this->length);
+
+		// Make sure it is null terminated
+		this->cStr[this->length] = '\0';
+	}
+
+	String::String() :
+			String("") // Delegate to base constructor, passing in empty C-style string
+	{
+		// No code needed here
+	}
+
+	String::String(const String &obj) :
+		String(obj.cStr)	// Delegate to base constructor, passing in the C-style string
+	{
+		// Copy constructor
+		// Nothing here
+	}
+
+
 
 
 	String::~String()

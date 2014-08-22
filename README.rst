@@ -12,7 +12,7 @@ A C++ string object specifically designed for embedded applications.
 - Author: gbmhunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 - First Ever Commit: 2014-08-12
 - Last Modified: 2014-08-22
-- Version: v1.9.1.0
+- Version: v1.9.2.0
 - Company: CladLabs
 - Project: Free Code Libraries
 - Language: C++
@@ -63,6 +63,7 @@ Changelog
 ======== ========== ===================================================================================================
 Version  Date       Comment
 ======== ========== ===================================================================================================
+v1.9.2.0 2014-08-22 Added compount assignment operator overload ('+=') for String class, closes #34. Modified the '+' overload so that chaining is supported, added associated unit tests, closes #37.
 v1.9.1.0 2014-08-22 Renamed 'String::cStringPtr' to 'String::cStr', which is faster to type and drops the pointer qualification as this is implicit, closes #24.
 v1.9.0.0 2014-08-22 Added 'String::Trim()' method which can be used to trim characters from the beginning/end of the string (including whitespace, which is what it does by default), and added associated unit tests, closes #35.
 v1.8.0.0 2014-08-22 Added overload for subscript operator, providing access to the individual chars in the string, and added associated unit tests, closes #36.
