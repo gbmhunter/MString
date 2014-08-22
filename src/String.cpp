@@ -352,27 +352,91 @@ namespace StringNs
 		this->length = newStringLength;
 
 	}
-/*
-	void String::Trim(String charsToMatch)
+
+	void String::Trim(String charsToMatch, EndsToTrim endsToTrim)
 	{
-		// TRIM FROM START
+		uint32_t posInString;
 
-		// Find out how many characters match pattern
-		uint32_t x;
-		for(x = 0; x < this->length; x++)
+		if((endsToTrim == EndsToTrim::LEFT) || (endsToTrim == EndsToTrim::BOTH))
 		{
-			if((*this)[x] != ' ')
-				// Char that doesn't match stuff to trim found, let's stop here!
-				break;
+			//================== TRIM LEFT ===============//
 
-		}
+			// Find out how many characters match pattern
+			for(posInString = 0; posInString < this->length; posInString++)
+			{
+				//! @brief		Used to flag when a match has been found
+				bool matchFound = false;
+				for(uint32_t posInCharsToMatch = 0; posInCharsToMatch < charsToMatch.length; posInCharsToMatch++)
+				{
+					if((*this)[posInString] == charsToMatch[posInCharsToMatch])
+					{
+						// Char that doesn't match stuff to trim found, let's stop here!
+						matchFound = true;
+						// We don't need to keep looking, we have found a match!
+						break;
+					}
+				}
 
-		// x should be the number of chars we want to erase from the start of the string
+				// If none of the chars in the charsToMatch string could be found at
+				// this position, then break out of loop
+				if(!matchFound)
+					break;
 
-		// Erase number of chars found
+			}
+
+			// posInString should be the number of chars we want to erase from the start of the string
+
+			// Erase number of chars found, starting at the beginning of the string
+			this->Erase(0, posInString);
+		} // if((endsToTrim == EndsToTrim::LEFT) || (endsToTrim == EndsToTrim::BOTH))
+
+		if((endsToTrim == EndsToTrim::RIGHT) || (endsToTrim == EndsToTrim::BOTH))
+		{
+
+			//================= TRIM RIGHT ==============//
+
+			// Find out how many characters match pattern, starting at the
+			// end of the string and working backwards
+			for(posInString = this->length - 1; posInString >= 0; posInString--)
+			{
+				//! @brief		Used to flag when a match has been found
+				bool matchFound = false;
+				for(uint32_t posInCharsToMatch = 0; posInCharsToMatch < charsToMatch.length; posInCharsToMatch++)
+				{
+					if((*this)[posInString] == charsToMatch[posInCharsToMatch])
+					{
+						// Char that doesn't match stuff to trim found, let's stop here!
+						matchFound = true;
+						// We don't need to keep looking, we have found a match!
+						break;
+					}
+				}
+
+				// If none of the chars in the charsToMatch string could be found at
+				// this position, then break out of loop
+				if(!matchFound)
+				{
+					// No match found, so non-trimable char found, lets
+					// increment posInString by 1 so that it points to the last
+					// trimable char
+					posInString++;
+					break;
+				}
+
+			}
+
+			// Erase number of chars found, starting at posInString
+			// and erasing till the end (no second argument provided to Erase()).
+			this->Erase(posInString );
+
+		} // if((endsToTrim == EndsToTrim::RIGHT) || (endsToTrim == EndsToTrim::BOTH))
 
 	}
-*/
+
+	void String::Trim(EndsToTrim endsToTrim)
+	{
+		this->Trim(defCharsToMatch , endsToTrim);
+	}
 
 	//============================================================================================//
 	//============================== PRIVATE METHOD DEFINITIONS ==================================//

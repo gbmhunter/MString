@@ -2,7 +2,7 @@
 //! @file				String.hpp
 //! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created			2014-08-12
-//! @last-modified		2014-08-13
+//! @last-modified		2014-08-22
 //! @brief				Contains the declarations for the String class.
 //! @details
 //!						See README.rst in repo root dir for more info.
@@ -46,7 +46,18 @@ namespace StringNs
 
 namespace StringNs
 {
-	
+	//! @brief		Enumerates the possible ends to trim a string from when calling String::Trim().
+	enum class EndsToTrim
+	{
+		LEFT,		//!< Trim from the left-side of the string only.
+		RIGHT,		//!< Trim from the right-side of the string only.
+		BOTH		//!< Trim from both sides of the string.
+	};
+
+	//! @brief		The default characters to trim from a string if none are provided as
+	//!				an argument to String::Trim().
+	static const char * defCharsToMatch = " \r\n\t";
+
 	//! @brief		String class designed for embedded applications.
 	//! @details	Exceptions are not used.
 	class String
@@ -54,49 +65,7 @@ namespace StringNs
 		
 		public:
 
-			//======================================================================================//
-			//============================ PUBLIC OPERATOR OVERLOAD DECLARATIONS ===================//
-			//======================================================================================//
 
-			//! @brief		Assignment operator overload. Allows you to make one string equal another.
-			//! @details	Copies the contents of the RHS string into the LHS, so that they both have
-			//!				the same contents (but do not point to the same memory!).
-			String & operator= (const String & other);
-
-			//! @brief		Subscript operator overload. Allows individual char access.
-			//! @returns	Reference to char located at position 'index'. Performs bounds checking, only
-			//!				allows chars and terminating null to be indexed, any other number is out
-			//!				of bounds. If index is out-of-bounds, the first character in the array will be
-			//!				returned. We shouldn't be allowed to write to the terminating null, but
-			//!				we have to provide access for read operations.
-			char & operator[] (const uint32_t index);
-
-			//! @brief		Equality operator overload. Allows you to compare one string object and
-			//!				one C-style string for equality.
-			//! @details	Used by the other equality operator overload and the inequality operator overload.
-			friend bool operator==(String & lhs, const char * rhs);
-
-			//! @brief		Equality operator overload. Allows you to compare two string objects for equality.
-			//! @details	Calls the overload with one string object and one C-style string.
-			//!				Also used by the inequality operator overload.
-			friend bool operator==(String & lhs, String & rhs);
-
-			//! @brief		Inequality operator overload. Allows you to compare one string and
-			//!				one C-style string for inequality.
-			//! @details	Internally calls the equality operator overload.
-			friend bool operator!=(String & lhs, const char * rhs);
-
-			//! @brief		Inequality operator overload. Allows you to compare two strings for inequality.
-			//! @details	Internally calls the equality operator overload.
-			friend bool operator!=(String & lhs, String & rhs);
-
-			//! @brief		Allows you to concatenate two strings together.
-			//! @details	Calls the Append() method.
-			friend String operator+(String & lhs, const char * rhs);
-
-			//! @brief		Allows you to concatenate a string object and a C-style string together.
-			//! @details	Calls the Append() method.
-			friend String operator+(String & lhs, String & rhs);
 
 
 			//======================================================================================//
@@ -159,11 +128,63 @@ namespace StringNs
 			//!							then all characters will be erased.
 			void Erase(uint32_t startPos, int32_t numOfChars = -1);
 
-			//! @brief		Trims white-space from both ends of the string.
-			//! @details	Characters which count as white space: ' ', '\r', '\n', '\t'.
+			//! @brief		Trims white-space (or specified chars) from either or both ends of the string.
+			//! @details	Default characters are all those which are considered to be
+			//!				 white space: ' ', '\r', '\n', '\t'.
 			//!				Calls Erase().
-			//void Trim(String charsToMatch = " \r\n\t");
+			//! @param		charsToMatch	A string of all the characters that should be trimmed
+			//!								from the string. Default is all characters considered to
+			//!								be white space.
+			void Trim(String charsToMatch = defCharsToMatch, EndsToTrim endsToTrim = EndsToTrim::BOTH);
 
+			//! @brief		Simplified overload of Trim().
+			//! @details	Calls the base Trim() with charsToMatch = defaultCharsToMatch.
+			//! @sa			Trim().
+			void Trim(EndsToTrim endsToTrim);
+
+			//======================================================================================//
+			//============================ PUBLIC OPERATOR OVERLOAD DECLARATIONS ===================//
+			//======================================================================================//
+
+			//! @brief		Assignment operator overload. Allows you to make one string equal another.
+			//! @details	Copies the contents of the RHS string into the LHS, so that they both have
+			//!				the same contents (but do not point to the same memory!).
+			String & operator= (const String & other);
+
+			//! @brief		Subscript operator overload. Allows individual char access.
+			//! @returns	Reference to char located at position 'index'. Performs bounds checking, only
+			//!				allows chars and terminating null to be indexed, any other number is out
+			//!				of bounds. If index is out-of-bounds, the first character in the array will be
+			//!				returned. We shouldn't be allowed to write to the terminating null, but
+			//!				we have to provide access for read operations.
+			char & operator[] (const uint32_t index);
+
+			//! @brief		Equality operator overload. Allows you to compare one string object and
+			//!				one C-style string for equality.
+			//! @details	Used by the other equality operator overload and the inequality operator overload.
+			friend bool operator==(String & lhs, const char * rhs);
+
+			//! @brief		Equality operator overload. Allows you to compare two string objects for equality.
+			//! @details	Calls the overload with one string object and one C-style string.
+			//!				Also used by the inequality operator overload.
+			friend bool operator==(String & lhs, String & rhs);
+
+			//! @brief		Inequality operator overload. Allows you to compare one string and
+			//!				one C-style string for inequality.
+			//! @details	Internally calls the equality operator overload.
+			friend bool operator!=(String & lhs, const char * rhs);
+
+			//! @brief		Inequality operator overload. Allows you to compare two strings for inequality.
+			//! @details	Internally calls the equality operator overload.
+			friend bool operator!=(String & lhs, String & rhs);
+
+			//! @brief		Allows you to concatenate two strings together.
+			//! @details	Calls the Append() method.
+			friend String operator+(String & lhs, const char * rhs);
+
+			//! @brief		Allows you to concatenate a string object and a C-style string together.
+			//! @details	Calls the Append() method.
+			friend String operator+(String & lhs, String & rhs);
 
 			//======================================================================================//
 			//================================= PUBLIC VARIABLES ===================================//

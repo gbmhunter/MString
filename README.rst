@@ -12,7 +12,7 @@ A C++ string object specifically designed for embedded applications.
 - Author: gbmhunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 - First Ever Commit: 2014-08-12
 - Last Modified: 2014-08-22
-- Version: v1.8.0.0
+- Version: v1.9.0.0
 - Company: CladLabs
 - Project: Free Code Libraries
 - Language: C++
@@ -63,6 +63,7 @@ Changelog
 ======== ========== ===================================================================================================
 Version  Date       Comment
 ======== ========== ===================================================================================================
+v1.9.0.0 2014-08-22 Added 'String::Trim()' method which can be used to trim characters from the beginning/end of the string (including whitespace, which is what it does by default).
 v1.8.0.0 2014-08-22 Added overload for subscript operator, providing access to the individual chars in the string, and added associated unit tests, closes #36.
 v1.7.1.2 2014-08-21 Changed link in README from 'www.cladlab.com' to 'www.mbedded.ninja', closes #33.
 v1.7.1.1 2014-08-21 Fixed link to TravisCI image in README, closes #32.
