@@ -155,7 +155,7 @@ namespace StringTestsNs
 					"   \t \r\nThere is a mixture of white-space chars before and after me.\r  \t\n\n ");
 
 			// Trim string
-			myString1.Trim(MbeddedNinja::EndsToTrim::LEFT);
+			myString1.Trim(MbeddedNinja::String::EndsToTrim::LEFT);
 
 			CHECK_EQUAL(
 				"There is a mixture of white-space chars before and after me.\r  \t\n\n ",
@@ -168,7 +168,7 @@ namespace StringTestsNs
 					"   \t \r\nThere is a mixture of white-space chars before and after me.\r  \t\n\n ");
 
 			// Trim string
-			myString1.Trim(MbeddedNinja::EndsToTrim::RIGHT);
+			myString1.Trim(MbeddedNinja::String::EndsToTrim::RIGHT);
 
 			CHECK_EQUAL(
 				"   \t \r\nThere is a mixture of white-space chars before and after me.",

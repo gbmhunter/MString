@@ -46,13 +46,6 @@ namespace MbeddedNinja
 
 namespace MbeddedNinja
 {
-	//! @brief		Enumerates the possible ends to trim a string from when calling String::Trim().
-	enum class EndsToTrim
-	{
-		LEFT,		//!< Trim from the left-side of the string only.
-		RIGHT,		//!< Trim from the right-side of the string only.
-		BOTH		//!< Trim from both sides of the string.
-	};
 
 	//! @brief		The default characters to trim from a string if none are provided as
 	//!				an argument to String::Trim().
@@ -64,6 +57,14 @@ namespace MbeddedNinja
 	{	
 		
 		public:
+
+			//! @brief		Enumerates the possible ends to trim a string from when calling String::Trim().
+			enum class EndsToTrim
+			{
+				LEFT,		//!< Trim from the left-side of the string only.
+				RIGHT,		//!< Trim from the right-side of the string only.
+				BOTH		//!< Trim from both sides of the string.
+			};
 
 			//======================================================================================//
 			//==================================== PUBLIC METHODS ==================================//
