@@ -194,7 +194,9 @@ namespace StringNs
 			//!				Pass LHS by value to allow to better optimisation.
 			friend String operator+(String lhs, String & rhs);
 
+			// TYPE CONVERSIONS
 
+			operator const char *();
 
 			//======================================================================================//
 			//================================= PUBLIC VARIABLES ===================================//

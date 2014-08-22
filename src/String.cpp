@@ -174,7 +174,10 @@ namespace StringNs
 		return lhs += rhs;
 	}
 
-
+	String::operator const char *()
+	{
+		return this->cStr;
+	}
 
 
 
