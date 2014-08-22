@@ -21,7 +21,7 @@ namespace StringTestsNs
 
 		TEST(BasicCapacityTest)
 		{
-			StringNs::String myString("Testing");
+			mNinja::String myString("Testing");
 
 			// Check capacity is calculated correctly
 			CHECK_EQUAL("Testing", myString.cStr);

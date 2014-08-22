@@ -20,9 +20,9 @@ namespace StringTestsNs
 
 		TEST(ShouldEqualTest)
 		{
-			StringNs::String myString1("Testing");
+			mNinja::String myString1("Testing");
 
-			StringNs::String myString2("Testing");
+			mNinja::String myString2("Testing");
 
 			// These should equal
 			CHECK_EQUAL(true, myString1 == myString2);
@@ -30,9 +30,9 @@ namespace StringTestsNs
 
 		TEST(ShouldntEqualTest)
 		{
-			StringNs::String myString1("Testing1");
+			mNinja::String myString1("Testing1");
 
-			StringNs::String myString2("Testing2");
+			mNinja::String myString2("Testing2");
 
 			// These should not equal
 			CHECK_EQUAL(false, myString1 == myString2);
@@ -40,9 +40,9 @@ namespace StringTestsNs
 
 		TEST(TwoEmptyStringsTest)
 		{
-			StringNs::String myString1;
+			mNinja::String myString1;
 
-			StringNs::String myString2;
+			mNinja::String myString2;
 
 			// These should be equal (both empty)
 			CHECK_EQUAL(true, myString1 == myString2);
@@ -50,9 +50,9 @@ namespace StringTestsNs
 
 		TEST(OneEmptyStringsTest)
 		{
-			StringNs::String myString1;
+			mNinja::String myString1;
 
-			StringNs::String myString2("This one is not empty");
+			mNinja::String myString2("This one is not empty");
 
 			// These should NOT be equal (one is empty)
 			CHECK_EQUAL(false, myString1 == myString2);
@@ -60,9 +60,9 @@ namespace StringTestsNs
 
 		TEST(InequalityTest1)
 		{
-			StringNs::String myString1("Testing1");
+			mNinja::String myString1("Testing1");
 
-			StringNs::String myString2("Testing2");
+			mNinja::String myString2("Testing2");
 
 			// These should equal
 			CHECK_EQUAL(true, myString1 != myString2);
@@ -70,9 +70,9 @@ namespace StringTestsNs
 
 		TEST(InequalityTest2)
 		{
-			StringNs::String myString1("Testing");
+			mNinja::String myString1("Testing");
 
-			StringNs::String myString2("Testing");
+			mNinja::String myString2("Testing");
 
 			// These should equal
 			CHECK_EQUAL(false, myString1 != myString2);
@@ -80,7 +80,7 @@ namespace StringTestsNs
 
 		TEST(EqualityWorksWithCStringTest1)
 		{
-			StringNs::String myString1("Testing");
+			mNinja::String myString1("Testing");
 
 			// These should equal
 			CHECK_EQUAL(true, myString1 == "Testing");
@@ -88,7 +88,7 @@ namespace StringTestsNs
 
 		TEST(EqualityWorksWithCStringTest2)
 		{
-			StringNs::String myString1("Testing1");
+			mNinja::String myString1("Testing1");
 
 			// These should equal
 			CHECK_EQUAL(false, myString1 == "Testing2");
@@ -96,7 +96,7 @@ namespace StringTestsNs
 
 		TEST(InequalityWorksWithCStringTest1)
 		{
-			StringNs::String myString1("Testing");
+			mNinja::String myString1("Testing");
 
 			// These should equal
 			CHECK_EQUAL(false, myString1 != "Testing");
@@ -104,7 +104,7 @@ namespace StringTestsNs
 
 		TEST(InequalityWorksWithCStringTest2)
 		{
-			StringNs::String myString1("Testing1");
+			mNinja::String myString1("Testing1");
 
 			// These should equal
 			CHECK_EQUAL(true, myString1 != "Testing2");

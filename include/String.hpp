@@ -22,7 +22,7 @@
 //==================================== FORWARD DECLARATION ======================================//
 //===============================================================================================//
 
-namespace StringNs
+namespace mNinja
 {
 	class String;
 }
@@ -44,7 +44,7 @@ namespace StringNs
 //======================================== NAMESPACE ============================================//
 //===============================================================================================//
 
-namespace StringNs
+namespace mNinja
 {
 	//! @brief		Enumerates the possible ends to trim a string from when calling String::Trim().
 	enum class EndsToTrim
@@ -239,7 +239,7 @@ namespace StringNs
 	}; // class String
 
 
-} // namespace StringNs
+} // namespace mNinja
 
 #endif	// #ifndef STRING_CPP_STRING_H
 

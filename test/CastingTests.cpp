@@ -20,7 +20,7 @@ namespace StringTestsNs
 
 		TEST(CastTest)
 		{
-			StringNs::String myString1("Testing");
+			mNinja::String myString1("Testing");
 
 			// myString2 should not be affected by above change to myString1!
 			CHECK_EQUAL("Testing", (const char *)myString1);
@@ -28,7 +28,7 @@ namespace StringTestsNs
 
 		TEST(CastTest2)
 		{
-			StringNs::String myString1("Testing");
+			mNinja::String myString1("Testing");
 
 			const char * myCStr;
 

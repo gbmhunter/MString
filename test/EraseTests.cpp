@@ -20,7 +20,7 @@ namespace StringTestsNs
 
 		TEST(BasicEraseTest)
 		{
-			StringNs::String myString("Hello, world!");
+			mNinja::String myString("Hello, world!");
 
 			// Erase everything after "Hello"
 			myString.Erase(5);
@@ -30,7 +30,7 @@ namespace StringTestsNs
 
 		TEST(LengthCorrectCheckTest)
 		{
-			StringNs::String myString("Hello, world!");
+			mNinja::String myString("Hello, world!");
 
 			myString.Erase(5);
 
@@ -40,7 +40,7 @@ namespace StringTestsNs
 
 		TEST(EraseMiddleSectionTest)
 		{
-			StringNs::String myString("Hello, world!");
+			mNinja::String myString("Hello, world!");
 
 			// Erase the comma and space
 			myString.Erase(5, 2);
@@ -51,7 +51,7 @@ namespace StringTestsNs
 
 		TEST(EraseBeyondLengthTest)
 		{
-			StringNs::String myString("Hello, world!");
+			mNinja::String myString("Hello, world!");
 
 			// Atempt to erase characters beyond the length of the string, this
 			// should do nothing
@@ -63,7 +63,7 @@ namespace StringTestsNs
 
 		TEST(EraseBeyondLengthTestWithNum)
 		{
-			StringNs::String myString("Hello, world!");
+			mNinja::String myString("Hello, world!");
 
 			// Atempt to erase characters beyond the length of the string, this
 			// should do nothing
@@ -75,7 +75,7 @@ namespace StringTestsNs
 
 		TEST(SpecifyTooManyCharsToEraseTest)
 		{
-			StringNs::String myString("Hello, world!");
+			mNinja::String myString("Hello, world!");
 
 			// Try and erase 30 chars starting from pos 5, should just erase what we can
 			myString.Erase(5, 30);
@@ -85,7 +85,7 @@ namespace StringTestsNs
 
 		TEST(EraseAllTest)
 		{
-			StringNs::String myString("Hello, world!");
+			mNinja::String myString("Hello, world!");
 
 			// Erase all characters
 			myString.Erase(0);
@@ -100,7 +100,7 @@ namespace StringTestsNs
 
 		TEST(EraseNegativeNumberTest1)
 		{
-			StringNs::String myString("Hello, world!");
+			mNinja::String myString("Hello, world!");
 
 			// Insert negative number, as Erase() uses a uint32_t, this will be seen
 			// as a really big number and should be out of bounds, hence nothing will
@@ -113,7 +113,7 @@ namespace StringTestsNs
 
 		TEST(EraseNegativeNumberTest2)
 		{
-			StringNs::String myString("Hello, world!");
+			mNinja::String myString("Hello, world!");
 
 			// Insert two negative numbers, as Erase() uses a uint32_t, these will be seen
 			// as a really big numbers and should be out of bounds, hence nothing will

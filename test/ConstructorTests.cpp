@@ -20,7 +20,7 @@ namespace StringTestsNs
 
 		TEST(NoParamConstructorTest)
 		{
-			StringNs::String myString;
+			mNinja::String myString;
 
 			// Check constructor worked correctly
 			CHECK_EQUAL("", myString.cStr);
@@ -28,7 +28,7 @@ namespace StringTestsNs
 
 		TEST(EmptyStringConstructorTest)
 		{
-			StringNs::String myString("");
+			mNinja::String myString("");
 
 			// Check constructor worked correctly
 			CHECK_EQUAL("", myString.cStr);
