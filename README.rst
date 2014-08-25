@@ -11,8 +11,8 @@ A C++ string object specifically designed for embedded applications.
 
 - Author: gbmhunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 - First Ever Commit: 2014-08-12
-- Last Modified: 2014-08-22
-- Version: v1.10.3.0
+- Last Modified: 2014-08-25
+- Version: v2.0.0.0
 - Company: CladLabs
 - Project: Free Code Libraries
 - Language: C++
@@ -63,6 +63,7 @@ Changelog
 ========= ========== ===================================================================================================
 Version   Date       Comment
 ========= ========== ===================================================================================================
+v2.0.0.0  2014-08-25 Added operator overloads for the left-shift operator ('<<') so that integers and doubles can be added to the end of strings with the syntax 'String() << myInt', similar to stringsteams in the standard C++ library, closes #41. Added appropriate unit tests.
 v1.10.3.0 2014-08-22 Moved enumeration 'EndsToTrim' inside String class, closes #40.
 v1.10.2.0 2014-08-22 Renamed namespace from 'mNinja' to 'MbeddedNinja', closes #39.
 v1.10.1.0 2014-08-22 Renamed namespace from 'StringNs' to 'mNinja', closes #38.

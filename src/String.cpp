@@ -2,7 +2,7 @@
 //! @file				String.cpp
 //! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created			2014-08-12
-//! @last-modified		2014-08-22
+//! @last-modified		2014-08-25
 //! @brief				Contains the definitions for the String class.
 //! @details
 //!						See README.rst in repo root dir for more info.
@@ -27,158 +27,17 @@
 // User source
 #include "../include/String.hpp"
 
+//! @brief		The maximum number of characters used when shifting a double onto a string.
+//! @details	Determines the size of the temporary buffer created on the stack when adding
+//!				a double to a string via the '<<' operator.
+#define  MAX_NUM_CHARS_FOR_DOUBLE	20
+
 //===============================================================================================//
 //======================================== NAMESPACE ============================================//
 //===============================================================================================//
 
 namespace MbeddedNinja
 {
-
-	//===========================================================================================//
-	//=========================== PUBLIC OPERATOR OVERLOAD DEFINITIONS ==========================//
-	//===========================================================================================//
-
-	//=========================================== ASSIGNMENT ====================================//
-
-	String & String::operator= (const String & other)
-	{
-		//std::cerr << "Assignment operator overload called.\r\n";
-
-		// Assignment operator
-		if (this != &other) // protect against invalid self-assignment
-		{
-			// Make sure C-string ptr is valid
-			if(!other.cStr)
-				return *this;
-
-			//std::cerr << "LHS.cStr = '" << this->cStringPtr << "'. Length = '" <<
-			//		this->length << "'.\r\n" << std::endl;
-			//std::cerr << "RHS.cStr = '" << other.cStringPtr << "'. Length = '" <<
-			//					other.length << "'.\r\n" << std::endl;
-
-			// Deallocate current memory
-			delete[] this->cStr;
-
-			// Copy length
-			this->length = other.length;
-
-			// allocate memory for our copy
-			this->cStr = new char[this->length + 1];
-
-			// Copy the parameter the newly allocated memory
-			strncpy(this->cStr, other.cStr, this->length + 1);
-
-			// Make sure a null is inserted at the end
-			// This should never be required and strncpy should always insert it,
-			// but better to be safe than sorry
-			this->cStr[this->length] = '\0';
-
-			//std::cerr << "New LHS.cStr = '" << this->cStringPtr << "'. New Length = '" <<
-			//					this->length << "'.\r\n" << std::endl;
-
-		}
-
-		// Return *this for chaining
-		return *this;
-	}
-
-	//====================================== SUBSCRIPT OPERATOR =================================//
-
-	char & String::operator[] (const uint32_t index)
-	{
-
-		// Check if index is > length (e.g. past null char)
-		if(index > this->length)
-		{
-			//! @todo Add assert No bounds checking!
-
-			// Index is out of bounds, the best we can do is return
-			// something is in bounds, so let's return
-			// the last char. This could cause unexpected behaviour,
-			// so an assert() needs to be added!
-			return this->cStr[0];
-		}
-
-		return this->cStr[index];
-	}
-
-	//================================ COMPOUND ASSIGNMENT OVERLOADS ============================//
-
-	String & String::operator+=(const char * rhs)
-	{
-		// Compound assignment operator overload
-		// Append RHS to current string (LHS)
-		this->Append(rhs);
-		return *this;
-	}
-
-	String & String::operator+=(const String &rhs)
-	{
-		// Compound assignment operator overload
-		// Append RHS to current string (LHS)
-		this->Append(rhs.cStr);
-		return *this;
-	}
-
-	//============================= COMPARITIVE OPERAOTOR OVERLOADS =============================//
-
-	bool operator==(String & lhs, const char * rhs)
-	{
-		// Use strcmp function, returns 0 (false) if strings match, so note
-		// the logic inversion that takes place here!
-		if(strcmp(lhs.cStr, rhs))
-			return false;
-		else
-			return true;
-	}
-
-	bool operator==(String & lhs, String & rhs)
-	{
-		// Call the overload with one string obj and one c-style string
-		return (lhs == rhs.cStr);
-	}
-
-	bool operator!=(String & lhs, const char * rhs)
-	{
-		// Use the equality overload to perform the inequality overload
-		if(lhs == rhs)
-			return false;
-		else
-			return true;
-	}
-
-	bool operator!=(String & lhs, String & rhs)
-	{
-		// Call the inquality overload with one string object
-		// and one C-style string
-		return (lhs != rhs.cStr);
-	}
-
-
-	String operator+(String lhs, const char * rhs)
-	{
-		// + operator overload between a strings object and a C-style string
-		//String result(lhs.cStr);
-		//result.Append(rhs);
-		//return result;
-		return lhs += rhs;
-	}
-
-	String operator+(String lhs, String & rhs)
-	{
-		// + operator overload between two strings,
-		// joins the two strings together
-		//String result(lhs.cStr);
-		//result.Append(rhs.cStr);
-		//return result;
-		return lhs += rhs;
-	}
-
-	String::operator const char *()
-	{
-		return this->cStr;
-	}
-
 
 
 	//============================================================================================//
@@ -468,6 +327,316 @@ namespace MbeddedNinja
 	void String::Trim(EndsToTrim endsToTrim)
 	{
 		this->Trim(defCharsToMatch , endsToTrim);
+	}
+
+	//===========================================================================================//
+	//=========================== PUBLIC OPERATOR OVERLOAD DEFINITIONS ==========================//
+	//===========================================================================================//
+
+	//=========================================== ASSIGNMENT ====================================//
+
+	String & String::operator= (const String & other)
+	{
+		//std::cerr << "Assignment operator overload called.\r\n";
+
+		// Assignment operator
+		if (this != &other) // protect against invalid self-assignment
+		{
+			// Make sure C-string ptr is valid
+			if(!other.cStr)
+				return *this;
+
+			//std::cerr << "LHS.cStr = '" << this->cStringPtr << "'. Length = '" <<
+			//		this->length << "'.\r\n" << std::endl;
+			//std::cerr << "RHS.cStr = '" << other.cStringPtr << "'. Length = '" <<
+			//					other.length << "'.\r\n" << std::endl;
+
+			// Deallocate current memory
+			delete[] this->cStr;
+
+			// Copy length
+			this->length = other.length;
+
+			// allocate memory for our copy
+			this->cStr = new char[this->length + 1];
+
+			// Copy the parameter the newly allocated memory
+			strncpy(this->cStr, other.cStr, this->length + 1);
+
+			// Make sure a null is inserted at the end
+			// This should never be required and strncpy should always insert it,
+			// but better to be safe than sorry
+			this->cStr[this->length] = '\0';
+
+			//std::cerr << "New LHS.cStr = '" << this->cStringPtr << "'. New Length = '" <<
+			//					this->length << "'.\r\n" << std::endl;
+
+		}
+
+		// Return *this for chaining
+		return *this;
+	}
+
+	//====================================== SUBSCRIPT OPERATOR =================================//
+
+	char & String::operator[] (const uint32_t index)
+	{
+
+		// Check if index is > length (e.g. past null char)
+		if(index > this->length)
+		{
+			//! @todo Add assert No bounds checking!
+
+			// Index is out of bounds, the best we can do is return
+			// something is in bounds, so let's return
+			// the last char. This could cause unexpected behaviour,
+			// so an assert() needs to be added!
+			return this->cStr[0];
+		}
+
+		return this->cStr[index];
+	}
+
+	//================================ COMPOUND ASSIGNMENT OVERLOADS ============================//
+
+	String & String::operator+=(const char * rhs)
+	{
+		// Compound assignment operator overload
+		// Append RHS to current string (LHS)
+		this->Append(rhs);
+		return *this;
+	}
+
+	String & String::operator+=(const String &rhs)
+	{
+		// Compound assignment operator overload
+		// Append RHS to current string (LHS)
+		this->Append(rhs.cStr);
+		return *this;
+	}
+
+	//============================= COMPARITIVE OPERAOTOR OVERLOADS =============================//
+
+	bool operator==(String & lhs, const char * rhs)
+	{
+		// Use strcmp function, returns 0 (false) if strings match, so note
+		// the logic inversion that takes place here!
+		if(strcmp(lhs.cStr, rhs))
+			return false;
+		else
+			return true;
+	}
+
+	bool operator==(String & lhs, String & rhs)
+	{
+		// Call the overload with one string obj and one c-style string
+		return (lhs == rhs.cStr);
+	}
+
+	bool operator!=(String & lhs, const char * rhs)
+	{
+		// Use the equality overload to perform the inequality overload
+		if(lhs == rhs)
+			return false;
+		else
+			return true;
+	}
+
+	bool operator!=(String & lhs, String & rhs)
+	{
+		// Call the inquality overload with one string object
+		// and one C-style string
+		return (lhs != rhs.cStr);
+	}
+
+
+	String operator+(String lhs, const char * rhs)
+	{
+		// + operator overload between a strings object and a C-style string
+		//String result(lhs.cStr);
+		//result.Append(rhs);
+		//return result;
+		return lhs += rhs;
+	}
+
+	String operator+(String lhs, String & rhs)
+	{
+		// + operator overload between two strings,
+		// joins the two strings together
+		//String result(lhs.cStr);
+		//result.Append(rhs.cStr);
+		//return result;
+		return lhs += rhs;
+	}
+
+	String & String::operator << (uint8_t myUint8)
+	{
+		// New to convert unsigned int into a string
+		// We will need a maximum of 3 chars to represent a 8-bit unsigned int
+		// (range is 0 to 255 inclusive)
+		char tempBuff[4];
+		snprintf(
+			tempBuff,
+			sizeof(tempBuff),
+			"%u",
+			myUint8);
+		// Add converted number to end of string
+		(*this) += tempBuff;
+
+		// Return reference for chaining purposes
+		return *this;
+	}
+
+	String & String::operator << (int8_t myInt8)
+	{
+		// New to convert unsigned int into a string
+		// We will need a maximum of 4 chars to represent a 8-bit signed number
+		// (range is -127 to 127 inclusive)
+		char tempBuff[5];
+		snprintf(
+			tempBuff,
+			sizeof(tempBuff),
+			"%i",
+			myInt8);
+		// Add converted number to end of string
+		(*this) += tempBuff;
+
+		// Return reference for chaining purposes
+		return *this;
+	}
+
+	String & String::operator << (uint16_t myUint16)
+	{
+		// New to convert unsigned int into a string
+		// We will need a maximum of 5 chars to represent a 16-bit unsigned number
+		// (range is 0 to 65535 inclusive)
+		char tempBuff[6];
+		snprintf(
+			tempBuff,
+			sizeof(tempBuff),
+			"%u",
+			myUint16);
+		// Add converted number to end of string
+		(*this) += tempBuff;
+
+		// Return reference for chaining purposes
+		return *this;
+	}
+
+	String & String::operator << (int16_t myInt16)
+	{
+		// New to convert unsigned int into a string
+		// We will need a maximum of 6 chars to represent a 16-bit signed number
+		// (range is -32767 to 32767 inclusive)
+		char tempBuff[7];
+		snprintf(
+			tempBuff,
+			sizeof(tempBuff),
+			"%i",
+			myInt16);
+		// Add converted number to end of string
+		(*this) += tempBuff;
+
+		// Return reference for chaining purposes
+		return *this;
+	}
+
+	String & String::operator << (uint32_t myUint32)
+	{
+		// New to convert unsigned int into a string
+		// We will need a maximum of 10 chars to represent a 32-bit number
+		// (range is 0 to 4294967295 inclusive)
+		char tempBuff[11];
+		snprintf(
+			tempBuff,
+			sizeof(tempBuff),
+			"%u",
+			myUint32);
+		// Add converted uint32 to end of string
+		(*this) += tempBuff;
+
+		// Return reference for chaining purposes
+		return *this;
+	}
+
+	String & String::operator << (int32_t myInt32)
+	{
+		// New to convert unsigned int into a string
+		// We will need a maximum of 11 chars to represent a 32-bit number
+		// (range is -2147483648 to 2147483647 inclusive)
+		char tempBuff[12];
+		snprintf(
+			tempBuff,
+			sizeof(tempBuff),
+			"%i",
+			myInt32);
+		// Add converted uint32 to end of string
+		(*this) += tempBuff;
+
+		// Return reference for chaining purposes
+		return *this;
+	}
+
+	String & String::operator << (uint64_t myUint64)
+	{
+		// New to convert unsigned int into a string
+		// We will need a maximum of 20 chars to represent a 64-bit number
+		// (range is 0 to 1.844X10^19 inclusive)
+		char tempBuff[21];
+		snprintf(
+			tempBuff,
+			sizeof(tempBuff),
+			"%lu",
+			myUint64);
+		// Add converted uint32 to end of string
+		(*this) += tempBuff;
+
+		// Return reference for chaining purposes
+		return *this;
+	}
+
+	String & String::operator << (int64_t myInt64)
+	{
+		// New to convert unsigned int into a string
+		// We will need a maximum of 20 chars to represent a 64-bit number
+		// (range is -9.22x10^18 to 9.22x10^18 inclusive)
+		char tempBuff[21];
+		snprintf(
+			tempBuff,
+			sizeof(tempBuff),
+			"%li",
+			myInt64);
+		// Add converted uint32 to end of string
+		(*this) += tempBuff;
+
+		// Return reference for chaining purposes
+		return *this;
+	}
+
+	String & String::operator << (double myDouble)
+	{
+		// Convert double into a string
+		// To represent a 64-bit IEEE double, you would need a maximum of 1079 chars to represent
+		// it, crazy!!!
+		// For this reason we will choose to truncate it
+		//
+		char tempBuff[MAX_NUM_CHARS_FOR_DOUBLE + 1];
+		snprintf(
+			tempBuff,
+			sizeof(tempBuff),
+			"%g",
+			myDouble);
+		// Add converted uint32 to end of string
+		(*this) += tempBuff;
+
+		// Return reference for chaining purposes
+		return *this;
+
+	}
+
+	String::operator const char *()
+	{
+		return this->cStr;
 	}
 
 	//============================================================================================//

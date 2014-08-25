@@ -2,7 +2,7 @@
 //! @file				String.hpp
 //! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created			2014-08-12
-//! @last-modified		2014-08-22
+//! @last-modified		2014-08-25
 //! @brief				Contains the declarations for the String class.
 //! @details
 //!						See README.rst in repo root dir for more info.
@@ -195,8 +195,41 @@ namespace MbeddedNinja
 			//!				Pass LHS by value to allow to better optimisation.
 			friend String operator+(String lhs, String & rhs);
 
+			//! \defgroup{Shift Operators}
+			//! @{
+
+			//! @brief		Operator overload for uint8_t. Appends unsigned integer onto the end of the string.
+			String & operator << (uint8_t myUint16);
+
+			//! @brief		Operator overload for int8_t. Appends integer onto the end of the string.
+			String & operator << (int8_t myInt16);
+
+			//! @brief		Operator overload for uint16_t. Appends unsigned integer onto the end of the string.
+			String & operator << (uint16_t myUint16);
+
+			//! @brief		Operator overload for int16_t. Appends integer onto the end of the string.
+			String & operator << (int16_t myInt16);
+
+			//! @brief		Operator overload for uint32_t. Appends unsigned integer onto the end of the string.
+			String & operator << (uint32_t myUint32);
+
+			//! @brief		Operator overload for int32_t. Appends integer onto the end of the string.
+			String & operator << (int32_t myInt32);
+
+			//! @brief		Operator overload for uint64_t. Appends unsigned integer onto the end of the string.
+			String & operator << (uint64_t myUint64);
+
+			//! @brief		Operator overload for int64_t. Appends integer onto the end of the string.
+			String & operator << (int64_t myInt64);
+
+			//! @brief		Operator overload for double. Appends double onto the end of the string.
+			String & operator << (double myDouble);
+
+			//! @}
+
 			// TYPE CONVERSIONS
 
+			//! @brief		Type conversion for going from a string object to a const char * (C-style string).
 			operator const char *();
 
 			//======================================================================================//

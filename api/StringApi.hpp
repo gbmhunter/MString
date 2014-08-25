@@ -2,7 +2,7 @@
 //! @file				StringApi.hpp
 //! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created			2014-08-12
-//! @last-modified		2014-08-22
+//! @last-modified		2014-08-25
 //! @brief				API header for String object.
 //! @details
 //!						See README.rst in repo root dir for more info.
