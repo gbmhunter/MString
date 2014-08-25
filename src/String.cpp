@@ -469,6 +469,27 @@ namespace MbeddedNinja
 		return lhs += rhs;
 	}
 
+	//============================= SHIFT OPERAOTOR OVERLOADS =============================//
+
+	String & String::operator << (const char * rhs)
+	{
+		// Append RHS string onto the end of LHS string
+		(*this) += rhs;
+
+		// Return reference to this to allow for chaining
+		return (*this);
+
+	}
+
+	String & String::operator << (const String & rhs)
+	{
+		// Append RHS string onto the end of LHS string
+		(*this) += rhs;
+
+		// Return reference to this to allow for chaining
+		return (*this);
+	}
+
 	String & String::operator << (uint8_t myUint8)
 	{
 		// New to convert unsigned int into a string

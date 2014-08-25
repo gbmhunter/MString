@@ -198,6 +198,14 @@ namespace MbeddedNinja
 			//! \defgroup{Shift Operators}
 			//! @{
 
+			//! @brief		Allows you to append the RHS C-style string onto the LHS
+			//!				string object with LHS << RHS.
+			String & operator << (const char * rhs);
+
+			//! @brief		Allows you to append the RHS string object onto the LHS
+			//!				string object with LHS << RHS.
+			String & operator << (const String & rhs);
+
 			//! @brief		Operator overload for uint8_t. Appends unsigned integer onto the end of the string.
 			String & operator << (uint8_t myUint16);
 
@@ -227,10 +235,13 @@ namespace MbeddedNinja
 
 			//! @}
 
-			// TYPE CONVERSIONS
+			//! \defgroup{Type Conversions}
+			//! @{
 
 			//! @brief		Type conversion for going from a string object to a const char * (C-style string).
 			operator const char *();
+
+			//! @}
 
 			//======================================================================================//
 			//================================= PUBLIC VARIABLES ===================================//

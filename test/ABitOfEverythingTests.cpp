@@ -135,5 +135,26 @@ namespace StringTestsNs
 
 		}
 
+		TEST(ABitOfEverythingTest5)
+		{
+			MbeddedNinja::String myStr1;
+
+			myStr1 += "a";
+
+			CHECK_EQUAL("a", myStr1.cStr);
+
+			myStr1 << 1 << "b" << 2;
+
+			CHECK_EQUAL("a1b2", myStr1.cStr);
+
+			myStr1 = "c";
+
+			CHECK_EQUAL("c", myStr1.cStr);
+
+			myStr1 << "=" << 2.314;
+
+			CHECK_EQUAL("c=2.314", myStr1.cStr);
+		}
+
 	} // SUITE(ABitOfEverythingTests)
 } // namespace StringTestsNs
