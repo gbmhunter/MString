@@ -12,7 +12,7 @@ A C++ string object specifically designed for embedded applications.
 - Author: gbmhunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 - First Ever Commit: 2014-08-12
 - Last Modified: 2014-08-25
-- Version: v2.0.0.0
+- Version: v2.0.0.1
 - Company: CladLabs
 - Project: Free Code Libraries
 - Language: C++
@@ -36,6 +36,56 @@ Features:
 - Unit tests
 - Doxygen-style well-documented API.
 - Portability
+
+Automatic Memory Management
+---------------------------
+
+The automatic memory management of the String object means that you will get far less buffer overflows and memory leaks.
+
+::
+
+	using MbeddedNinja;
+	
+	function MyFunc()
+	{
+		String myStr;				// Empty string created, 1-byte of RAM used (don't worry, it's still null-terminated!)
+		
+		String myStr = "abc";		// Memory automatically expanded to 4 bytes, no overflow occurs!
+		
+		return;						// String is now out-of-scope, memory automatically freed
+	}
+	
+Concatenating Strings
+---------------------
+
+Concatenating (appending) strings onto the end of one another is easy! Follows the same behaviour as std::string.
+
+::
+
+	using MbeddedNinja;
+	
+	String myStr1("Hello");
+	myStr1 += ", World!";
+	
+	// myStr1 now equals "Hello, World!"
+	
+	String myStr2;
+	myStr2 = myStr1 + "With love from mbedded.ninja.";
+	
+	// myStr2 now equals "Hello, World! With love from mbedded.ninja."
+
+Appending Integers And Doubles (std::stringstream like bahaviour)
+-----------------------------------------------------------------
+
+Integers (both signed and unsigned) as well as doubles can easily be appended to the end of a string with the left-shift ('<<') operator, similar to std::stringstream behaviour.::
+
+	using MbeddedNinja;
+	
+	String myStr;
+	myStr = "This integer = " << 6;
+	
+	// myStr now equals "This integer = 6"
+	
 
 External Dependencies
 =====================
@@ -63,6 +113,7 @@ Changelog
 ========= ========== ===================================================================================================
 Version   Date       Comment
 ========= ========== ===================================================================================================
+v2.0.0.1  2014-08-25 Added information to the README concerning 'Automatic Memory Management', 'String Concatenation' and 'Appending Integers And Doubles', closes #42, closes #43, closes #44.
 v2.0.0.0  2014-08-25 Added operator overloads for the left-shift operator ('<<') so that integers and doubles can be added to the end of strings with the syntax 'String() << myInt', similar to stringsteams in the standard C++ library, closes #41. Added appropriate unit tests.
 v1.10.3.0 2014-08-22 Moved enumeration 'EndsToTrim' inside String class, closes #40.
 v1.10.2.0 2014-08-22 Renamed namespace from 'mNinja' to 'MbeddedNinja', closes #39.
