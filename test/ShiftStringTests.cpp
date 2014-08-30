@@ -11,7 +11,7 @@
 #include "../lib/UnitTest++/src/UnitTest++.h"
 
 // User source
-#include "../api/StringApi.hpp"
+#include "../api/MStringApi.hpp"
 
 namespace StringTestsNs
 {
@@ -20,7 +20,7 @@ namespace StringTestsNs
 
 		TEST(BasicShiftStringTest)
 		{
-			MbeddedNinja::String myString("Hello");
+			MbeddedNinja::MString myString("Hello");
 
 			myString << ", world!";
 
@@ -31,7 +31,7 @@ namespace StringTestsNs
 
 		TEST(ComplexShiftStringTest)
 		{
-			MbeddedNinja::String myString("Hello");
+			MbeddedNinja::MString myString("Hello");
 
 			myString << ", world!" << " This is your" << " captain speaking.";
 
@@ -42,7 +42,7 @@ namespace StringTestsNs
 
 		TEST(ShiftFromEmptyStringTest)
 		{
-			MbeddedNinja::String myString;
+			MbeddedNinja::MString myString;
 
 			myString << "Hello!";
 

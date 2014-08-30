@@ -11,7 +11,7 @@
 #include "../lib/UnitTest++/src/UnitTest++.h"
 
 // User source
-#include "../api/StringApi.hpp"
+#include "../api/MStringApi.hpp"
 
 namespace StringTestsNs
 {
@@ -20,7 +20,7 @@ namespace StringTestsNs
 
 		TEST(NoParamConstructorTest)
 		{
-			MbeddedNinja::String myString;
+			MbeddedNinja::MString myString;
 
 			// Check constructor worked correctly
 			CHECK_EQUAL("", myString.cStr);
@@ -28,7 +28,7 @@ namespace StringTestsNs
 
 		TEST(EmptyStringConstructorTest)
 		{
-			MbeddedNinja::String myString("");
+			MbeddedNinja::MString myString("");
 
 			// Check constructor worked correctly
 			CHECK_EQUAL("", myString.cStr);

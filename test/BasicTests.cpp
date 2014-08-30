@@ -11,7 +11,7 @@
 #include "../lib/UnitTest++/src/UnitTest++.h"
 
 // User source
-#include "../api/StringApi.hpp"
+#include "../api/MStringApi.hpp"
 
 namespace StringTestsNs
 {
@@ -21,7 +21,7 @@ namespace StringTestsNs
 
 		TEST(BasicCapacityTest)
 		{
-			MbeddedNinja::String myString("Testing");
+			MbeddedNinja::MString myString("Testing");
 
 			// Check capacity is calculated correctly
 			CHECK_EQUAL("Testing", myString.cStr);

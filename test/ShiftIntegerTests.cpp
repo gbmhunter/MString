@@ -11,7 +11,7 @@
 #include "../lib/UnitTest++/src/UnitTest++.h"
 
 // User source
-#include "../api/StringApi.hpp"
+#include "../api/MStringApi.hpp"
 
 namespace StringTestsNs
 {
@@ -20,7 +20,7 @@ namespace StringTestsNs
 
 		TEST(ShiftUint8RandomTest)
 		{
-			MbeddedNinja::String myString("uint8 = ");
+			MbeddedNinja::MString myString("uint8 = ");
 
 			myString << (uint8_t)200u;
 
@@ -30,7 +30,7 @@ namespace StringTestsNs
 
 		TEST(ShiftUint8MaxTest)
 		{
-			MbeddedNinja::String myString("uint8 = ");
+			MbeddedNinja::MString myString("uint8 = ");
 
 			myString << (uint8_t)255u;
 
@@ -40,7 +40,7 @@ namespace StringTestsNs
 
 		TEST(ShiftUint8MinTest)
 		{
-			MbeddedNinja::String myString("uint8 = ");
+			MbeddedNinja::MString myString("uint8 = ");
 
 			myString << (uint8_t)0u;
 
@@ -50,7 +50,7 @@ namespace StringTestsNs
 
 		TEST(ShiftInt8RandomTest)
 		{
-			MbeddedNinja::String myString("int8 = ");
+			MbeddedNinja::MString myString("int8 = ");
 
 			myString << (int8_t)-72;
 
@@ -60,7 +60,7 @@ namespace StringTestsNs
 
 		TEST(ShiftInt8MaxTest)
 		{
-			MbeddedNinja::String myString("int8 = ");
+			MbeddedNinja::MString myString("int8 = ");
 
 			myString << (int8_t)127;
 
@@ -70,7 +70,7 @@ namespace StringTestsNs
 
 		TEST(ShiftInt8MinTest)
 		{
-			MbeddedNinja::String myString("int8 = ");
+			MbeddedNinja::MString myString("int8 = ");
 
 			myString << (int8_t)-127;
 
@@ -80,7 +80,7 @@ namespace StringTestsNs
 
 		TEST(ShiftUint16RandomTest)
 		{
-			MbeddedNinja::String myString("uint16 = ");
+			MbeddedNinja::MString myString("uint16 = ");
 
 			myString << (uint16_t)1087u;
 
@@ -90,7 +90,7 @@ namespace StringTestsNs
 
 		TEST(ShiftUint16MaxTest)
 		{
-			MbeddedNinja::String myString("uint16 = ");
+			MbeddedNinja::MString myString("uint16 = ");
 
 			myString << (uint16_t)65535u;
 
@@ -100,7 +100,7 @@ namespace StringTestsNs
 
 		TEST(ShiftUint16MinTest)
 		{
-			MbeddedNinja::String myString("uint16 = ");
+			MbeddedNinja::MString myString("uint16 = ");
 
 			myString << (uint16_t)0;
 
@@ -110,7 +110,7 @@ namespace StringTestsNs
 
 		TEST(ShiftInt16RandomTest)
 		{
-			MbeddedNinja::String myString("int16 = ");
+			MbeddedNinja::MString myString("int16 = ");
 
 			myString << (int16_t)-8788l;
 
@@ -120,7 +120,7 @@ namespace StringTestsNs
 
 		TEST(ShiftInt16MaxTest)
 		{
-			MbeddedNinja::String myString("int16 = ");
+			MbeddedNinja::MString myString("int16 = ");
 
 			myString << (int16_t)32767;
 
@@ -130,7 +130,7 @@ namespace StringTestsNs
 
 		TEST(ShiftInt16MinTest)
 		{
-			MbeddedNinja::String myString("int16 = ");
+			MbeddedNinja::MString myString("int16 = ");
 
 			myString << (int16_t)-32767;
 
@@ -140,7 +140,7 @@ namespace StringTestsNs
 
 		TEST(ShiftUint32RandomTest)
 		{
-			MbeddedNinja::String myString("uint = ");
+			MbeddedNinja::MString myString("uint = ");
 
 			myString << (uint32_t)5u;
 
@@ -150,7 +150,7 @@ namespace StringTestsNs
 
 		TEST(ShiftUint32MaxTest)
 		{
-			MbeddedNinja::String myString("uint = ");
+			MbeddedNinja::MString myString("uint = ");
 
 			myString << (uint32_t)4294967295u;
 
@@ -160,7 +160,7 @@ namespace StringTestsNs
 
 		TEST(ShiftUint32MinTest)
 		{
-			MbeddedNinja::String myString("uint = ");
+			MbeddedNinja::MString myString("uint = ");
 
 			myString << (uint32_t)0;
 
@@ -170,7 +170,7 @@ namespace StringTestsNs
 
 		TEST(ShiftInt32RandomTest)
 		{
-			MbeddedNinja::String myString("int = ");
+			MbeddedNinja::MString myString("int = ");
 
 			myString << (int32_t)-46l;
 
@@ -180,7 +180,7 @@ namespace StringTestsNs
 
 		TEST(ShiftInt32MaxTest)
 		{
-			MbeddedNinja::String myString("int = ");
+			MbeddedNinja::MString myString("int = ");
 
 			myString << (int32_t)2147483647l;
 
@@ -190,7 +190,7 @@ namespace StringTestsNs
 
 		TEST(ShiftInt32MinTest)
 		{
-			MbeddedNinja::String myString("int = ");
+			MbeddedNinja::MString myString("int = ");
 
 			myString << (int32_t)-2147483647l;
 
@@ -200,7 +200,7 @@ namespace StringTestsNs
 
 		TEST(ShiftUint64RandomTest)
 		{
-			MbeddedNinja::String myString("uint64 = ");
+			MbeddedNinja::MString myString("uint64 = ");
 
 			// 6 giga is higher than 2^32
 			myString << (uint64_t)6000000000llu;
@@ -211,7 +211,7 @@ namespace StringTestsNs
 
 		TEST(ShiftUint64MaxTest)
 		{
-			MbeddedNinja::String myString("uint64 = ");
+			MbeddedNinja::MString myString("uint64 = ");
 
 			myString << (uint64_t)18446744073709551615llu;
 
@@ -221,7 +221,7 @@ namespace StringTestsNs
 
 		TEST(ShiftUint64MinTest)
 		{
-			MbeddedNinja::String myString("uint64 = ");
+			MbeddedNinja::MString myString("uint64 = ");
 
 			myString << (uint64_t)0llu;
 
@@ -231,7 +231,7 @@ namespace StringTestsNs
 
 		TEST(ShiftInt64RandomTest)
 		{
-			MbeddedNinja::String myString("int64 = ");
+			MbeddedNinja::MString myString("int64 = ");
 
 			myString << (int64_t)-6000000000ll;
 
@@ -241,7 +241,7 @@ namespace StringTestsNs
 
 		TEST(ShiftInt64MaxTest)
 		{
-			MbeddedNinja::String myString("int64 = ");
+			MbeddedNinja::MString myString("int64 = ");
 
 			myString << (int64_t)9223372036854775807ll;
 
@@ -251,7 +251,7 @@ namespace StringTestsNs
 
 		TEST(ShiftInt64MinTest)
 		{
-			MbeddedNinja::String myString("int64 = ");
+			MbeddedNinja::MString myString("int64 = ");
 
 			myString << (int64_t)-9223372036854775807ll;
 

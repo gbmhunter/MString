@@ -11,7 +11,7 @@
 #include "../lib/UnitTest++/src/UnitTest++.h"
 
 // User source
-#include "../api/StringApi.hpp"
+#include "../api/MStringApi.hpp"
 
 namespace StringTestsNs
 {
@@ -20,7 +20,7 @@ namespace StringTestsNs
 
 		TEST(CastTest)
 		{
-			MbeddedNinja::String myString1("Testing");
+			MbeddedNinja::MString myString1("Testing");
 
 			// myString2 should not be affected by above change to myString1!
 			CHECK_EQUAL("Testing", (const char *)myString1);
@@ -28,7 +28,7 @@ namespace StringTestsNs
 
 		TEST(CastTest2)
 		{
-			MbeddedNinja::String myString1("Testing");
+			MbeddedNinja::MString myString1("Testing");
 
 			const char * myCStr;
 

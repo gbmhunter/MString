@@ -11,7 +11,7 @@
 #include "../lib/UnitTest++/src/UnitTest++.h"
 
 // User source
-#include "../api/StringApi.hpp"
+#include "../api/MStringApi.hpp"
 
 
 namespace StringTestsNs
@@ -21,7 +21,7 @@ namespace StringTestsNs
 
 		TEST(SubscriptOperatorReadTest)
 		{
-			MbeddedNinja::String myString1("Testing");
+			MbeddedNinja::MString myString1("Testing");
 
 			CHECK_EQUAL('T', myString1[0]);
 			CHECK_EQUAL('i', myString1[4]);
@@ -33,7 +33,7 @@ namespace StringTestsNs
 
 		TEST(SubscriptOperatorWriteTest)
 		{
-			MbeddedNinja::String myString1("Testing");
+			MbeddedNinja::MString myString1("Testing");
 			myString1[4] = 'z';
 
 			// Check to make sure write was successful
@@ -42,7 +42,7 @@ namespace StringTestsNs
 
 		TEST(OutOfBoundsTest)
 		{
-			MbeddedNinja::String myString1("Testing");
+			MbeddedNinja::MString myString1("Testing");
 
 			// Lets try and write to something out-of-bounds
 			myString1[287] = 'z';

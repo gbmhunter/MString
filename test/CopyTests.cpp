@@ -11,7 +11,7 @@
 #include "../lib/UnitTest++/src/UnitTest++.h"
 
 // User source
-#include "../api/StringApi.hpp"
+#include "../api/MStringApi.hpp"
 
 namespace StringTestsNs
 {
@@ -20,9 +20,9 @@ namespace StringTestsNs
 
 		TEST(DeepCopyTest)
 		{
-			MbeddedNinja::String myString1("Testing");
+			MbeddedNinja::MString myString1("Testing");
 
-			MbeddedNinja::String myString2(myString1);
+			MbeddedNinja::MString myString2(myString1);
 
 			// Change memory in myString1 to make sure deep copy worked
 			myString1.cStr[0] = 'a';
@@ -33,10 +33,10 @@ namespace StringTestsNs
 
 		TEST(CopyAssignmentTest)
 		{
-			MbeddedNinja::String myString1("Testing");
+			MbeddedNinja::MString myString1("Testing");
 
 			// Do a copy-assignment
-			MbeddedNinja::String myString2 = myString1;
+			MbeddedNinja::MString myString2 = myString1;
 
 			// Change memory in myString1 to make sure deep copy worked
 			myString1.cStr[0] = 'a';

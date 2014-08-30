@@ -9,7 +9,7 @@
 
 #include <stdio.h>
 
-#include "../api/StringApi.hpp"
+#include "../api/MStringApi.hpp"
 
 #include "../lib/UnitTest++/src/UnitTest++.h"
 
@@ -20,9 +20,9 @@ namespace StringTestsNs
 
 		TEST(AssignmentOperatorTest)
 		{
-			MbeddedNinja::String myString1("Testing");
+			MbeddedNinja::MString myString1("Testing");
 
-			MbeddedNinja::String myString2("Other stuff");
+			MbeddedNinja::MString myString2("Other stuff");
 
 			myString2 = myString1;
 

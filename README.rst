@@ -1,20 +1,20 @@
 ============
-String-Cpp
+MStringCpp
 ============
 
 ---------------------------------------------------------------------------------
 A C++ string object specifically designed for embedded applications.
 ---------------------------------------------------------------------------------
 
-.. image:: https://api.travis-ci.org/mbedded-ninja/String-Cpp.png?branch=master   
-	:target: https://travis-ci.org/mbedded-ninja/String-Cpp
+.. image:: https://api.travis-ci.org/mbedded-ninja/MStringCpp.png?branch=master   
+	:target: https://travis-ci.org/mbedded-ninja/MStringCpp
 
 - Author: gbmhunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 - First Ever Commit: 2014-08-12
-- Last Modified: 2014-08-25
-- Version: v2.1.0.0
-- Company: CladLabs
-- Project: Free Code Libraries
+- Last Modified: 2014-08-30
+- Version: v2.1.1.0
+- Company: mbedded.ninja
+- Project: MToolkit Module
 - Language: C++
 - Compiler: GCC	
 - uC Model: n/a
@@ -26,7 +26,7 @@ A C++ string object specifically designed for embedded applications.
 Description
 ===========
 
-String-Cpp is a C++ string object specifically designed for embedded applications.
+MStringCpp is a C++ string object specifically designed for embedded applications.
 
 Features:
 
@@ -48,9 +48,9 @@ The automatic memory management of the String object means that you will get far
 	
 	function MyFunc()
 	{
-		String myStr;				// Empty string created, 1-byte of RAM used (don't worry, it's still null-terminated!)
+		MString myStr;				// Empty string created, 1-byte of RAM used (don't worry, it's still null-terminated!)
 		
-		String myStr = "abc";		// Memory automatically expanded to 4 bytes, no overflow occurs!
+		MString myStr = "abc";		// Memory automatically expanded to 4 bytes, no overflow occurs!
 		
 		return;						// String is now out-of-scope, memory automatically freed
 	}
@@ -64,12 +64,12 @@ Concatenating (appending) strings onto the end of one another is easy! Follows t
 
 	using MbeddedNinja;
 	
-	String myStr1("Hello");
+	MString myStr1("Hello");
 	myStr1 += ", World!";
 	
 	// myStr1 now equals "Hello, World!"
 	
-	String myStr2;
+	MString myStr2;
 	myStr2 = myStr1 + "With love from mbedded.ninja.";
 	
 	// myStr2 now equals "Hello, World! With love from mbedded.ninja."
@@ -81,7 +81,7 @@ Integers (both signed and unsigned) as well as doubles can easily be appended to
 
 	using MbeddedNinja;
 	
-	String myStr;
+	MString myStr;
 	myStr = "This integer = " << 6;
 	
 	// myStr now equals "This integer = 6"
@@ -113,6 +113,7 @@ Changelog
 ========= ========== ===================================================================================================
 Version   Date       Comment
 ========= ========== ===================================================================================================
+v2.1.1.0  2014-08-30 Renamed module to MStringCpp, closes #46. Renamed string class to MString, closes #47.
 v2.1.0.0  2014-08-25 Added support for concatenating two strings with the left-shift operator, closes #45.
 v2.0.0.1  2014-08-25 Added information to the README concerning 'Automatic Memory Management', 'String Concatenation' and 'Appending Integers And Doubles', closes #42, closes #43, closes #44.
 v2.0.0.0  2014-08-25 Added operator overloads for the left-shift operator ('<<') so that integers and doubles can be added to the end of strings with the syntax 'String() << myInt', similar to stringsteams in the standard C++ library, closes #41. Added appropriate unit tests.

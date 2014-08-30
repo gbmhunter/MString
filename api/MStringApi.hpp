@@ -1,9 +1,9 @@
 //!
-//! @file				StringApi.hpp
+//! @file				MStringApi.hpp
 //! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created			2014-08-12
-//! @last-modified		2014-08-25
-//! @brief				API header for String object.
+//! @last-modified		2014-08-30
+//! @brief				API header for MString object.
 //! @details
 //!						See README.rst in repo root dir for more info.
 
@@ -15,11 +15,11 @@
 //======================================== HEADER GUARD =========================================//
 //===============================================================================================//
 
-#ifndef STRING_CPP_STRING_API_H
-#define STRING_CPP_STRING_API_H
+#ifndef MSTRING_CPP_MSTRING_API_H
+#define MSTRING_CPP_MSTRING_API_H
 
-#include "../include/String.hpp"
+#include "../include/MString.hpp"
 
-#endif	// #ifndef STRING_CPP_STRING_API_H
+#endif	// #ifndef MSTRING_CPP_MSTRING_API_H
 
 // EOF

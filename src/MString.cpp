@@ -1,9 +1,9 @@
 //!
-//! @file				String.cpp
+//! @file				MString.cpp
 //! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created			2014-08-12
-//! @last-modified		2014-08-25
-//! @brief				Contains the definitions for the String class.
+//! @last-modified		2014-08-30
+//! @brief				Contains the definitions for the MString class.
 //! @details
 //!						See README.rst in repo root dir for more info.
 
@@ -25,7 +25,7 @@
 // none
 
 // User source
-#include "../include/String.hpp"
+#include "../include/MString.hpp"
 
 //! @brief		The maximum number of characters used when shifting a double onto a string.
 //! @details	Determines the size of the temporary buffer created on the stack when adding
@@ -44,7 +44,7 @@ namespace MbeddedNinja
 	//=============================== PUBLIC METHOD DEFINITIONS ==================================//
 	//============================================================================================//
 
-	String::String(const char * cString)
+	MString::MString(const char * cString)
 	{
 		// Get length of cString
 		this->length = strlen(cString);
@@ -59,14 +59,14 @@ namespace MbeddedNinja
 		this->cStr[this->length] = '\0';
 	}
 
-	String::String() :
-			String("") // Delegate to base constructor, passing in empty C-style string
+	MString::MString() :
+			MString("") // Delegate to base constructor, passing in empty C-style string
 	{
 		// No code needed here
 	}
 
-	String::String(const String &obj) :
-		String(obj.cStr)	// Delegate to base constructor, passing in the C-style string
+	MString::MString(const MString &obj) :
+		MString(obj.cStr)	// Delegate to base constructor, passing in the C-style string
 	{
 		// Copy constructor
 		// Nothing here
@@ -75,19 +75,19 @@ namespace MbeddedNinja
 
 
 
-	String::~String()
+	MString::~MString()
 	{
 		// Delete memory that was allocated in the constructor.
 		delete[] this->cStr;
 	}
 
-	uint32_t String::GetLength()
+	uint32_t MString::GetLength()
 	{
 		// Easy, just return the internal length variable
 		return this->length;
 	}
 
-	int32_t String::Find(char charToFind, uint32_t startPos)
+	int32_t MString::Find(char charToFind, uint32_t startPos)
 	{
 		// Check if char to find is null, in that case, return -1 straight away
 		if(charToFind == '\0')
@@ -116,7 +116,7 @@ namespace MbeddedNinja
 
 	}
 
-	int32_t String::Find(const char * cStringToFind, uint32_t startPos)
+	int32_t MString::Find(const char * cStringToFind, uint32_t startPos)
 	{
 		// Look for stringToFind inside string, offsetting string by startPos
 		char * ptrToFirstOccurance = strstr(this->cStr + startPos, cStringToFind);
@@ -130,13 +130,13 @@ namespace MbeddedNinja
 			return ptrToFirstOccurance - this->cStr;
 	}
 
-	int32_t String::Find(const String & stringToFind, uint32_t startPos)
+	int32_t MString::Find(const MString & stringToFind, uint32_t startPos)
 	{
 		// Call base method, passing in C-style string
 		return this->Find(stringToFind.cStr, startPos);
 	}
 
-	void String::Append(const char * cStringToAppend)
+	void MString::Append(const char * cStringToAppend)
 	{
 		// Get length of stringToAppend
 		uint32_t appendStringLength = strlen(cStringToAppend);
@@ -164,7 +164,7 @@ namespace MbeddedNinja
 
 	}
 
-	void String::Erase(uint32_t startPos, int32_t numOfChars)
+	void MString::Erase(uint32_t startPos, int32_t numOfChars)
 	{
 		//std::cerr << "String::Erase() called." << std::endl;
 		//std::cerr << "this->cStr = '" << this->cStringPtr << "'." << std::endl;
@@ -244,7 +244,7 @@ namespace MbeddedNinja
 
 	}
 
-	void String::Trim(String charsToMatch, EndsToTrim endsToTrim)
+	void MString::Trim(MString charsToMatch, EndsToTrim endsToTrim)
 	{
 		uint32_t posInString;
 
@@ -324,7 +324,7 @@ namespace MbeddedNinja
 
 	}
 
-	void String::Trim(EndsToTrim endsToTrim)
+	void MString::Trim(EndsToTrim endsToTrim)
 	{
 		this->Trim(defCharsToMatch , endsToTrim);
 	}
@@ -335,7 +335,7 @@ namespace MbeddedNinja
 
 	//=========================================== ASSIGNMENT ====================================//
 
-	String & String::operator= (const String & other)
+	MString & MString::operator= (const MString & other)
 	{
 		//std::cerr << "Assignment operator overload called.\r\n";
 
@@ -379,7 +379,7 @@ namespace MbeddedNinja
 
 	//====================================== SUBSCRIPT OPERATOR =================================//
 
-	char & String::operator[] (const uint32_t index)
+	char & MString::operator[] (const uint32_t index)
 	{
 
 		// Check if index is > length (e.g. past null char)
@@ -399,7 +399,7 @@ namespace MbeddedNinja
 
 	//================================ COMPOUND ASSIGNMENT OVERLOADS ============================//
 
-	String & String::operator+=(const char * rhs)
+	MString & MString::operator+=(const char * rhs)
 	{
 		// Compound assignment operator overload
 		// Append RHS to current string (LHS)
@@ -407,7 +407,7 @@ namespace MbeddedNinja
 		return *this;
 	}
 
-	String & String::operator+=(const String &rhs)
+	MString & MString::operator+=(const MString &rhs)
 	{
 		// Compound assignment operator overload
 		// Append RHS to current string (LHS)
@@ -417,7 +417,7 @@ namespace MbeddedNinja
 
 	//============================= COMPARITIVE OPERAOTOR OVERLOADS =============================//
 
-	bool operator==(String & lhs, const char * rhs)
+	bool operator==(MString & lhs, const char * rhs)
 	{
 		// Use strcmp function, returns 0 (false) if strings match, so note
 		// the logic inversion that takes place here!
@@ -427,13 +427,13 @@ namespace MbeddedNinja
 			return true;
 	}
 
-	bool operator==(String & lhs, String & rhs)
+	bool operator==(MString & lhs, MString & rhs)
 	{
 		// Call the overload with one string obj and one c-style string
 		return (lhs == rhs.cStr);
 	}
 
-	bool operator!=(String & lhs, const char * rhs)
+	bool operator!=(MString & lhs, const char * rhs)
 	{
 		// Use the equality overload to perform the inequality overload
 		if(lhs == rhs)
@@ -442,7 +442,7 @@ namespace MbeddedNinja
 			return true;
 	}
 
-	bool operator!=(String & lhs, String & rhs)
+	bool operator!=(MString & lhs, MString & rhs)
 	{
 		// Call the inquality overload with one string object
 		// and one C-style string
@@ -450,7 +450,7 @@ namespace MbeddedNinja
 	}
 
 
-	String operator+(String lhs, const char * rhs)
+	MString operator+(MString lhs, const char * rhs)
 	{
 		// + operator overload between a strings object and a C-style string
 		//String result(lhs.cStr);
@@ -459,7 +459,7 @@ namespace MbeddedNinja
 		return lhs += rhs;
 	}
 
-	String operator+(String lhs, String & rhs)
+	MString operator+(MString lhs, MString & rhs)
 	{
 		// + operator overload between two strings,
 		// joins the two strings together
@@ -471,7 +471,7 @@ namespace MbeddedNinja
 
 	//============================= SHIFT OPERAOTOR OVERLOADS =============================//
 
-	String & String::operator << (const char * rhs)
+	MString & MString::operator << (const char * rhs)
 	{
 		// Append RHS string onto the end of LHS string
 		(*this) += rhs;
@@ -481,7 +481,7 @@ namespace MbeddedNinja
 
 	}
 
-	String & String::operator << (const String & rhs)
+	MString & MString::operator << (const MString & rhs)
 	{
 		// Append RHS string onto the end of LHS string
 		(*this) += rhs;
@@ -490,7 +490,7 @@ namespace MbeddedNinja
 		return (*this);
 	}
 
-	String & String::operator << (uint8_t myUint8)
+	MString & MString::operator << (uint8_t myUint8)
 	{
 		// New to convert unsigned int into a string
 		// We will need a maximum of 3 chars to represent a 8-bit unsigned int
@@ -508,7 +508,7 @@ namespace MbeddedNinja
 		return *this;
 	}
 
-	String & String::operator << (int8_t myInt8)
+	MString & MString::operator << (int8_t myInt8)
 	{
 		// New to convert unsigned int into a string
 		// We will need a maximum of 4 chars to represent a 8-bit signed number
@@ -526,7 +526,7 @@ namespace MbeddedNinja
 		return *this;
 	}
 
-	String & String::operator << (uint16_t myUint16)
+	MString & MString::operator << (uint16_t myUint16)
 	{
 		// New to convert unsigned int into a string
 		// We will need a maximum of 5 chars to represent a 16-bit unsigned number
@@ -544,7 +544,7 @@ namespace MbeddedNinja
 		return *this;
 	}
 
-	String & String::operator << (int16_t myInt16)
+	MString & MString::operator << (int16_t myInt16)
 	{
 		// New to convert unsigned int into a string
 		// We will need a maximum of 6 chars to represent a 16-bit signed number
@@ -562,7 +562,7 @@ namespace MbeddedNinja
 		return *this;
 	}
 
-	String & String::operator << (uint32_t myUint32)
+	MString & MString::operator << (uint32_t myUint32)
 	{
 		// New to convert unsigned int into a string
 		// We will need a maximum of 10 chars to represent a 32-bit number
@@ -580,7 +580,7 @@ namespace MbeddedNinja
 		return *this;
 	}
 
-	String & String::operator << (int32_t myInt32)
+	MString & MString::operator << (int32_t myInt32)
 	{
 		// New to convert unsigned int into a string
 		// We will need a maximum of 11 chars to represent a 32-bit number
@@ -598,7 +598,7 @@ namespace MbeddedNinja
 		return *this;
 	}
 
-	String & String::operator << (uint64_t myUint64)
+	MString & MString::operator << (uint64_t myUint64)
 	{
 		// New to convert unsigned int into a string
 		// We will need a maximum of 20 chars to represent a 64-bit number
@@ -616,7 +616,7 @@ namespace MbeddedNinja
 		return *this;
 	}
 
-	String & String::operator << (int64_t myInt64)
+	MString & MString::operator << (int64_t myInt64)
 	{
 		// New to convert unsigned int into a string
 		// We will need a maximum of 20 chars to represent a 64-bit number
@@ -634,7 +634,7 @@ namespace MbeddedNinja
 		return *this;
 	}
 
-	String & String::operator << (double myDouble)
+	MString & MString::operator << (double myDouble)
 	{
 		// Convert double into a string
 		// To represent a 64-bit IEEE double, you would need a maximum of 1079 chars to represent
@@ -655,7 +655,7 @@ namespace MbeddedNinja
 
 	}
 
-	String::operator const char *()
+	MString::operator const char *()
 	{
 		return this->cStr;
 	}

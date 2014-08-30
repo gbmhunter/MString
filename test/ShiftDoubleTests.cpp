@@ -11,7 +11,7 @@
 #include "../lib/UnitTest++/src/UnitTest++.h"
 
 // User source
-#include "../api/StringApi.hpp"
+#include "../api/MStringApi.hpp"
 
 namespace StringTestsNs
 {
@@ -20,7 +20,7 @@ namespace StringTestsNs
 
 		TEST(ShiftLargeNumberOfDecimalPartsDoubleTest)
 		{
-			MbeddedNinja::String myString("double = ");
+			MbeddedNinja::MString myString("double = ");
 
 			myString << (double)3.123456789;
 
@@ -31,7 +31,7 @@ namespace StringTestsNs
 
 		TEST(ShiftRandomDoubleTest)
 		{
-			MbeddedNinja::String myString("double = ");
+			MbeddedNinja::MString myString("double = ");
 
 			myString << (double)3.254;
 
@@ -41,7 +41,7 @@ namespace StringTestsNs
 
 		TEST(ShiftLargeNumberDoubleTest)
 		{
-			MbeddedNinja::String myString("double = ");
+			MbeddedNinja::MString myString("double = ");
 
 			myString << (double)123456789123456789llu;
 

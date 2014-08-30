@@ -11,7 +11,7 @@
 #include "../lib/UnitTest++/src/UnitTest++.h"
 
 // User source
-#include "../api/StringApi.hpp"
+#include "../api/MStringApi.hpp"
 
 namespace StringTestsNs
 {
@@ -22,7 +22,7 @@ namespace StringTestsNs
 
 		TEST(TrimJustSpacesFromStartTest)
 		{
-			MbeddedNinja::String myString1("   There is white space before me.");
+			MbeddedNinja::MString myString1("   There is white space before me.");
 
 			// Trim white space
 			myString1.Trim();
@@ -32,7 +32,7 @@ namespace StringTestsNs
 
 		TEST(TrimJustCarriageReturnsFromStartTest)
 		{
-			MbeddedNinja::String myString1("\r\r\rThere are carriage returns before me.");
+			MbeddedNinja::MString myString1("\r\r\rThere are carriage returns before me.");
 
 			// Trim string
 			myString1.Trim();
@@ -42,7 +42,7 @@ namespace StringTestsNs
 
 		TEST(TrimJustNewLinesFromStartTest)
 		{
-			MbeddedNinja::String myString1("\n\n\nThere are new lines before me.");
+			MbeddedNinja::MString myString1("\n\n\nThere are new lines before me.");
 
 			// Trim string
 			myString1.Trim();
@@ -52,7 +52,7 @@ namespace StringTestsNs
 
 		TEST(TrimJustTabsFromStartTest)
 		{
-			MbeddedNinja::String myString1("\t\t\tThere are tabs before me.");
+			MbeddedNinja::MString myString1("\t\t\tThere are tabs before me.");
 
 			// Trim string
 			myString1.Trim();
@@ -62,7 +62,7 @@ namespace StringTestsNs
 
 		TEST(TrimAMixtureOfWhiteSpaceFromStartTest)
 		{
-			MbeddedNinja::String myString1("\r \n     \t There is a mixture of white-space chars before me.");
+			MbeddedNinja::MString myString1("\r \n     \t There is a mixture of white-space chars before me.");
 
 			// Trim string
 			myString1.Trim();
@@ -74,7 +74,7 @@ namespace StringTestsNs
 
 		TEST(TrimJustSpacesFromEndTest)
 		{
-			MbeddedNinja::String myString1("There is white space after me.    ");
+			MbeddedNinja::MString myString1("There is white space after me.    ");
 
 			// Trim white space
 			myString1.Trim();
@@ -84,7 +84,7 @@ namespace StringTestsNs
 
 		TEST(TrimJustCarriageReturnsFromEndTest)
 		{
-			MbeddedNinja::String myString1("There are carriage returns after me.\r\r\r\r");
+			MbeddedNinja::MString myString1("There are carriage returns after me.\r\r\r\r");
 
 			// Trim string
 			myString1.Trim();
@@ -94,7 +94,7 @@ namespace StringTestsNs
 
 		TEST(TrimJustNewLinesFromEndTest)
 		{
-			MbeddedNinja::String myString1("There are new lines after me.\n\n\n\n\n");
+			MbeddedNinja::MString myString1("There are new lines after me.\n\n\n\n\n");
 
 			// Trim string
 			myString1.Trim();
@@ -104,7 +104,7 @@ namespace StringTestsNs
 
 		TEST(TrimJustTabsFromEndTest)
 		{
-			MbeddedNinja::String myString1("There are tabs after me.\t");
+			MbeddedNinja::MString myString1("There are tabs after me.\t");
 
 			// Trim string
 			myString1.Trim();
@@ -114,7 +114,7 @@ namespace StringTestsNs
 
 		TEST(TrimAMixtureOfWhiteSpaceFromEndTest)
 		{
-			MbeddedNinja::String myString1("There is a mixture of white-space chars after me.\r  \t\n\n ");
+			MbeddedNinja::MString myString1("There is a mixture of white-space chars after me.\r  \t\n\n ");
 
 			// Trim string
 			myString1.Trim();
@@ -126,7 +126,7 @@ namespace StringTestsNs
 
 		TEST(TrimAMixtureOfWhiteSpaceFromBothEndsTest)
 		{
-			MbeddedNinja::String myString1("   \t \r\nThere is a mixture of white-space chars before and after me.\r  \t\n\n ");
+			MbeddedNinja::MString myString1("   \t \r\nThere is a mixture of white-space chars before and after me.\r  \t\n\n ");
 
 			// Trim string
 			myString1.Trim();
@@ -138,7 +138,7 @@ namespace StringTestsNs
 
 		TEST(DoesntTrimWhiteSpaceFromMiddleOfStringTest)
 		{
-			MbeddedNinja::String myString1("\r \n     \t a\r b\t cdef gh");
+			MbeddedNinja::MString myString1("\r \n     \t a\r b\t cdef gh");
 
 			// Trim string
 			myString1.Trim();
@@ -151,11 +151,11 @@ namespace StringTestsNs
 
 		TEST(OnlyTrimFromLeftTest)
 		{
-			MbeddedNinja::String myString1(
+			MbeddedNinja::MString myString1(
 					"   \t \r\nThere is a mixture of white-space chars before and after me.\r  \t\n\n ");
 
 			// Trim string
-			myString1.Trim(MbeddedNinja::String::EndsToTrim::LEFT);
+			myString1.Trim(MbeddedNinja::MString::EndsToTrim::LEFT);
 
 			CHECK_EQUAL(
 				"There is a mixture of white-space chars before and after me.\r  \t\n\n ",
@@ -164,11 +164,11 @@ namespace StringTestsNs
 
 		TEST(OnlyTrimFromRightTest)
 		{
-			MbeddedNinja::String myString1(
+			MbeddedNinja::MString myString1(
 					"   \t \r\nThere is a mixture of white-space chars before and after me.\r  \t\n\n ");
 
 			// Trim string
-			myString1.Trim(MbeddedNinja::String::EndsToTrim::RIGHT);
+			myString1.Trim(MbeddedNinja::MString::EndsToTrim::RIGHT);
 
 			CHECK_EQUAL(
 				"   \t \r\nThere is a mixture of white-space chars before and after me.",
@@ -179,11 +179,11 @@ namespace StringTestsNs
 
 		TEST(TrimSomeATest)
 		{
-			MbeddedNinja::String myString1(
+			MbeddedNinja::MString myString1(
 					"aaaaThere are some 'a' before and after me.\r  \t\n\n aaaa");
 
 			// Trim string
-			myString1.Trim(MbeddedNinja::String("a"));
+			myString1.Trim(MbeddedNinja::MString("a"));
 
 			CHECK_EQUAL(
 				"There are some 'a' before and after me.\r  \t\n\n ",
@@ -194,7 +194,7 @@ namespace StringTestsNs
 
 		TEST(TrimEmptyStringTest)
 		{
-			MbeddedNinja::String myString1("");
+			MbeddedNinja::MString myString1("");
 
 			// Trim string
 			myString1.Trim();
@@ -205,10 +205,10 @@ namespace StringTestsNs
 
 		TEST(TrimEmptyStringWithEmptyMatchingCharsTest)
 		{
-			MbeddedNinja::String myString1("");
+			MbeddedNinja::MString myString1("");
 
 			// Trim string
-			myString1.Trim(MbeddedNinja::String());
+			myString1.Trim(MbeddedNinja::MString());
 
 			//  String should still be empty.
 			CHECK_EQUAL("", myString1.cStr);
@@ -216,10 +216,10 @@ namespace StringTestsNs
 
 		TEST(TrimStringWithEmptyMatchingCharsTest)
 		{
-			MbeddedNinja::String myString1("Please don't hurt me!");
+			MbeddedNinja::MString myString1("Please don't hurt me!");
 
 			// Trim string
-			myString1.Trim(MbeddedNinja::String());
+			myString1.Trim(MbeddedNinja::MString());
 
 			//  String should of not been modified
 			CHECK_EQUAL("Please don't hurt me!", myString1.cStr);
@@ -227,7 +227,7 @@ namespace StringTestsNs
 
 		TEST(AllWhiteSpaceTest)
 		{
-			MbeddedNinja::String myString1("\r \n     \t  ");
+			MbeddedNinja::MString myString1("\r \n     \t  ");
 
 			// Trim string
 			myString1.Trim();

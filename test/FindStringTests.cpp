@@ -11,7 +11,7 @@
 #include "../lib/UnitTest++/src/UnitTest++.h"
 
 // User source
-#include "../api/StringApi.hpp"
+#include "../api/MStringApi.hpp"
 
 namespace StringTestsNs
 {
@@ -20,7 +20,7 @@ namespace StringTestsNs
 
 		TEST(CStringPresentFindTest)
 		{
-			MbeddedNinja::String myString("Looking for the needle in the haystack.");
+			MbeddedNinja::MString myString("Looking for the needle in the haystack.");
 
 			// "needle" should be found, and Find() return 0-based index to first occurance
 			CHECK_EQUAL(16, myString.Find("needle"));
@@ -28,9 +28,9 @@ namespace StringTestsNs
 
 		TEST(StringPresentFindTest)
 		{
-			MbeddedNinja::String myString("Looking for the needle in the haystack.");
+			MbeddedNinja::MString myString("Looking for the needle in the haystack.");
 
-			MbeddedNinja::String stringToFind("needle");
+			MbeddedNinja::MString stringToFind("needle");
 
 			// "needle" should be found, and Find() return 0-based index to first occurance
 			CHECK_EQUAL(16, myString.Find(stringToFind));
@@ -38,9 +38,9 @@ namespace StringTestsNs
 
 		TEST(StringNotPresentFindTest)
 		{
-			MbeddedNinja::String myString("Looking for the needle in the haystack.");
+			MbeddedNinja::MString myString("Looking for the needle in the haystack.");
 
-			MbeddedNinja::String stringToFind("noneedle");
+			MbeddedNinja::MString stringToFind("noneedle");
 
 			// Char should not be found, and Find() should return -1
 			CHECK_EQUAL(-1, myString.Find(stringToFind));
@@ -48,9 +48,9 @@ namespace StringTestsNs
 
 		TEST(StringPresentMultipleTimesFindTest)
 		{
-			MbeddedNinja::String myString("Looking for the needle in the haystack full of needles.");
+			MbeddedNinja::MString myString("Looking for the needle in the haystack full of needles.");
 
-			MbeddedNinja::String stringToFind("needle");
+			MbeddedNinja::MString stringToFind("needle");
 
 			// Find should return first occurrance of "needle"
 			CHECK_EQUAL(16, myString.Find(stringToFind));

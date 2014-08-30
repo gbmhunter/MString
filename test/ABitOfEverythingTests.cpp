@@ -14,7 +14,7 @@
 #include "../lib/UnitTest++/src/UnitTest++.h"
 
 // User source
-#include "../api/StringApi.hpp"
+#include "../api/MStringApi.hpp"
 
 
 namespace StringTestsNs
@@ -25,7 +25,7 @@ namespace StringTestsNs
 		TEST(ABitOfEverythingTest1)
 		{
 			//std::cerr << "ABitOfEverythingTest1() called." << std::endl;
-			MbeddedNinja::String myStr1("Hello, world!");
+			MbeddedNinja::MString myStr1("Hello, world!");
 
 			// Erase everything after "Hello"
 			myStr1.Erase(5);
@@ -33,7 +33,7 @@ namespace StringTestsNs
 			CHECK_EQUAL("Hello", myStr1.cStr);
 
 			// Copy to new string
-			MbeddedNinja::String myStr2 = myStr1;
+			MbeddedNinja::MString myStr2 = myStr1;
 
 			CHECK_EQUAL("Hello", myStr2.cStr);
 			CHECK_EQUAL(5, myStr2.GetLength());
@@ -47,7 +47,7 @@ namespace StringTestsNs
 
 		TEST(ABitOfEverythingTest2)
 		{
-			MbeddedNinja::String myStr1("Hello, world!");
+			MbeddedNinja::MString myStr1("Hello, world!");
 
 			CHECK_EQUAL("Hello, world!", myStr1.cStr);
 
@@ -60,7 +60,7 @@ namespace StringTestsNs
 
 		TEST(ABitOfEverythingTest3)
 		{
-			MbeddedNinja::String myStr1("Hello, world!");
+			MbeddedNinja::MString myStr1("Hello, world!");
 
 			CHECK_EQUAL("Hello, world!", myStr1.cStr);
 
@@ -69,13 +69,13 @@ namespace StringTestsNs
 
 			CHECK_EQUAL("Hello, world! And hello you!", myStr1.cStr);
 
-			MbeddedNinja::String myStr2;
+			MbeddedNinja::MString myStr2;
 
 			myStr2 = myStr1 + " And hello me!";
 
 			CHECK_EQUAL("Hello, world! And hello you! And hello me!", myStr2.cStr);
 
-			MbeddedNinja::String * myStr3;
+			MbeddedNinja::MString * myStr3;
 
 			myStr3 = &myStr2;
 
@@ -91,13 +91,13 @@ namespace StringTestsNs
 			CHECK_EQUAL("", myStr2.cStr);
 			CHECK_EQUAL("", myStr3->cStr);
 
-			MbeddedNinja::String myStr4;
+			MbeddedNinja::MString myStr4;
 
 			myStr4 = *myStr3;
 
 			CHECK_EQUAL("", myStr4.cStr);
 
-			myStr4 = MbeddedNinja::String("A replacement.");
+			myStr4 = MbeddedNinja::MString("A replacement.");
 
 			CHECK_EQUAL("", myStr3->cStr);
 			CHECK_EQUAL("A replacement.", myStr4.cStr);
@@ -108,7 +108,7 @@ namespace StringTestsNs
 		{
 			// This performs tests to simulate an AT command decoding scenario
 
-			MbeddedNinja::String rxBuffStr = "blahblahATE1\r\nTestPayload\r\nOK\r\nblahblah";
+			MbeddedNinja::MString rxBuffStr = "blahblahATE1\r\nTestPayload\r\nOK\r\nblahblah";
 
 			uint32_t startOfEcho = rxBuffStr.Find("ATE1");
 
@@ -137,7 +137,7 @@ namespace StringTestsNs
 
 		TEST(ABitOfEverythingTest5)
 		{
-			MbeddedNinja::String myStr1;
+			MbeddedNinja::MString myStr1;
 
 			myStr1 += "a";
 

@@ -15,7 +15,7 @@
 #include "../lib/UnitTest++/src/TestReporterStdout.h"
 
 // User source
-#include "../api/StringApi.hpp"
+#include "../api/MStringApi.hpp"
 
 
 int main()
