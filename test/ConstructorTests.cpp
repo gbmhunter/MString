@@ -2,37 +2,37 @@
 //! @file 			ConstructorTests.cpp
 //! @author 		Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created		2014-08-13
-//! @last-modified 	2014-08-21
+//! @last-modified 	2014-09-13
 //! @brief 			Contains unit tests that make sure the constructor is working correctly.
 //! @details
 //!					See README.rst in root dir for more info.
 
-// User libraries
-#include "../lib/UnitTest++/src/UnitTest++.h"
+//===== SYSTEM LIBRARIES =====//
+#include <cstdint>	// uint32_t, e.t.c
 
-// User source
+//====== USER LIBRARIES =====//
+#include "MUnitTest/api/MUnitTestApi.hpp"
+
+//===== USER SOURCE =====//
 #include "../api/MStringApi.hpp"
 
 namespace StringTestsNs
 {
-	SUITE(ConstructorTests)
+
+	MTEST(NoParamConstructorTest)
 	{
+		MbeddedNinja::MString myString;
 
-		TEST(NoParamConstructorTest)
-		{
-			MbeddedNinja::MString myString;
+		// Check constructor worked correctly
+		CHECK_EQUAL("", myString);
+	}
 
-			// Check constructor worked correctly
-			CHECK_EQUAL("", myString.cStr);
-		}
+	MTEST(EmptyStringConstructorTest)
+	{
+		MbeddedNinja::MString myString("");
 
-		TEST(EmptyStringConstructorTest)
-		{
-			MbeddedNinja::MString myString("");
+		// Check constructor worked correctly
+		CHECK_EQUAL("", myString);
+	}
 
-			// Check constructor worked correctly
-			CHECK_EQUAL("", myString.cStr);
-		}
-
-	} // SUITE(ConstructorTests)
 } // namespace StringTestsNs

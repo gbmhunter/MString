@@ -2,48 +2,49 @@
 //! @file 			CopyTests.cpp
 //! @author 		Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created		2014-08-12
-//! @last-modified 	2014-08-21
+//! @last-modified 	2014-09-13
 //! @brief 			Makes sure the copy constructors for String work as expected.
 //! @details
 //!					See README.rst in root dir for more info.
 
-// User libraries
-#include "../lib/UnitTest++/src/UnitTest++.h"
+//===== SYSTEM LIBRARIES =====//
+#include <cstdint>	// uint32_t, e.t.c
 
-// User source
+//====== USER LIBRARIES =====//
+#include "MUnitTest/api/MUnitTestApi.hpp"
+
+//===== USER SOURCE =====//
 #include "../api/MStringApi.hpp"
 
 namespace StringTestsNs
 {
-	SUITE(CopyTests)
+
+	MTEST(DeepCopyTest)
 	{
+		MbeddedNinja::MString myString1("Testing");
 
-		TEST(DeepCopyTest)
-		{
-			MbeddedNinja::MString myString1("Testing");
+		MbeddedNinja::MString myString2(myString1);
 
-			MbeddedNinja::MString myString2(myString1);
+		// Change memory in myString1 to make sure deep copy worked
+		myString1.cStr[0] = 'a';
 
-			// Change memory in myString1 to make sure deep copy worked
-			myString1.cStr[0] = 'a';
+		// myString2 should not be affected by above change to myString1!
+		CHECK_EQUAL("Testing", myString2);
+	}
 
-			// myString2 should not be affected by above change to myString1!
-			CHECK_EQUAL("Testing", myString2.cStr);
-		}
+	MTEST(CopyAssignmentTest)
+	{
+		MbeddedNinja::MString myString1("Testing");
 
-		TEST(CopyAssignmentTest)
-		{
-			MbeddedNinja::MString myString1("Testing");
+		// Do a copy-assignment
+		MbeddedNinja::MString myString2 = myString1;
 
-			// Do a copy-assignment
-			MbeddedNinja::MString myString2 = myString1;
+		// Change memory in myString1 to make sure deep copy worked
+		myString1.cStr[0] = 'a';
 
-			// Change memory in myString1 to make sure deep copy worked
-			myString1.cStr[0] = 'a';
+		// myString2 should not be affected by above change to myString1!
+		CHECK_EQUAL("Testing", myString2);
+	}
 
-			// myString2 should not be affected by above change to myString1!
-			CHECK_EQUAL("Testing", myString2.cStr);
-		}
 
-	} // SUITE(CopyTests)
 } // namespace StringTestsNs

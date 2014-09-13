@@ -2,239 +2,239 @@
 //! @file 			TrimTests.cpp
 //! @author 		Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created		2014-08-22
-//! @last-modified 	2014-08-22
+//! @last-modified 	2014-09-13
 //! @brief 			Makes sure the String::Trim() method works as expected.
 //! @details
 //!					See README.rst in root dir for more info.
 
-// User libraries
-#include "../lib/UnitTest++/src/UnitTest++.h"
+//===== SYSTEM LIBRARIES =====//
+#include <cstdint>	// uint32_t, e.t.c
 
-// User source
+//====== USER LIBRARIES =====//
+#include "MUnitTest/api/MUnitTestApi.hpp"
+
+//===== USER SOURCE =====//
 #include "../api/MStringApi.hpp"
 
 namespace StringTestsNs
 {
-	SUITE(TrimTests)
+
+	//======================== TRIM FROM LEFT TESTS ====================//
+
+	MTEST(TrimJustSpacesFromStartTest)
 	{
+		MbeddedNinja::MString myString1("   There is white space before me.");
 
-		//======================== TRIM FROM LEFT TESTS ====================//
+		// Trim white space
+		myString1.Trim();
 
-		TEST(TrimJustSpacesFromStartTest)
-		{
-			MbeddedNinja::MString myString1("   There is white space before me.");
+		CHECK_EQUAL("There is white space before me.", myString1);
+	}
 
-			// Trim white space
-			myString1.Trim();
+	MTEST(TrimJustCarriageReturnsFromStartTest)
+	{
+		MbeddedNinja::MString myString1("\r\r\rThere are carriage returns before me.");
 
-			CHECK_EQUAL("There is white space before me.", myString1.cStr);
-		}
+		// Trim string
+		myString1.Trim();
 
-		TEST(TrimJustCarriageReturnsFromStartTest)
-		{
-			MbeddedNinja::MString myString1("\r\r\rThere are carriage returns before me.");
+		CHECK_EQUAL("There are carriage returns before me.", myString1);
+	}
 
-			// Trim string
-			myString1.Trim();
+	MTEST(TrimJustNewLinesFromStartTest)
+	{
+		MbeddedNinja::MString myString1("\n\n\nThere are new lines before me.");
 
-			CHECK_EQUAL("There are carriage returns before me.", myString1.cStr);
-		}
+		// Trim string
+		myString1.Trim();
 
-		TEST(TrimJustNewLinesFromStartTest)
-		{
-			MbeddedNinja::MString myString1("\n\n\nThere are new lines before me.");
+		CHECK_EQUAL("There are new lines before me.", myString1);
+	}
 
-			// Trim string
-			myString1.Trim();
+	MTEST(TrimJustTabsFromStartTest)
+	{
+		MbeddedNinja::MString myString1("\t\t\tThere are tabs before me.");
 
-			CHECK_EQUAL("There are new lines before me.", myString1.cStr);
-		}
+		// Trim string
+		myString1.Trim();
 
-		TEST(TrimJustTabsFromStartTest)
-		{
-			MbeddedNinja::MString myString1("\t\t\tThere are tabs before me.");
+		CHECK_EQUAL("There are tabs before me.", myString1);
+	}
 
-			// Trim string
-			myString1.Trim();
+	MTEST(TrimAMixtureOfWhiteSpaceFromStartTest)
+	{
+		MbeddedNinja::MString myString1("\r \n     \t There is a mixture of white-space chars before me.");
 
-			CHECK_EQUAL("There are tabs before me.", myString1.cStr);
-		}
+		// Trim string
+		myString1.Trim();
 
-		TEST(TrimAMixtureOfWhiteSpaceFromStartTest)
-		{
-			MbeddedNinja::MString myString1("\r \n     \t There is a mixture of white-space chars before me.");
+		CHECK_EQUAL("There is a mixture of white-space chars before me.", myString1);
+	}
 
-			// Trim string
-			myString1.Trim();
+	//======================== TRIM FROM END TESTS ====================//
 
-			CHECK_EQUAL("There is a mixture of white-space chars before me.", myString1.cStr);
-		}
+	MTEST(TrimJustSpacesFromEndTest)
+	{
+		MbeddedNinja::MString myString1("There is white space after me.    ");
 
-		//======================== TRIM FROM END TESTS ====================//
+		// Trim white space
+		myString1.Trim();
 
-		TEST(TrimJustSpacesFromEndTest)
-		{
-			MbeddedNinja::MString myString1("There is white space after me.    ");
+		CHECK_EQUAL("There is white space after me.", myString1);
+	}
 
-			// Trim white space
-			myString1.Trim();
+	MTEST(TrimJustCarriageReturnsFromEndTest)
+	{
+		MbeddedNinja::MString myString1("There are carriage returns after me.\r\r\r\r");
 
-			CHECK_EQUAL("There is white space after me.", myString1.cStr);
-		}
+		// Trim string
+		myString1.Trim();
 
-		TEST(TrimJustCarriageReturnsFromEndTest)
-		{
-			MbeddedNinja::MString myString1("There are carriage returns after me.\r\r\r\r");
+		CHECK_EQUAL("There are carriage returns after me.", myString1);
+	}
 
-			// Trim string
-			myString1.Trim();
+	MTEST(TrimJustNewLinesFromEndTest)
+	{
+		MbeddedNinja::MString myString1("There are new lines after me.\n\n\n\n\n");
 
-			CHECK_EQUAL("There are carriage returns after me.", myString1.cStr);
-		}
+		// Trim string
+		myString1.Trim();
 
-		TEST(TrimJustNewLinesFromEndTest)
-		{
-			MbeddedNinja::MString myString1("There are new lines after me.\n\n\n\n\n");
+		CHECK_EQUAL("There are new lines after me.", myString1);
+	}
 
-			// Trim string
-			myString1.Trim();
+	MTEST(TrimJustTabsFromEndTest)
+	{
+		MbeddedNinja::MString myString1("There are tabs after me.\t");
 
-			CHECK_EQUAL("There are new lines after me.", myString1.cStr);
-		}
+		// Trim string
+		myString1.Trim();
 
-		TEST(TrimJustTabsFromEndTest)
-		{
-			MbeddedNinja::MString myString1("There are tabs after me.\t");
+		CHECK_EQUAL("There are tabs after me.", myString1);
+	}
 
-			// Trim string
-			myString1.Trim();
+	MTEST(TrimAMixtureOfWhiteSpaceFromEndTest)
+	{
+		MbeddedNinja::MString myString1("There is a mixture of white-space chars after me.\r  \t\n\n ");
 
-			CHECK_EQUAL("There are tabs after me.", myString1.cStr);
-		}
+		// Trim string
+		myString1.Trim();
 
-		TEST(TrimAMixtureOfWhiteSpaceFromEndTest)
-		{
-			MbeddedNinja::MString myString1("There is a mixture of white-space chars after me.\r  \t\n\n ");
+		CHECK_EQUAL("There is a mixture of white-space chars after me.", myString1);
+	}
 
-			// Trim string
-			myString1.Trim();
+	//======================== TRIM FROM BOTH ENDS TESTS ====================//
 
-			CHECK_EQUAL("There is a mixture of white-space chars after me.", myString1.cStr);
-		}
+	MTEST(TrimAMixtureOfWhiteSpaceFromBothEndsTest)
+	{
+		MbeddedNinja::MString myString1("   \t \r\nThere is a mixture of white-space chars before and after me.\r  \t\n\n ");
 
-		//======================== TRIM FROM BOTH ENDS TESTS ====================//
+		// Trim string
+		myString1.Trim();
 
-		TEST(TrimAMixtureOfWhiteSpaceFromBothEndsTest)
-		{
-			MbeddedNinja::MString myString1("   \t \r\nThere is a mixture of white-space chars before and after me.\r  \t\n\n ");
+		CHECK_EQUAL("There is a mixture of white-space chars before and after me.", myString1);
+	}
 
-			// Trim string
-			myString1.Trim();
+	//======================== DOESN'T TRIM FROM MIDDLE TESTS ====================//
 
-			CHECK_EQUAL("There is a mixture of white-space chars before and after me.", myString1.cStr);
-		}
+	MTEST(DoesntTrimWhiteSpaceFromMiddleOfStringTest)
+	{
+		MbeddedNinja::MString myString1("\r \n     \t a\r b\t cdef gh");
 
-		//======================== DOESN'T TRIM FROM MIDDLE TESTS ====================//
+		// Trim string
+		myString1.Trim();
 
-		TEST(DoesntTrimWhiteSpaceFromMiddleOfStringTest)
-		{
-			MbeddedNinja::MString myString1("\r \n     \t a\r b\t cdef gh");
+		//  String should now start the the 'a' char.
+		CHECK_EQUAL("a\r b\t cdef gh", myString1);
+	}
 
-			// Trim string
-			myString1.Trim();
+	//======================== ONLY TRIM WHAT I'M TOLD TO TESTS ====================//
 
-			//  String should now start the the 'a' char.
-			CHECK_EQUAL("a\r b\t cdef gh", myString1.cStr);
-		}
+	MTEST(OnlyTrimFromLeftTest)
+	{
+		MbeddedNinja::MString myString1(
+				"   \t \r\nThere is a mixture of white-space chars before and after me.\r  \t\n\n ");
 
-		//======================== ONLY TRIM WHAT I'M TOLD TO TESTS ====================//
+		// Trim string
+		myString1.Trim(MbeddedNinja::MString::EndsToTrim::LEFT);
 
-		TEST(OnlyTrimFromLeftTest)
-		{
-			MbeddedNinja::MString myString1(
-					"   \t \r\nThere is a mixture of white-space chars before and after me.\r  \t\n\n ");
+		CHECK_EQUAL(
+			"There is a mixture of white-space chars before and after me.\r  \t\n\n ",
+			myString1);
+	}
 
-			// Trim string
-			myString1.Trim(MbeddedNinja::MString::EndsToTrim::LEFT);
+	MTEST(OnlyTrimFromRightTest)
+	{
+		MbeddedNinja::MString myString1(
+				"   \t \r\nThere is a mixture of white-space chars before and after me.\r  \t\n\n ");
 
-			CHECK_EQUAL(
-				"There is a mixture of white-space chars before and after me.\r  \t\n\n ",
-				myString1.cStr);
-		}
+		// Trim string
+		myString1.Trim(MbeddedNinja::MString::EndsToTrim::RIGHT);
 
-		TEST(OnlyTrimFromRightTest)
-		{
-			MbeddedNinja::MString myString1(
-					"   \t \r\nThere is a mixture of white-space chars before and after me.\r  \t\n\n ");
+		CHECK_EQUAL(
+			"   \t \r\nThere is a mixture of white-space chars before and after me.",
+			myString1);
+	}
 
-			// Trim string
-			myString1.Trim(MbeddedNinja::MString::EndsToTrim::RIGHT);
+	//======================== SPECIFYING WHAT TO TRIM TESTS ====================//
 
-			CHECK_EQUAL(
-				"   \t \r\nThere is a mixture of white-space chars before and after me.",
-				myString1.cStr);
-		}
+	MTEST(TrimSomeATest)
+	{
+		MbeddedNinja::MString myString1(
+				"aaaaThere are some 'a' before and after me.\r  \t\n\n aaaa");
 
-		//======================== SPECIFYING WHAT TO TRIM TESTS ====================//
+		// Trim string
+		myString1.Trim(MbeddedNinja::MString("a"));
 
-		TEST(TrimSomeATest)
-		{
-			MbeddedNinja::MString myString1(
-					"aaaaThere are some 'a' before and after me.\r  \t\n\n aaaa");
+		CHECK_EQUAL(
+			"There are some 'a' before and after me.\r  \t\n\n ",
+			myString1);
+	}
 
-			// Trim string
-			myString1.Trim(MbeddedNinja::MString("a"));
+	//======================== EDGE-CASE TRIM TESTS ====================//
 
-			CHECK_EQUAL(
-				"There are some 'a' before and after me.\r  \t\n\n ",
-				myString1.cStr);
-		}
+	MTEST(TrimEmptyStringTest)
+	{
+		MbeddedNinja::MString myString1("");
 
-		//======================== EDGE-CASE TRIM TESTS ====================//
+		// Trim string
+		myString1.Trim();
 
-		TEST(TrimEmptyStringTest)
-		{
-			MbeddedNinja::MString myString1("");
+		//  String should now be empty.
+		CHECK_EQUAL("", myString1);
+	}
 
-			// Trim string
-			myString1.Trim();
+	MTEST(TrimEmptyStringWithEmptyMatchingCharsTest)
+	{
+		MbeddedNinja::MString myString1("");
 
-			//  String should now be empty.
-			CHECK_EQUAL("", myString1.cStr);
-		}
+		// Trim string
+		myString1.Trim(MbeddedNinja::MString());
 
-		TEST(TrimEmptyStringWithEmptyMatchingCharsTest)
-		{
-			MbeddedNinja::MString myString1("");
+		//  String should still be empty.
+		CHECK_EQUAL("", myString1);
+	}
 
-			// Trim string
-			myString1.Trim(MbeddedNinja::MString());
+	MTEST(TrimStringWithEmptyMatchingCharsTest)
+	{
+		MbeddedNinja::MString myString1("Please don't hurt me!");
 
-			//  String should still be empty.
-			CHECK_EQUAL("", myString1.cStr);
-		}
+		// Trim string
+		myString1.Trim(MbeddedNinja::MString());
 
-		TEST(TrimStringWithEmptyMatchingCharsTest)
-		{
-			MbeddedNinja::MString myString1("Please don't hurt me!");
+		//  String should of not been modified
+		CHECK_EQUAL("Please don't hurt me!", myString1);
+	}
 
-			// Trim string
-			myString1.Trim(MbeddedNinja::MString());
+	MTEST(AllWhiteSpaceTest)
+	{
+		MbeddedNinja::MString myString1("\r \n     \t  ");
 
-			//  String should of not been modified
-			CHECK_EQUAL("Please don't hurt me!", myString1.cStr);
-		}
+		// Trim string
+		myString1.Trim();
 
-		TEST(AllWhiteSpaceTest)
-		{
-			MbeddedNinja::MString myString1("\r \n     \t  ");
+		//  String should now be empty.
+		CHECK_EQUAL("", myString1);
+	}
 
-			// Trim string
-			myString1.Trim();
-
-			//  String should now be empty.
-			CHECK_EQUAL("", myString1.cStr);
-		}
-
-	} // SUITE(TrimTests)
 } // namespace StringTestsNs

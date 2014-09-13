@@ -2,103 +2,103 @@
 //! @file 			AppendTests.cpp
 //! @author 		Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created		2014-08-13
-//! @last-modified 	2014-08-22
+//! @last-modified 	2014-09-13
 //! @brief 			Makes sure the String::Append() method works as expected.
 //! @details
 //!					See README.rst in root dir for more info.
 
-// User libraries
-#include "../lib/UnitTest++/src/UnitTest++.h"
+//===== SYSTEM LIBRARIES =====//
+#include <cstdint>	// uint32_t, e.t.c
 
-// User source
+//====== USER LIBRARIES =====//
+#include "MUnitTest/api/MUnitTestApi.hpp"
+
+//===== USER SOURCE =====//
 #include "../api/MStringApi.hpp"
 
 namespace StringTestsNs
 {
-	SUITE(AppendTests)
+
+	MTEST(BasicAppendTest)
 	{
+		MbeddedNinja::MString myString("Hello");
 
-		TEST(BasicAppendTest)
-		{
-			MbeddedNinja::MString myString("Hello");
+		myString.Append(", world!");
 
-			myString.Append(", world!");
+		CHECK_EQUAL("Hello, world!", myString);
+	}
 
-			CHECK_EQUAL("Hello, world!", myString.cStr);
-		}
+	MTEST(AppendNothingTest)
+	{
+		MbeddedNinja::MString myString("Hello");
 
-		TEST(AppendNothingTest)
-		{
-			MbeddedNinja::MString myString("Hello");
+		myString.Append("");
 
-			myString.Append("");
+		CHECK_EQUAL("Hello", myString);
+	}
 
-			CHECK_EQUAL("Hello", myString.cStr);
-		}
+	MTEST(AppendLengthCorrectCheckTest)
+	{
+		MbeddedNinja::MString myString("Hello");
 
-		TEST(LengthCorrectCheckTest)
-		{
-			MbeddedNinja::MString myString("Hello");
+		myString.Append(", world!");
 
-			myString.Append(", world!");
+		CHECK_EQUAL(13, myString.GetLength());
+	}
 
-			CHECK_EQUAL(13, myString.GetLength());
-		}
+	MTEST(BasicAppendThroughPlusOperatorTest)
+	{
+		MbeddedNinja::MString myString1("Hello");
 
-		TEST(BasicAppendThroughPlusOperatorTest)
-		{
-			MbeddedNinja::MString myString1("Hello");
+		MbeddedNinja::MString myString2(", world!");
 
-			MbeddedNinja::MString myString2(", world!");
+		MbeddedNinja::MString myString3 = myString1 + myString2;
 
-			MbeddedNinja::MString myString3 = myString1 + myString2;
+		CHECK_EQUAL("Hello, world!", myString3);
+	}
 
-			CHECK_EQUAL("Hello, world!", myString3.cStr);
-		}
+	MTEST(LongChainTest)
+	{
+		MbeddedNinja::MString myString1("Hello");
 
-		TEST(LongChainTest)
-		{
-			MbeddedNinja::MString myString1("Hello");
+		MbeddedNinja::MString myString2(", world!");
 
-			MbeddedNinja::MString myString2(", world!");
+		MbeddedNinja::MString myString3 =
+				(myString1 + myString2) + " And some more stuff!" + " Even more stuff!";
 
-			MbeddedNinja::MString myString3 =
-					(myString1 + myString2) + " And some more stuff!" + " Even more stuff!";
+		CHECK_EQUAL("Hello, world! And some more stuff! Even more stuff!", myString3);
+	}
 
-			CHECK_EQUAL("Hello, world! And some more stuff! Even more stuff!", myString3.cStr);
-		}
+	MTEST(LongChainLotsOfEmptyStringsTest)
+	{
+		MbeddedNinja::MString myString1("Hello");
 
-		TEST(LongChainLotsOfEmptyStringsTest)
-		{
-			MbeddedNinja::MString myString1("Hello");
+		MbeddedNinja::MString myString2(", world!");
 
-			MbeddedNinja::MString myString2(", world!");
+		MbeddedNinja::MString myString3 =
+				myString1 + myString2 + "" + "" + "";
 
-			MbeddedNinja::MString myString3 =
-					myString1 + myString2 + "" + "" + "";
+		CHECK_EQUAL("Hello, world!", myString3);
+	}
 
-			CHECK_EQUAL("Hello, world!", myString3.cStr);
-		}
+	MTEST(AppendThroughCompoundAssignmentOperatorWithStringTest)
+	{
+		MbeddedNinja::MString myString1("Hello");
 
-		TEST(AppendThroughCompoundAssignmentOperatorWithStringTest)
-		{
-			MbeddedNinja::MString myString1("Hello");
+		MbeddedNinja::MString myString2(", world!");
 
-			MbeddedNinja::MString myString2(", world!");
+		myString1 += myString2;
 
-			myString1 += myString2;
+		CHECK_EQUAL("Hello, world!", myString1);
+	}
 
-			CHECK_EQUAL("Hello, world!", myString1.cStr);
-		}
+	MTEST(AppendThroughCompoundAssignmentOperatorWithConstCharTest)
+	{
+		MbeddedNinja::MString myString1("Hello");
 
-		TEST(AppendThroughCompoundAssignmentOperatorWithConstCharTest)
-		{
-			MbeddedNinja::MString myString1("Hello");
+		myString1 += ", world!";
 
-			myString1 += ", world!";
+		CHECK_EQUAL("Hello, world!", myString1);
+	}
 
-			CHECK_EQUAL("Hello, world!", myString1.cStr);
-		}
-
-	} // SUITE(AppendTests)
 } // namespace StringTestsNs

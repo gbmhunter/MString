@@ -2,7 +2,7 @@
 //! @file				MString.cpp
 //! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created			2014-08-12
-//! @last-modified		2014-08-30
+//! @last-modified		2014-09-13
 //! @brief				Contains the definitions for the MString class.
 //! @details
 //!						See README.rst in repo root dir for more info.
@@ -19,7 +19,7 @@
 #include <cstdint>		// int8_t, int32_t e.t.c
 #include <cstring>		// strlen(), strncpy()
 #include <cstdio>
-//#include <iostream>		//!< @debug
+#include <iostream>		//!< @debug
 
 // User libraries
 // none
@@ -417,23 +417,106 @@ namespace MbeddedNinja
 
 	//============================= COMPARITIVE OPERAOTOR OVERLOADS =============================//
 
-	bool operator==(MString & lhs, const char * rhs)
+	bool operator==(const MString &lhs, const char * rhs)
 	{
+		//std::cout << "bool operator==(MString &lhs, const char * rhs) called!" << std::endl;
 		// Use strcmp function, returns 0 (false) if strings match, so note
 		// the logic inversion that takes place here!
 		if(strcmp(lhs.cStr, rhs))
+		{
+			std::cout << "Returning false" << std::endl;
 			return false;
+		}
 		else
+		{
+			std::cout << "Returning true" << std::endl;
 			return true;
-	}
+		}
 
-	bool operator==(MString & lhs, MString & rhs)
+	}
+/*
+	bool operator==(MString &lhs, char * rhs)
 	{
+		std::cout << "bool operator==(MString &lhs, char * rhs) called!" << std::endl;
+		// Use strcmp function, returns 0 (false) if strings match, so note
+		// the logic inversion that takes place here!
+		if(strcmp(lhs.cStr, rhs))
+		{
+			std::cout << "Returning false" << std::endl;
+			return false;
+		}
+		else
+		{
+			std::cout << "Returning true" << std::endl;
+			return true;
+		}
+
+	}*/
+/*
+	bool operator==(const char * lhs, MString & rhs)
+	{
+		std::cout << "op == called!" << std::endl;
+		// Use strcmp function, returns 0 (false) if strings match, so note
+		// the logic inversion that takes place here!
+		if(strcmp(lhs, rhs.cStr))
+		{
+			std::cout << "Returning false" << std::endl;
+			return false;
+		}
+		else
+		{
+			std::cout << "Returning true" << std::endl;
+			return true;
+		}
+
+	}*/
+/*
+	bool operator==(char * lhs, MString &rhs)
+	{
+		//std::cout << "bool operator==(char * lhs, MString &rhs) called!" << std::endl;
+		// Use strcmp function, returns 0 (false) if strings match, so note
+		// the logic inversion that takes place here!
+		if(strcmp(lhs, rhs.cStr))
+		{
+			std::cout << "Returning false" << std::endl;
+			return false;
+		}
+		else
+		{
+			std::cout << "Returning true" << std::endl;
+			return true;
+		}
+
+	}*/
+
+	bool operator==(const MString & lhs, const MString & rhs)
+	{
+		//std::cout << "bool operator==(MString & lhs, MString & rhs) called!" << std::endl;
 		// Call the overload with one string obj and one c-style string
 		return (lhs == rhs.cStr);
 	}
+/*
+	bool operator==(char const* lhs, MString const& rhs)
+	{
+		//std::cout << "bool operator==(char const* lhs, MString const& rhs) called!" << std::endl;
+		return true;
 
-	bool operator!=(MString & lhs, const char * rhs)
+	}*/
+
+	/*bool operator==(const char * const lhs, MString &rhs)
+	{
+		//std::cout << "bool operator==(const char * const lhs, MString &rhs) called!" << std::endl;
+		return true;
+	}*/
+
+	std::ostream& operator<< (std::ostream &out, const MString &mString)
+	{
+		//std::cout << "ostream << string called!" << std::endl;
+		out << mString.cStr;
+		return out;
+	}
+
+	bool operator!=(MString &lhs, const char * rhs)
 	{
 		// Use the equality overload to perform the inequality overload
 		if(lhs == rhs)

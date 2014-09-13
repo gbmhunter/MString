@@ -1,18 +1,18 @@
-============
-MStringCpp
-============
+=======
+MString
+=======
 
----------------------------------------------------------------------------------
+--------------------------------------------------------------------
 A C++ string object specifically designed for embedded applications.
----------------------------------------------------------------------------------
+--------------------------------------------------------------------
 
-.. image:: https://api.travis-ci.org/mbedded-ninja/MStringCpp.png?branch=master   
-	:target: https://travis-ci.org/mbedded-ninja/MStringCpp
+.. image:: https://api.travis-ci.org/mbedded-ninja/MString.png?branch=master   
+	:target: https://travis-ci.org/mbedded-ninja/MString
 
 - Author: gbmhunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 - First Ever Commit: 2014-08-12
-- Last Modified: 2014-08-30
-- Version: v2.1.1.0
+- Last Modified: 2014-09-13
+- Version: v2.2.0.0
 - Company: mbedded.ninja
 - Project: MToolkit Module
 - Language: C++
@@ -26,7 +26,7 @@ A C++ string object specifically designed for embedded applications.
 Description
 ===========
 
-MStringCpp is a C++ string object specifically designed for embedded applications.
+MString is a C++ string object specifically designed for embedded applications.
 
 Features:
 
@@ -113,6 +113,7 @@ Changelog
 ========= ========== ===================================================================================================
 Version   Date       Comment
 ========= ========== ===================================================================================================
+v2.2.0.0  2014-09-13 Updated README name to MString. Switched from using UnitTestCpp to MUnitTest, deleted UnitTest library from '/lib' (got rid of the '/lib' library entirely), closes #51. Updated Makefile to download and build dependencies automatically, closes #53. Added 'const' qualifier to quality operator overloads. All unit test checks now pass in the String object directly for comparison.
 v2.1.1.0  2014-08-30 Renamed module to MStringCpp, closes #46. Renamed string class to MString, closes #47.
 v2.1.0.0  2014-08-25 Added support for concatenating two strings with the left-shift operator, closes #45.
 v2.0.0.1  2014-08-25 Added information to the README concerning 'Automatic Memory Management', 'String Concatenation' and 'Appending Integers And Doubles', closes #42, closes #43, closes #44.

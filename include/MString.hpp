@@ -2,7 +2,7 @@
 //! @file				MString.hpp
 //! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created			2014-08-12
-//! @last-modified		2014-08-30
+//! @last-modified		2014-09-13
 //! @brief				Contains the declarations for the String class.
 //! @details
 //!						See README.rst in repo root dir for more info.
@@ -33,6 +33,7 @@ namespace MbeddedNinja
 
 // System headers
 #include <cstdint>		// int8_t, int32_t e.t.c
+#include <iostream>
 
 // User libraries
 // none
@@ -170,12 +171,24 @@ namespace MbeddedNinja
 			//! @brief		Equality operator overload. Allows you to compare one string object and
 			//!				one C-style string for equality.
 			//! @details	Used by the other equality operator overload and the inequality operator overload.
-			friend bool operator==(MString & lhs, const char * rhs);
+			friend bool operator==(const MString &lhs, const char * rhs);
+			//friend bool operator==(MString &lhs, char * rhs);
+
+			//friend bool operator==(const char * lhs, MString &rhs);
+			//friend bool operator==(char * lhs, MString &rhs);
+
+			//friend bool operator==(const char * const lhs, const MString &rhs);
+
+			friend std::ostream& operator<< (std::ostream &lhs, const MString &rhs);
+
+			//bool operator==(MString &rhs) const;
+			//bool operator==(const char * rhs) const;
+			//bool operator==(char * rhs) const;
 
 			//! @brief		Equality operator overload. Allows you to compare two string objects for equality.
 			//! @details	Calls the overload with one string object and one C-style string.
 			//!				Also used by the inequality operator overload.
-			friend bool operator==(MString & lhs, MString & rhs);
+			friend bool operator==(const MString & lhs, const MString & rhs);
 
 			//! @brief		Inequality operator overload. Allows you to compare one string and
 			//!				one C-style string for inequality.

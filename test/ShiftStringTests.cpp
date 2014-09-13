@@ -2,54 +2,48 @@
 //! @file 			ShiftStringTests.cpp
 //! @author 		Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created		2014-08-25
-//! @last-modified 	2014-08-25
+//! @last-modified 	2014-09-13
 //! @brief 			Contains unit tests which makes sure that the shift ('<<') operator works correctly with strings.
 //! @details
 //!					See README.rst in root dir for more info.
 
-// User libraries
-#include "../lib/UnitTest++/src/UnitTest++.h"
+//===== SYSTEM LIBRARIES =====//
+#include <cstdint>	// uint32_t, e.t.c
 
-// User source
+//====== USER LIBRARIES =====//
+#include "MUnitTest/api/MUnitTestApi.hpp"
+
+//===== USER SOURCE =====//
 #include "../api/MStringApi.hpp"
 
 namespace StringTestsNs
 {
-	SUITE(ShiftStringTests)
+
+	MTEST(BasicShiftStringTest)
 	{
+		MbeddedNinja::MString myString("Hello");
 
-		TEST(BasicShiftStringTest)
-		{
-			MbeddedNinja::MString myString("Hello");
+		myString << ", world!";
 
-			myString << ", world!";
+		CHECK_EQUAL("Hello, world!", myString);
+	}
 
-			// Number should have 6 digits after the decimal point,
-			// last one will be rounded up
-			CHECK_EQUAL("Hello, world!", myString.cStr);
-		}
+	MTEST(ComplexShiftStringTest)
+	{
+		MbeddedNinja::MString myString("Hello");
 
-		TEST(ComplexShiftStringTest)
-		{
-			MbeddedNinja::MString myString("Hello");
+		myString << ", world!" << " This is your" << " captain speaking.";
 
-			myString << ", world!" << " This is your" << " captain speaking.";
+		CHECK_EQUAL("Hello, world! This is your captain speaking.", myString);
+	}
 
-			// Number should have 6 digits after the decimal point,
-			// last one will be rounded up
-			CHECK_EQUAL("Hello, world! This is your captain speaking.", myString.cStr);
-		}
+	MTEST(ShiftFromEmptyStringTest)
+	{
+		MbeddedNinja::MString myString;
 
-		TEST(ShiftFromEmptyStringTest)
-		{
-			MbeddedNinja::MString myString;
+		myString << "Hello!";
 
-			myString << "Hello!";
+		CHECK_EQUAL("Hello!", myString);
+	}
 
-			// Number should have 6 digits after the decimal point,
-			// last one will be rounded up
-			CHECK_EQUAL("Hello!", myString.cStr);
-		}
-
-	} // SUITE(ShiftStringTests)
 } // namespace StringTestsNs

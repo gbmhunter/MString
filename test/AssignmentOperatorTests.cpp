@@ -2,33 +2,33 @@
 //! @file 			AssignmentOperatorTests.cpp
 //! @author 		Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created		2014-08-12
-//! @last-modified 	2014-08-21
+//! @last-modified 	2014-09-13
 //! @brief 			Makes sure the assignment operator overloads for String work as expected.
 //! @details
 //!					See README.rst in root dir for more info.
 
-#include <stdio.h>
+//===== SYSTEM LIBRARIES =====//
+#include <cstdint>	// uint32_t, e.t.c
 
+//====== USER LIBRARIES =====//
+#include "MUnitTest/api/MUnitTestApi.hpp"
+
+//===== USER SOURCE =====//
 #include "../api/MStringApi.hpp"
-
-#include "../lib/UnitTest++/src/UnitTest++.h"
 
 namespace StringTestsNs
 {
-	SUITE(AssignmentOperatorTests)
+
+	MTEST(AssignmentOperatorTest)
 	{
+		MbeddedNinja::MString myString1("Testing");
 
-		TEST(AssignmentOperatorTest)
-		{
-			MbeddedNinja::MString myString1("Testing");
+		MbeddedNinja::MString myString2("Other stuff");
 
-			MbeddedNinja::MString myString2("Other stuff");
+		myString2 = myString1;
 
-			myString2 = myString1;
+		// myString2 should now be equal to myString1
+		CHECK_EQUAL("Testing", myString2);
+	}
 
-			// myString2 should now be equal to myString1
-			CHECK_EQUAL("Testing", myString2.cStr);
-		}
-
-	} // SUITE(AssignmentOperatorTests)
 } // namespace StringTestsNs

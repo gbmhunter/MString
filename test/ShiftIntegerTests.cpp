@@ -2,262 +2,238 @@
 //! @file 			ShiftIntegerTests.cpp
 //! @author 		Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created		2014-08-25
-//! @last-modified 	2014-08-25
+//! @last-modified 	2014-09-13
 //! @brief 			Contains unit tests which makes sure that the shift ('<<') operator works correctly with integers.
 //! @details
 //!					See README.rst in root dir for more info.
 
-// User libraries
-#include "../lib/UnitTest++/src/UnitTest++.h"
+//===== SYSTEM LIBRARIES =====//
+#include <cstdint>	// uint32_t, e.t.c
 
-// User source
+//====== USER LIBRARIES =====//
+#include "MUnitTest/api/MUnitTestApi.hpp"
+
+//===== USER SOURCE =====//
 #include "../api/MStringApi.hpp"
 
 namespace StringTestsNs
 {
-	SUITE(ShiftIntegerTests)
+
+	MTEST(ShiftUint8RandomTest)
 	{
+		MbeddedNinja::MString myString("uint8 = ");
 
-		TEST(ShiftUint8RandomTest)
-		{
-			MbeddedNinja::MString myString("uint8 = ");
+		myString << (uint8_t)200u;
 
-			myString << (uint8_t)200u;
+		CHECK_EQUAL("uint8 = 200", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("uint8 = 200", myString.cStr);
-		}
+	MTEST(ShiftUint8MaxTest)
+	{
+		MbeddedNinja::MString myString("uint8 = ");
 
-		TEST(ShiftUint8MaxTest)
-		{
-			MbeddedNinja::MString myString("uint8 = ");
+		myString << (uint8_t)255u;
 
-			myString << (uint8_t)255u;
+		CHECK_EQUAL("uint8 = 255", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("uint8 = 255", myString.cStr);
-		}
+	MTEST(ShiftUint8MinTest)
+	{
+		MbeddedNinja::MString myString("uint8 = ");
 
-		TEST(ShiftUint8MinTest)
-		{
-			MbeddedNinja::MString myString("uint8 = ");
+		myString << (uint8_t)0u;
 
-			myString << (uint8_t)0u;
+		CHECK_EQUAL("uint8 = 0", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("uint8 = 0", myString.cStr);
-		}
+	MTEST(ShiftInt8RandomTest)
+	{
+		MbeddedNinja::MString myString("int8 = ");
 
-		TEST(ShiftInt8RandomTest)
-		{
-			MbeddedNinja::MString myString("int8 = ");
+		myString << (int8_t)-72;
 
-			myString << (int8_t)-72;
+		CHECK_EQUAL("int8 = -72", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("int8 = -72", myString.cStr);
-		}
+	MTEST(ShiftInt8MaxTest)
+	{
+		MbeddedNinja::MString myString("int8 = ");
 
-		TEST(ShiftInt8MaxTest)
-		{
-			MbeddedNinja::MString myString("int8 = ");
+		myString << (int8_t)127;
 
-			myString << (int8_t)127;
+		CHECK_EQUAL("int8 = 127", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("int8 = 127", myString.cStr);
-		}
+	MTEST(ShiftInt8MinTest)
+	{
+		MbeddedNinja::MString myString("int8 = ");
 
-		TEST(ShiftInt8MinTest)
-		{
-			MbeddedNinja::MString myString("int8 = ");
+		myString << (int8_t)-127;
 
-			myString << (int8_t)-127;
+		CHECK_EQUAL("int8 = -127", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("int8 = -127", myString.cStr);
-		}
+	MTEST(ShiftUint16RandomTest)
+	{
+		MbeddedNinja::MString myString("uint16 = ");
 
-		TEST(ShiftUint16RandomTest)
-		{
-			MbeddedNinja::MString myString("uint16 = ");
+		myString << (uint16_t)1087u;
 
-			myString << (uint16_t)1087u;
+		CHECK_EQUAL("uint16 = 1087", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("uint16 = 1087", myString.cStr);
-		}
+	MTEST(ShiftUint16MaxTest)
+	{
+		MbeddedNinja::MString myString("uint16 = ");
 
-		TEST(ShiftUint16MaxTest)
-		{
-			MbeddedNinja::MString myString("uint16 = ");
+		myString << (uint16_t)65535u;
 
-			myString << (uint16_t)65535u;
+		CHECK_EQUAL("uint16 = 65535", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("uint16 = 65535", myString.cStr);
-		}
+	MTEST(ShiftUint16MinTest)
+	{
+		MbeddedNinja::MString myString("uint16 = ");
 
-		TEST(ShiftUint16MinTest)
-		{
-			MbeddedNinja::MString myString("uint16 = ");
+		myString << (uint16_t)0;
 
-			myString << (uint16_t)0;
+		CHECK_EQUAL("uint16 = 0", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("uint16 = 0", myString.cStr);
-		}
+	MTEST(ShiftInt16RandomTest)
+	{
+		MbeddedNinja::MString myString("int16 = ");
 
-		TEST(ShiftInt16RandomTest)
-		{
-			MbeddedNinja::MString myString("int16 = ");
+		myString << (int16_t)-8788l;
 
-			myString << (int16_t)-8788l;
+		CHECK_EQUAL("int16 = -8788", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("int16 = -8788", myString.cStr);
-		}
+	MTEST(ShiftInt16MaxTest)
+	{
+		MbeddedNinja::MString myString("int16 = ");
 
-		TEST(ShiftInt16MaxTest)
-		{
-			MbeddedNinja::MString myString("int16 = ");
+		myString << (int16_t)32767;
 
-			myString << (int16_t)32767;
+		CHECK_EQUAL("int16 = 32767", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("int16 = 32767", myString.cStr);
-		}
+	MTEST(ShiftInt16MinTest)
+	{
+		MbeddedNinja::MString myString("int16 = ");
 
-		TEST(ShiftInt16MinTest)
-		{
-			MbeddedNinja::MString myString("int16 = ");
+		myString << (int16_t)-32767;
 
-			myString << (int16_t)-32767;
+		CHECK_EQUAL("int16 = -32767", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("int16 = -32767", myString.cStr);
-		}
+	MTEST(ShiftUint32RandomTest)
+	{
+		MbeddedNinja::MString myString("uint = ");
 
-		TEST(ShiftUint32RandomTest)
-		{
-			MbeddedNinja::MString myString("uint = ");
+		myString << (uint32_t)5u;
 
-			myString << (uint32_t)5u;
+		CHECK_EQUAL("uint = 5", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("uint = 5", myString.cStr);
-		}
+	MTEST(ShiftUint32MaxTest)
+	{
+		MbeddedNinja::MString myString("uint = ");
 
-		TEST(ShiftUint32MaxTest)
-		{
-			MbeddedNinja::MString myString("uint = ");
+		myString << (uint32_t)4294967295u;
 
-			myString << (uint32_t)4294967295u;
+		CHECK_EQUAL("uint = 4294967295", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("uint = 4294967295", myString.cStr);
-		}
+	MTEST(ShiftUint32MinTest)
+	{
+		MbeddedNinja::MString myString("uint = ");
 
-		TEST(ShiftUint32MinTest)
-		{
-			MbeddedNinja::MString myString("uint = ");
+		myString << (uint32_t)0;
 
-			myString << (uint32_t)0;
+		CHECK_EQUAL("uint = 0", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("uint = 0", myString.cStr);
-		}
+	MTEST(ShiftInt32RandomTest)
+	{
+		MbeddedNinja::MString myString("int = ");
 
-		TEST(ShiftInt32RandomTest)
-		{
-			MbeddedNinja::MString myString("int = ");
+		myString << (int32_t)-46l;
 
-			myString << (int32_t)-46l;
+		CHECK_EQUAL("int = -46", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("int = -46", myString.cStr);
-		}
+	MTEST(ShiftInt32MaxTest)
+	{
+		MbeddedNinja::MString myString("int = ");
 
-		TEST(ShiftInt32MaxTest)
-		{
-			MbeddedNinja::MString myString("int = ");
+		myString << (int32_t)2147483647l;
 
-			myString << (int32_t)2147483647l;
+		CHECK_EQUAL("int = 2147483647", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("int = 2147483647", myString.cStr);
-		}
+	MTEST(ShiftInt32MinTest)
+	{
+		MbeddedNinja::MString myString("int = ");
 
-		TEST(ShiftInt32MinTest)
-		{
-			MbeddedNinja::MString myString("int = ");
+		myString << (int32_t)-2147483647l;
 
-			myString << (int32_t)-2147483647l;
+		CHECK_EQUAL("int = -2147483647", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("int = -2147483647", myString.cStr);
-		}
+	MTEST(ShiftUint64RandomTest)
+	{
+		MbeddedNinja::MString myString("uint64 = ");
 
-		TEST(ShiftUint64RandomTest)
-		{
-			MbeddedNinja::MString myString("uint64 = ");
+		// 6 giga is higher than 2^32
+		myString << (uint64_t)6000000000llu;
 
-			// 6 giga is higher than 2^32
-			myString << (uint64_t)6000000000llu;
+		CHECK_EQUAL("uint64 = 6000000000", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("uint64 = 6000000000", myString.cStr);
-		}
+	MTEST(ShiftUint64MaxTest)
+	{
+		MbeddedNinja::MString myString("uint64 = ");
 
-		TEST(ShiftUint64MaxTest)
-		{
-			MbeddedNinja::MString myString("uint64 = ");
+		myString << (uint64_t)18446744073709551615llu;
 
-			myString << (uint64_t)18446744073709551615llu;
+		CHECK_EQUAL("uint64 = 18446744073709551615", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("uint64 = 18446744073709551615", myString.cStr);
-		}
+	MTEST(ShiftUint64MinTest)
+	{
+		MbeddedNinja::MString myString("uint64 = ");
 
-		TEST(ShiftUint64MinTest)
-		{
-			MbeddedNinja::MString myString("uint64 = ");
+		myString << (uint64_t)0llu;
 
-			myString << (uint64_t)0llu;
+		CHECK_EQUAL("uint64 = 0", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("uint64 = 0", myString.cStr);
-		}
+	MTEST(ShiftInt64RandomTest)
+	{
+		MbeddedNinja::MString myString("int64 = ");
 
-		TEST(ShiftInt64RandomTest)
-		{
-			MbeddedNinja::MString myString("int64 = ");
+		myString << (int64_t)-6000000000ll;
 
-			myString << (int64_t)-6000000000ll;
+		CHECK_EQUAL("int64 = -6000000000", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("int64 = -6000000000", myString.cStr);
-		}
+	MTEST(ShiftInt64MaxTest)
+	{
+		MbeddedNinja::MString myString("int64 = ");
 
-		TEST(ShiftInt64MaxTest)
-		{
-			MbeddedNinja::MString myString("int64 = ");
+		myString << (int64_t)9223372036854775807ll;
 
-			myString << (int64_t)9223372036854775807ll;
+		CHECK_EQUAL("int64 = 9223372036854775807", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("int64 = 9223372036854775807", myString.cStr);
-		}
+	MTEST(ShiftInt64MinTest)
+	{
+		MbeddedNinja::MString myString("int64 = ");
 
-		TEST(ShiftInt64MinTest)
-		{
-			MbeddedNinja::MString myString("int64 = ");
+		myString << (int64_t)-9223372036854775807ll;
 
-			myString << (int64_t)-9223372036854775807ll;
+		CHECK_EQUAL("int64 = -9223372036854775807", myString);
+	}
 
-			// Check capacity is calculated correctly
-			CHECK_EQUAL("int64 = -9223372036854775807", myString.cStr);
-		}
-
-	} // SUITE(ShiftIntegerTests)
 } // namespace StringTestsNs
