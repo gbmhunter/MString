@@ -2,7 +2,7 @@
 //! @file				MString.cpp
 //! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created			2014-08-12
-//! @last-modified		2014-09-13
+//! @last-modified		2014-09-18
 //! @brief				Contains the definitions for the MString class.
 //! @details
 //!						See README.rst in repo root dir for more info.
@@ -15,16 +15,16 @@
 //========================================= INCLUDES ============================================//
 //===============================================================================================//
 
-// System libraries
+//===== SYSTEM LIBRARIES =====//
 #include <cstdint>		// int8_t, int32_t e.t.c
 #include <cstring>		// strlen(), strncpy()
-#include <cstdio>
-#include <iostream>		//!< @debug
+#include <cstdio>		// snprintf()
+//#include <iostream>		//!< @debug
 
-// User libraries
+//===== USER LIBRARIES =====//
 // none
 
-// User source
+//===== USER SOURCE =====//
 #include "../include/MString.hpp"
 
 //! @brief		The maximum number of characters used when shifting a double onto a string.
@@ -424,12 +424,12 @@ namespace MbeddedNinja
 		// the logic inversion that takes place here!
 		if(strcmp(lhs.cStr, rhs))
 		{
-			std::cout << "Returning false" << std::endl;
+			//std::cout << "Returning false" << std::endl;
 			return false;
 		}
 		else
 		{
-			std::cout << "Returning true" << std::endl;
+			//std::cout << "Returning true" << std::endl;
 			return true;
 		}
 

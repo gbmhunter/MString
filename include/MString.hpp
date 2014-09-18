@@ -2,7 +2,7 @@
 //! @file				MString.hpp
 //! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created			2014-08-12
-//! @last-modified		2014-09-13
+//! @last-modified		2014-09-18
 //! @brief				Contains the declarations for the String class.
 //! @details
 //!						See README.rst in repo root dir for more info.
@@ -15,8 +15,8 @@
 //======================================== HEADER GUARD =========================================//
 //===============================================================================================//
 
-#ifndef MSTRING_CPP_MSTRING_H
-#define MSTRING_CPP_MSTRING_H
+#ifndef MSTRING_MSTRING_H
+#define MSTRING_MSTRING_H
 
 //===============================================================================================//
 //==================================== FORWARD DECLARATION ======================================//
@@ -31,15 +31,9 @@ namespace MbeddedNinja
 //========================================== INCLUDES ===========================================//
 //===============================================================================================//
 
-// System headers
-#include <cstdint>		// int8_t, int32_t e.t.c
+//===== SYSTEM LIBRARIES =====//
+#include <cstdint>		// uint8_t, uint32_t, e.t.c
 #include <iostream>
-
-// User libraries
-// none
-
-// User headers
-// none
 
 //===============================================================================================//
 //======================================== NAMESPACE ============================================//

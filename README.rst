@@ -2,17 +2,17 @@
 MString
 =======
 
---------------------------------------------------------------------
-A C++ string object specifically designed for embedded applications.
---------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+A microcontroller friendly C++ string object specifically designed for embedded applications.
+---------------------------------------------------------------------------------------------
 
 .. image:: https://api.travis-ci.org/mbedded-ninja/MString.png?branch=master   
 	:target: https://travis-ci.org/mbedded-ninja/MString
 
 - Author: gbmhunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 - First Ever Commit: 2014-08-12
-- Last Modified: 2014-09-13
-- Version: v2.2.0.0
+- Last Modified: 2014-09-18
+- Version: v2.2.1.0
 - Company: mbedded.ninja
 - Project: MToolkit Module
 - Language: C++
@@ -40,10 +40,11 @@ Features:
 Automatic Memory Management
 ---------------------------
 
-The automatic memory management of the String object means that you will get far less buffer overflows and memory leaks.
+The automatic memory management of the MString object means that you will get far less buffer overflows and memory leaks.
 
 ::
 
+	#include "MString/api/MStringApi.h"
 	using MbeddedNinja;
 	
 	function MyFunc()
@@ -62,6 +63,7 @@ Concatenating (appending) strings onto the end of one another is easy! Follows t
 
 ::
 
+	#include "MString/api/MStringApi.h"
 	using MbeddedNinja;
 	
 	MString myStr1("Hello");
@@ -79,6 +81,9 @@ Appending Integers And Doubles (std::stringstream like bahaviour)
 
 Integers (both signed and unsigned) as well as doubles can easily be appended to the end of a string with the left-shift ('<<') operator, similar to std::stringstream behaviour.::
 
+::
+
+	#include "MString/api/MStringApi.h"
 	using MbeddedNinja;
 	
 	MString myStr;
@@ -113,6 +118,7 @@ Changelog
 ========= ========== ===================================================================================================
 Version   Date       Comment
 ========= ========== ===================================================================================================
+v2.2.1.0  2014-09-18 Fixed up header guard names in header files, closes #54. 
 v2.2.0.0  2014-09-13 Updated README name to MString. Switched from using UnitTestCpp to MUnitTest, deleted UnitTest library from '/lib' (got rid of the '/lib' library entirely), closes #51. Updated Makefile to download and build dependencies automatically, closes #53. Added 'const' qualifier to quality operator overloads. All unit test checks now pass in the String object directly for comparison.
 v2.1.1.0  2014-08-30 Renamed module to MStringCpp, closes #46. Renamed string class to MString, closes #47.
 v2.1.0.0  2014-08-25 Added support for concatenating two strings with the left-shift operator, closes #45.
