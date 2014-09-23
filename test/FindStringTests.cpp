@@ -2,8 +2,8 @@
 //! @file 			FindStringTests.cpp
 //! @author 		Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created		2014-08-13
-//! @last-modified 	2014-09-13
-//! @brief 			Makes sure the String::Find() method works as expected.
+//! @last-modified 	2014-09-24
+//! @brief 			Makes sure the String::Find() method works as expected for strings.
 //! @details
 //!					See README.rst in root dir for more info.
 
@@ -24,7 +24,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString myString("Looking for the needle in the haystack.");
 
 		// "needle" should be found, and Find() return 0-based index to first occurance
-		CHECK_EQUAL(16, myString.Find("needle"));
+		CHECK_EQUAL(myString.Find("needle"), 16);
 	}
 
 	MTEST(StringPresentFindTest)
@@ -34,7 +34,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString stringToFind("needle");
 
 		// "needle" should be found, and Find() return 0-based index to first occurance
-		CHECK_EQUAL(16, myString.Find(stringToFind));
+		CHECK_EQUAL(myString.Find(stringToFind), 16);
 	}
 
 	MTEST(StringNotPresentFindTest)
@@ -44,7 +44,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString stringToFind("noneedle");
 
 		// Char should not be found, and Find() should return -1
-		CHECK_EQUAL(-1, myString.Find(stringToFind));
+		CHECK_EQUAL(myString.Find(stringToFind), -1);
 	}
 
 	MTEST(StringPresentMultipleTimesFindTest)
@@ -54,10 +54,45 @@ namespace StringTestsNs
 		MbeddedNinja::MString stringToFind("needle");
 
 		// Find should return first occurrance of "needle"
-		CHECK_EQUAL(16, myString.Find(stringToFind));
+		CHECK_EQUAL(myString.Find(stringToFind), 16);
 
 		// Now look for second occurrance of the word needle
-		CHECK_EQUAL(47, myString.Find(stringToFind, 17));
+		CHECK_EQUAL(myString.Find(stringToFind, 17), 47);
+	}
+
+	MTEST(FindSomethingInNothingTest1)
+	{
+		MbeddedNinja::MString myString;
+
+		// Look for something in an empty string
+		CHECK_EQUAL(myString.Find("something"), -1);
+	}
+
+	MTEST(FindSomethingInNothingTest2)
+	{
+		MbeddedNinja::MString myString;
+
+		// Look for something in an empty string
+		CHECK_EQUAL(myString.Find("OK\r\n"), -1);
+	}
+
+	MTEST(FindSomethingInNothingTest3)
+	{
+		MbeddedNinja::MString myString("something");
+
+		// Erase everything
+		myString.Erase(0);
+
+		// Look for something in an empty string
+		CHECK_EQUAL(myString.Find("OK\r\n"), -1);
+	}
+
+	MTEST(FindNothingInSomethingTest)
+	{
+		MbeddedNinja::MString myString("something");
+
+		// Look for something in an empty string
+		CHECK_EQUAL(myString.Find(""), -1);
 	}
 
 } // namespace StringTestsNs

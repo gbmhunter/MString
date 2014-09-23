@@ -1,9 +1,9 @@
 #
 # @file 			Makefile
-# @author 			Geoffrey Hunter <gbmhunter@gmail.com> (wwww.cladlab.com)
+# @author 			Geoffrey Hunter <gbmhunter@gmail.com> (wwww.mbedded.ninja)
 # @edited 			n/a
 # @created			2014-08-12
-# @last-modified 	2014-09-13
+# @last-modified 	2014-09-24
 # @brief 			Makefile for Linux-based make, to compile the MString library, example code and run unit test code.
 # @details
 #					See README in repo root dir for more info.

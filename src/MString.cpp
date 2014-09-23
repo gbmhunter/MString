@@ -118,6 +118,12 @@ namespace MbeddedNinja
 
 	int32_t MString::Find(const char * cStringToFind, uint32_t startPos)
 	{
+		// First check if string to search for is empty, and is so,
+		// return -1. Note that this behaviour is different to strstr()
+		// which return the original string.
+		if(cStringToFind[0] == '\0')
+			return -1;
+
 		// Look for stringToFind inside string, offsetting string by startPos
 		char * ptrToFirstOccurance = strstr(this->cStr + startPos, cStringToFind);
 
