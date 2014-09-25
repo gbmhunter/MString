@@ -25,7 +25,7 @@ namespace StringTestsNs
 
 		myString << (uint8_t)200u;
 
-		CHECK_EQUAL("uint8 = 200", myString);
+		CHECK_EQUAL(myString, "uint8 = 200");
 	}
 
 	MTEST(ShiftUint8MaxTest)
@@ -34,7 +34,7 @@ namespace StringTestsNs
 
 		myString << (uint8_t)255u;
 
-		CHECK_EQUAL("uint8 = 255", myString);
+		CHECK_EQUAL(myString, "uint8 = 255");
 	}
 
 	MTEST(ShiftUint8MinTest)
@@ -43,7 +43,7 @@ namespace StringTestsNs
 
 		myString << (uint8_t)0u;
 
-		CHECK_EQUAL("uint8 = 0", myString);
+		CHECK_EQUAL(myString, "uint8 = 0");
 	}
 
 	MTEST(ShiftInt8RandomTest)
@@ -52,7 +52,7 @@ namespace StringTestsNs
 
 		myString << (int8_t)-72;
 
-		CHECK_EQUAL("int8 = -72", myString);
+		CHECK_EQUAL(myString, "int8 = -72");
 	}
 
 	MTEST(ShiftInt8MaxTest)
@@ -61,7 +61,7 @@ namespace StringTestsNs
 
 		myString << (int8_t)127;
 
-		CHECK_EQUAL("int8 = 127", myString);
+		CHECK_EQUAL(myString, "int8 = 127");
 	}
 
 	MTEST(ShiftInt8MinTest)
@@ -70,7 +70,7 @@ namespace StringTestsNs
 
 		myString << (int8_t)-127;
 
-		CHECK_EQUAL("int8 = -127", myString);
+		CHECK_EQUAL(myString, "int8 = -127");
 	}
 
 	MTEST(ShiftUint16RandomTest)
@@ -79,7 +79,7 @@ namespace StringTestsNs
 
 		myString << (uint16_t)1087u;
 
-		CHECK_EQUAL("uint16 = 1087", myString);
+		CHECK_EQUAL(myString, "uint16 = 1087");
 	}
 
 	MTEST(ShiftUint16MaxTest)
@@ -88,7 +88,7 @@ namespace StringTestsNs
 
 		myString << (uint16_t)65535u;
 
-		CHECK_EQUAL("uint16 = 65535", myString);
+		CHECK_EQUAL(myString, "uint16 = 65535");
 	}
 
 	MTEST(ShiftUint16MinTest)
@@ -97,7 +97,7 @@ namespace StringTestsNs
 
 		myString << (uint16_t)0;
 
-		CHECK_EQUAL("uint16 = 0", myString);
+		CHECK_EQUAL(myString, "uint16 = 0");
 	}
 
 	MTEST(ShiftInt16RandomTest)
@@ -106,7 +106,7 @@ namespace StringTestsNs
 
 		myString << (int16_t)-8788l;
 
-		CHECK_EQUAL("int16 = -8788", myString);
+		CHECK_EQUAL(myString, "int16 = -8788");
 	}
 
 	MTEST(ShiftInt16MaxTest)
@@ -115,7 +115,7 @@ namespace StringTestsNs
 
 		myString << (int16_t)32767;
 
-		CHECK_EQUAL("int16 = 32767", myString);
+		CHECK_EQUAL(myString, "int16 = 32767");
 	}
 
 	MTEST(ShiftInt16MinTest)
@@ -124,7 +124,7 @@ namespace StringTestsNs
 
 		myString << (int16_t)-32767;
 
-		CHECK_EQUAL("int16 = -32767", myString);
+		CHECK_EQUAL(myString, "int16 = -32767");
 	}
 
 	MTEST(ShiftUint32RandomTest)
@@ -133,7 +133,7 @@ namespace StringTestsNs
 
 		myString << (uint32_t)5u;
 
-		CHECK_EQUAL("uint = 5", myString);
+		CHECK_EQUAL(myString, "uint = 5");
 	}
 
 	MTEST(ShiftUint32MaxTest)
@@ -142,7 +142,7 @@ namespace StringTestsNs
 
 		myString << (uint32_t)4294967295u;
 
-		CHECK_EQUAL("uint = 4294967295", myString);
+		CHECK_EQUAL(myString, "uint = 4294967295");
 	}
 
 	MTEST(ShiftUint32MinTest)
@@ -151,7 +151,7 @@ namespace StringTestsNs
 
 		myString << (uint32_t)0;
 
-		CHECK_EQUAL("uint = 0", myString);
+		CHECK_EQUAL(myString, "uint = 0");
 	}
 
 	MTEST(ShiftInt32RandomTest)
@@ -160,7 +160,7 @@ namespace StringTestsNs
 
 		myString << (int32_t)-46l;
 
-		CHECK_EQUAL("int = -46", myString);
+		CHECK_EQUAL(myString, "int = -46");
 	}
 
 	MTEST(ShiftInt32MaxTest)
@@ -169,7 +169,7 @@ namespace StringTestsNs
 
 		myString << (int32_t)2147483647l;
 
-		CHECK_EQUAL("int = 2147483647", myString);
+		CHECK_EQUAL(myString, "int = 2147483647");
 	}
 
 	MTEST(ShiftInt32MinTest)
@@ -178,7 +178,7 @@ namespace StringTestsNs
 
 		myString << (int32_t)-2147483647l;
 
-		CHECK_EQUAL("int = -2147483647", myString);
+		CHECK_EQUAL(myString, "int = -2147483647");
 	}
 
 	MTEST(ShiftUint64RandomTest)
@@ -188,7 +188,7 @@ namespace StringTestsNs
 		// 6 giga is higher than 2^32
 		myString << (uint64_t)6000000000llu;
 
-		CHECK_EQUAL("uint64 = 6000000000", myString);
+		CHECK_EQUAL(myString, "uint64 = 6000000000");
 	}
 
 	MTEST(ShiftUint64MaxTest)
@@ -197,7 +197,7 @@ namespace StringTestsNs
 
 		myString << (uint64_t)18446744073709551615llu;
 
-		CHECK_EQUAL("uint64 = 18446744073709551615", myString);
+		CHECK_EQUAL(myString, "uint64 = 18446744073709551615");
 	}
 
 	MTEST(ShiftUint64MinTest)
@@ -206,7 +206,7 @@ namespace StringTestsNs
 
 		myString << (uint64_t)0llu;
 
-		CHECK_EQUAL("uint64 = 0", myString);
+		CHECK_EQUAL(myString, "uint64 = 0");
 	}
 
 	MTEST(ShiftInt64RandomTest)
@@ -215,7 +215,7 @@ namespace StringTestsNs
 
 		myString << (int64_t)-6000000000ll;
 
-		CHECK_EQUAL("int64 = -6000000000", myString);
+		CHECK_EQUAL(myString, "int64 = -6000000000");
 	}
 
 	MTEST(ShiftInt64MaxTest)
@@ -224,7 +224,7 @@ namespace StringTestsNs
 
 		myString << (int64_t)9223372036854775807ll;
 
-		CHECK_EQUAL("int64 = 9223372036854775807", myString);
+		CHECK_EQUAL(myString, "int64 = 9223372036854775807");
 	}
 
 	MTEST(ShiftInt64MinTest)
@@ -233,7 +233,7 @@ namespace StringTestsNs
 
 		myString << (int64_t)-9223372036854775807ll;
 
-		CHECK_EQUAL("int64 = -9223372036854775807", myString);
+		CHECK_EQUAL(myString, "int64 = -9223372036854775807");
 	}
 
 } // namespace StringTestsNs

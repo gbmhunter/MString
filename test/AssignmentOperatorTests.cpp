@@ -28,7 +28,7 @@ namespace StringTestsNs
 		myString2 = myString1;
 
 		// myString2 should now be equal to myString1
-		CHECK_EQUAL("Testing", myString2);
+		CHECK_EQUAL(myString2, "Testing");
 	}
 
 } // namespace StringTestsNs

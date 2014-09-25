@@ -29,7 +29,7 @@ namespace StringTestsNs
 		myString1.cStr[0] = 'a';
 
 		// myString2 should not be affected by above change to myString1!
-		CHECK_EQUAL("Testing", myString2);
+		CHECK_EQUAL(myString2, "Testing");
 	}
 
 	MTEST(CopyAssignmentTest)
@@ -43,7 +43,7 @@ namespace StringTestsNs
 		myString1.cStr[0] = 'a';
 
 		// myString2 should not be affected by above change to myString1!
-		CHECK_EQUAL("Testing", myString2);
+		CHECK_EQUAL(myString2, "Testing");
 	}
 
 

@@ -26,7 +26,7 @@ namespace StringTestsNs
 		// Erase everything after "Hello"
 		myString.Erase(5);
 
-		CHECK_EQUAL("Hello", myString);
+		CHECK_EQUAL(myString, "Hello");
 	}
 
 	MTEST(LengthCorrectCheckTest)
@@ -36,7 +36,7 @@ namespace StringTestsNs
 		myString.Erase(5);
 
 		// Make sure only 5 characters are left
-		CHECK_EQUAL(5, myString.GetLength());
+		CHECK_EQUAL(myString.GetLength(), 5);
 	}
 
 	MTEST(EraseMiddleSectionTest)
@@ -46,8 +46,8 @@ namespace StringTestsNs
 		// Erase the comma and space
 		myString.Erase(5, 2);
 
-		CHECK_EQUAL("Helloworld!", myString);
-		CHECK_EQUAL(11, myString.GetLength());
+		CHECK_EQUAL(myString, "Helloworld!");
+		CHECK_EQUAL(myString.GetLength(), 11);
 	}
 
 	MTEST(EraseBeyondLengthTest)
@@ -58,8 +58,8 @@ namespace StringTestsNs
 		// should do nothing
 		myString.Erase(30);
 
-		CHECK_EQUAL("Hello, world!", myString);
-		CHECK_EQUAL(13, myString.GetLength());
+		CHECK_EQUAL(myString, "Hello, world!");
+		CHECK_EQUAL(myString.GetLength(), 13);
 	}
 
 	MTEST(EraseBeyondLengthTestWithNum)
@@ -70,8 +70,8 @@ namespace StringTestsNs
 		// should do nothing
 		myString.Erase(30, 10);
 
-		CHECK_EQUAL("Hello, world!", myString);
-		CHECK_EQUAL(13, myString.GetLength());
+		CHECK_EQUAL(myString, "Hello, world!");
+		CHECK_EQUAL(myString.GetLength(), 13);
 	}
 
 	MTEST(SpecifyTooManyCharsToEraseTest)
@@ -81,7 +81,7 @@ namespace StringTestsNs
 		// Try and erase 30 chars starting from pos 5, should just erase what we can
 		myString.Erase(5, 30);
 
-		CHECK_EQUAL("Hello", myString);
+		CHECK_EQUAL(myString, "Hello");
 	}
 
 	MTEST(EraseAllTest)
@@ -91,12 +91,12 @@ namespace StringTestsNs
 		// Erase all characters
 		myString.Erase(0);
 
-		CHECK_EQUAL("", myString);
+		CHECK_EQUAL(myString, "");
 
 		// Lets try and erase again, should do nothing
 		myString.Erase(10);
 
-		CHECK_EQUAL("", myString);
+		CHECK_EQUAL(myString, "");
 	}
 
 	MTEST(EraseNegativeNumberTest1)
@@ -109,7 +109,7 @@ namespace StringTestsNs
 		myString.Erase(-2);
 
 		// Make sure nothing was erased
-		CHECK_EQUAL("Hello, world!", myString);
+		CHECK_EQUAL(myString, "Hello, world!");
 	}
 
 	MTEST(EraseNegativeNumberTest2)
@@ -122,7 +122,7 @@ namespace StringTestsNs
 		myString.Erase(-2, -3);
 
 		// Make sure nothing was erased
-		CHECK_EQUAL("Hello, world!", myString);
+		CHECK_EQUAL(myString, "Hello, world!");
 	}
 
 } // namespace StringTestsNs

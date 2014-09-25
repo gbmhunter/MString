@@ -25,7 +25,7 @@ namespace StringTestsNs
 
 		myString << ", world!";
 
-		CHECK_EQUAL("Hello, world!", myString);
+		CHECK_EQUAL(myString, "Hello, world!");
 	}
 
 	MTEST(ComplexShiftStringTest)
@@ -34,7 +34,7 @@ namespace StringTestsNs
 
 		myString << ", world!" << " This is your" << " captain speaking.";
 
-		CHECK_EQUAL("Hello, world! This is your captain speaking.", myString);
+		CHECK_EQUAL(myString, "Hello, world! This is your captain speaking.");
 	}
 
 	MTEST(ShiftFromEmptyStringTest)
@@ -43,7 +43,7 @@ namespace StringTestsNs
 
 		myString << "Hello!";
 
-		CHECK_EQUAL("Hello!", myString);
+		CHECK_EQUAL(myString, "Hello!");
 	}
 
 } // namespace StringTestsNs

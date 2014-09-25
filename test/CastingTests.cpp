@@ -24,7 +24,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString myString1("Testing");
 
 		// myString2 should not be affected by above change to myString1!
-		CHECK_EQUAL("Testing", (const char *)myString1);
+		CHECK_EQUAL((const char *)myString1, "Testing");
 	}
 
 	MTEST(CastTest2)
@@ -36,7 +36,7 @@ namespace StringTestsNs
 		myCStr = myString1;
 
 		// myString2 should not be affected by above change to myString1!
-		CHECK_EQUAL("Testing", myCStr);
+		CHECK_EQUAL(myCStr, "Testing");
 
 	}
 

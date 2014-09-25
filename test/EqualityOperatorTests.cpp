@@ -26,7 +26,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString myString2("Testing");
 
 		// These should equal
-		CHECK_EQUAL(true, myString1 == myString2);
+		CHECK_EQUAL(myString1 == myString2, true);
 	}
 
 	MTEST(ShouldntEqualTest)
@@ -36,7 +36,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString myString2("Testing2");
 
 		// These should not equal
-		CHECK_EQUAL(false, myString1 == myString2);
+		CHECK_EQUAL(myString1 == myString2, false);
 	}
 
 	MTEST(TwoEmptyStringsTest)
@@ -46,7 +46,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString myString2;
 
 		// These should be equal (both empty)
-		CHECK_EQUAL(true, myString1 == myString2);
+		CHECK_EQUAL(myString1 == myString2, true);
 	}
 
 	MTEST(OneEmptyStringsTest)
@@ -56,7 +56,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString myString2("This one is not empty");
 
 		// These should NOT be equal (one is empty)
-		CHECK_EQUAL(false, myString1 == myString2);
+		CHECK_EQUAL(myString1 == myString2, false);
 	}
 
 	MTEST(InequalityTest1)
@@ -66,7 +66,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString myString2("Testing2");
 
 		// These should equal
-		CHECK_EQUAL(true, myString1 != myString2);
+		CHECK_EQUAL(myString1 != myString2, true);
 	}
 
 	MTEST(InequalityTest2)
@@ -76,7 +76,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString myString2("Testing");
 
 		// These should equal
-		CHECK_EQUAL(false, myString1 != myString2);
+		CHECK_EQUAL(myString1 != myString2, false);
 	}
 
 	MTEST(EqualityWorksWithCStringTest1)
@@ -84,7 +84,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString myString1("Testing");
 
 		// These should equal
-		CHECK_EQUAL(true, myString1 == "Testing");
+		CHECK_EQUAL(myString1 == "Testing", true);
 	}
 
 	MTEST(EqualityWorksWithCStringTest2)
@@ -92,7 +92,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString myString1("Testing1");
 
 		// These should equal
-		CHECK_EQUAL(false, myString1 == "Testing2");
+		CHECK_EQUAL(myString1 == "Testing2", false);
 	}
 
 	MTEST(InequalityWorksWithCStringTest1)
@@ -100,7 +100,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString myString1("Testing");
 
 		// These should equal
-		CHECK_EQUAL(false, myString1 != "Testing");
+		CHECK_EQUAL(myString1 != "Testing", false);
 	}
 
 	MTEST(InequalityWorksWithCStringTest2)
@@ -108,7 +108,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString myString1("Testing1");
 
 		// These should equal
-		CHECK_EQUAL(true, myString1 != "Testing2");
+		CHECK_EQUAL(myString1 != "Testing2", true);
 	}
 
 } // namespace StringTestsNs

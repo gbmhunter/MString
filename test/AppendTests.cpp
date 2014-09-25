@@ -25,7 +25,7 @@ namespace StringTestsNs
 
 		myString.Append(", world!");
 
-		CHECK_EQUAL("Hello, world!", myString);
+		CHECK_EQUAL(myString, "Hello, world!");
 	}
 
 	MTEST(AppendNothingTest)
@@ -34,7 +34,7 @@ namespace StringTestsNs
 
 		myString.Append("");
 
-		CHECK_EQUAL("Hello", myString);
+		CHECK_EQUAL(myString, "Hello");
 	}
 
 	MTEST(AppendLengthCorrectCheckTest)
@@ -43,7 +43,7 @@ namespace StringTestsNs
 
 		myString.Append(", world!");
 
-		CHECK_EQUAL(13, myString.GetLength());
+		CHECK_EQUAL(myString.GetLength(), 13);
 	}
 
 	MTEST(BasicAppendThroughPlusOperatorTest)
@@ -54,7 +54,7 @@ namespace StringTestsNs
 
 		MbeddedNinja::MString myString3 = myString1 + myString2;
 
-		CHECK_EQUAL("Hello, world!", myString3);
+		CHECK_EQUAL(myString3, "Hello, world!");
 	}
 
 	MTEST(LongChainTest)
@@ -66,7 +66,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString myString3 =
 				(myString1 + myString2) + " And some more stuff!" + " Even more stuff!";
 
-		CHECK_EQUAL("Hello, world! And some more stuff! Even more stuff!", myString3);
+		CHECK_EQUAL(myString3, "Hello, world! And some more stuff! Even more stuff!");
 	}
 
 	MTEST(LongChainLotsOfEmptyStringsTest)
@@ -78,7 +78,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString myString3 =
 				myString1 + myString2 + "" + "" + "";
 
-		CHECK_EQUAL("Hello, world!", myString3);
+		CHECK_EQUAL(myString3, "Hello, world!");
 	}
 
 	MTEST(AppendThroughCompoundAssignmentOperatorWithStringTest)
@@ -89,7 +89,7 @@ namespace StringTestsNs
 
 		myString1 += myString2;
 
-		CHECK_EQUAL("Hello, world!", myString1);
+		CHECK_EQUAL(myString1, "Hello, world!");
 	}
 
 	MTEST(AppendThroughCompoundAssignmentOperatorWithConstCharTest)
@@ -98,7 +98,7 @@ namespace StringTestsNs
 
 		myString1 += ", world!";
 
-		CHECK_EQUAL("Hello, world!", myString1);
+		CHECK_EQUAL(myString1, "Hello, world!");
 	}
 
 } // namespace StringTestsNs

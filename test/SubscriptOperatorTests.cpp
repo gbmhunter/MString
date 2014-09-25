@@ -24,12 +24,12 @@ namespace StringTestsNs
 	{
 		MbeddedNinja::MString myString1("Testing");
 
-		CHECK_EQUAL('T', myString1[0]);
-		CHECK_EQUAL('i', myString1[4]);
+		CHECK_EQUAL(myString1[0], 'T');
+		CHECK_EQUAL(myString1[4], 'i');
 
 		// Make sure it's null-terminated
 		// (we are allowed to access the terminating null)
-		CHECK_EQUAL('\0', myString1[7]);
+		CHECK_EQUAL(myString1[7], '\0');
 	}
 
 	MTEST(SubscriptOperatorWriteTest)
@@ -38,7 +38,7 @@ namespace StringTestsNs
 		myString1[4] = 'z';
 
 		// Check to make sure write was successful
-		CHECK_EQUAL("Testzng", myString1);
+		CHECK_EQUAL(myString1, "Testzng");
 	}
 
 	MTEST(OutOfBoundsTest)
@@ -49,7 +49,7 @@ namespace StringTestsNs
 		myString1[287] = 'z';
 
 		// Specified behaviour when out-of-bounds is to return the first char.
-		CHECK_EQUAL("zesting", myString1);
+		CHECK_EQUAL(myString1, "zesting");
 	}
 
 } // namespace StringTestsNs

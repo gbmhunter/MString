@@ -24,7 +24,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString myString;
 
 		// Check constructor worked correctly
-		CHECK_EQUAL("", myString);
+		CHECK_EQUAL(myString, "");
 	}
 
 	MTEST(EmptyStringConstructorTest)
@@ -32,7 +32,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString myString("");
 
 		// Check constructor worked correctly
-		CHECK_EQUAL("", myString);
+		CHECK_EQUAL(myString, "");
 	}
 
 } // namespace StringTestsNs

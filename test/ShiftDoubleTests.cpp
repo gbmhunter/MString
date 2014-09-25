@@ -27,7 +27,7 @@ namespace StringTestsNs
 
 		// Number should have 6 digits after the decimal point,
 		// last one will be rounded up
-		CHECK_EQUAL("double = 3.12346", myString);
+		CHECK_EQUAL(myString, "double = 3.12346");
 	}
 
 	MTEST(ShiftRandomDoubleTest)
@@ -37,7 +37,7 @@ namespace StringTestsNs
 		myString << (double)3.254;
 
 		// Number should have 6 digits after the decimal point
-		CHECK_EQUAL("double = 3.254", myString);
+		CHECK_EQUAL(myString, "double = 3.254");
 	}
 
 	MTEST(ShiftLargeNumberDoubleTest)
@@ -48,7 +48,7 @@ namespace StringTestsNs
 
 		// Number should have 6 digits after the decimal point,
 		// last one will be rounded up
-		CHECK_EQUAL("double = 1.23457e+17", myString);
+		CHECK_EQUAL(myString, "double = 1.23457e+17");
 	}
 
 } // namespace StringTestsNs

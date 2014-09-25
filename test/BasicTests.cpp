@@ -24,7 +24,7 @@ namespace StringTestsNs
 		MbeddedNinja::MString myString("Testing");
 
 		// Check capacity is calculated correctly
-		CHECK_EQUAL("Testing", myString);
+		CHECK_EQUAL(myString, "Testing");
 	}
 
 

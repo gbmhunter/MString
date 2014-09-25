@@ -11,8 +11,8 @@ A microcontroller friendly C++ string object specifically designed for embedded 
 
 - Author: gbmhunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 - First Ever Commit: 2014-08-12
-- Last Modified: 2014-09-24
-- Version: v2.2.2.0
+- Last Modified: 2014-09-25
+- Version: v2.2.3.0
 - Company: mbedded.ninja
 - Project: MToolkit Module
 - Language: C++
@@ -118,6 +118,7 @@ Changelog
 ========= ========== ===================================================================================================
 Version   Date       Comment
 ========= ========== ===================================================================================================
+v2.2.3.0  2014-09-25 Fixed all unit tests so they fit the format 'CHECK_EQUAL(actual, expected)'. Many have actual and expected around the wrong way, closes #58.
 v2.2.2.0  2014-09-24 Add unit tests which makes sure 'MString::Find()' works correctly with empty strings, closes #57. Made 'MString::Find()' return -1 if string to search for is empty, closes #59. Updated URL in Makefile.
 v2.2.1.0  2014-09-18 Fixed up header guard names in header files, closes #54. 
 v2.2.0.0  2014-09-13 Updated README name to MString. Switched from using UnitTestCpp to MUnitTest, deleted UnitTest library from '/lib' (got rid of the '/lib' library entirely), closes #51. Updated Makefile to download and build dependencies automatically, closes #53. Added 'const' qualifier to quality operator overloads. All unit test checks now pass in the String object directly for comparison.
