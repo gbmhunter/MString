@@ -11,8 +11,8 @@ A microcontroller friendly C++ string object specifically designed for embedded 
 
 - Author: gbmhunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 - First Ever Commit: 2014-08-12
-- Last Modified: 2014-09-25
-- Version: v2.2.3.0
+- Last Modified: 2014-10-07
+- Version: v2.2.4.0
 - Company: mbedded.ninja
 - Project: MToolkit Module
 - Language: C++
@@ -92,10 +92,21 @@ Integers (both signed and unsigned) as well as doubles can easily be appended to
 	// myStr now equals "This integer = 6"
 	
 
-External Dependencies
-=====================
+Code Dependencies
+=================
 
-Nothing here yet.
+The following table lists all of MStrings dependencies.
+
+====================== ==================== ======================================================================
+Dependency             Delivery             Usage
+====================== ==================== ======================================================================
+<cinttypes>            C standard library   For platform agnostic printf() specifiers.
+<cstdint>              C standard library   For platform agnostic fixed-width integers.
+<cstdio>               C standard library   To use snprintf() for appending integers, floats and doubles to the ends of a string.
+<cstring>              C standard library   For use of strlen() and strcpy().
+MAssert                External module      Providing runtime safety checks against this module.
+MUnitTest              External module      Framework for unit tests.
+====================== ==================== ======================================================================
 
 Issues
 ======
@@ -118,6 +129,7 @@ Changelog
 ========= ========== ===================================================================================================
 Version   Date       Comment
 ========= ========== ===================================================================================================
+v2.2.4.0  2014-10-07 Switched the printf 'ul' and similar specifiers in 'MString.cpp' for portable ones defined in 'inttypes.h', closes #60. Added dependencies to README.
 v2.2.3.0  2014-09-25 Fixed all unit tests so they fit the format 'CHECK_EQUAL(actual, expected)'. Many have actual and expected around the wrong way, closes #58.
 v2.2.2.0  2014-09-24 Add unit tests which makes sure 'MString::Find()' works correctly with empty strings, closes #57. Made 'MString::Find()' return -1 if string to search for is empty, closes #59. Updated URL in Makefile.
 v2.2.1.0  2014-09-18 Fixed up header guard names in header files, closes #54. 

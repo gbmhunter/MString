@@ -2,7 +2,7 @@
 //! @file				MString.cpp
 //! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created			2014-08-12
-//! @last-modified		2014-09-18
+//! @last-modified		2014-10-07
 //! @brief				Contains the definitions for the MString class.
 //! @details
 //!						See README.rst in repo root dir for more info.
@@ -19,6 +19,7 @@
 #include <cstdint>		// int8_t, int32_t e.t.c
 #include <cstring>		// strlen(), strncpy()
 #include <cstdio>		// snprintf()
+#include <cinttypes>	// PRId8, PRId32, e.t.c
 //#include <iostream>		//!< @debug
 
 //===== USER LIBRARIES =====//
@@ -588,7 +589,7 @@ namespace MbeddedNinja
 		snprintf(
 			tempBuff,
 			sizeof(tempBuff),
-			"%u",
+			"%" PRIu8,
 			myUint8);
 		// Add converted number to end of string
 		(*this) += tempBuff;
@@ -606,7 +607,7 @@ namespace MbeddedNinja
 		snprintf(
 			tempBuff,
 			sizeof(tempBuff),
-			"%i",
+			"%" PRIi8,
 			myInt8);
 		// Add converted number to end of string
 		(*this) += tempBuff;
@@ -624,7 +625,7 @@ namespace MbeddedNinja
 		snprintf(
 			tempBuff,
 			sizeof(tempBuff),
-			"%u",
+			"%" PRIu16,
 			myUint16);
 		// Add converted number to end of string
 		(*this) += tempBuff;
@@ -642,7 +643,7 @@ namespace MbeddedNinja
 		snprintf(
 			tempBuff,
 			sizeof(tempBuff),
-			"%i",
+			"%" PRIi16,
 			myInt16);
 		// Add converted number to end of string
 		(*this) += tempBuff;
@@ -660,7 +661,7 @@ namespace MbeddedNinja
 		snprintf(
 			tempBuff,
 			sizeof(tempBuff),
-			"%u",
+			"%" PRIu32,
 			myUint32);
 		// Add converted uint32 to end of string
 		(*this) += tempBuff;
@@ -678,7 +679,7 @@ namespace MbeddedNinja
 		snprintf(
 			tempBuff,
 			sizeof(tempBuff),
-			"%i",
+			"%" PRIi32,
 			myInt32);
 		// Add converted uint32 to end of string
 		(*this) += tempBuff;
@@ -696,7 +697,7 @@ namespace MbeddedNinja
 		snprintf(
 			tempBuff,
 			sizeof(tempBuff),
-			"%lu",
+			"%" PRIu64,
 			myUint64);
 		// Add converted uint32 to end of string
 		(*this) += tempBuff;
@@ -714,7 +715,7 @@ namespace MbeddedNinja
 		snprintf(
 			tempBuff,
 			sizeof(tempBuff),
-			"%li",
+			"%" PRIi64,
 			myInt64);
 		// Add converted uint32 to end of string
 		(*this) += tempBuff;
