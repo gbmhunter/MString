@@ -50,14 +50,25 @@ namespace MbeddedNinja
 		// Get length of cString
 		this->length = strlen(cString);
 
+		//std::cerr << "Allocating '" << this->length + 1<< "' bytes." << std::endl;
+
 		// Allocate memory to store this string, + 1 to store null char
 		this->cStr = new char[this->length + 1];
+
+		//std::cerr << "Done allocating." << std::endl;
+
+		//if(!this->cStr)
+		//	std::cerr << "Memory alloc failed!" << std::endl;
+
+		//std::cerr << "cString = '" << cString << "'." << std::endl;
 
 		// Now copy string across
 		strncpy(this->cStr, cString, this->length);
 
 		// Make sure it is null terminated
 		this->cStr[this->length] = '\0';
+
+		//std::cerr << "Returning from '" << __PRETTY_FUNCTION__ << "'." << std::endl;
 	}
 
 	MString::MString() :
