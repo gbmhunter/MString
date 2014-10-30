@@ -2,7 +2,7 @@
 //! @file				MString.cpp
 //! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created			2014-08-12
-//! @last-modified		2014-10-07
+//! @last-modified		2014-10-31
 //! @brief				Contains the definitions for the MString class.
 //! @details
 //!						See README.rst in repo root dir for more info.
@@ -84,9 +84,6 @@ namespace MbeddedNinja
 		// Nothing here
 	}
 
-
-
-
 	MString::~MString()
 	{
 		// Delete memory that was allocated in the constructor.
@@ -152,6 +149,16 @@ namespace MbeddedNinja
 	{
 		// Call base method, passing in C-style string
 		return this->Find(stringToFind.cStr, startPos);
+	}
+
+	void MString::Append(char charToAppend)
+	{
+		// Build a temp buffer with only the character to append and the null char
+		char tempBuff[2] = {0};
+		tempBuff[0] = charToAppend;
+
+		// Now call the Append() overload that accepts a const char *...
+		this->Append(tempBuff);
 	}
 
 	void MString::Append(const char * cStringToAppend)

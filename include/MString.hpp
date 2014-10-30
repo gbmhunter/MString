@@ -2,7 +2,7 @@
 //! @file				MString.hpp
 //! @author				Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created			2014-08-12
-//! @last-modified		2014-09-18
+//! @last-modified		2014-10-31
 //! @brief				Contains the declarations for the String class.
 //! @details
 //!						See README.rst in repo root dir for more info.
@@ -88,29 +88,28 @@ namespace MbeddedNinja
 			uint32_t GetLength();
 						
 			//! @brief		Searches for a particular character in the string.
-			//! @returns	If character is found in string, returns the 0-based index of the first
-			//!				occurrence. If character is not found in string, returns -1.
+			//! @returns	If character is found in string, returns the 0-based index of the first occurrence. If character is not found in string, returns -1.
 			int32_t Find(char charToFind, uint32_t startPos = 0);
 
 			//! @brief		Looks for first occurrence of cStringToFind inside this string, starting at startPos.
 			//! @param		cStringToFind	The string to search for.
 			//!	@param		startPos		The 0-based index to start searching from.
-			//! @returns	If cStringToFind is found in string, returns the 0-based index of the first
-			//!				occurrence. If stringToFind is not found in string, returns -1.
+			//! @returns	If cStringToFind is found in string, returns the 0-based index of the first occurrence. If stringToFind is not found in string, returns -1.
 			int32_t Find(const char * cStringToFind, uint32_t startPos = 0);
 
-			//! @brief		Looks for stringToFind inside this string.
-			//! @details	Calls int32_t Find(const char * cStringToFind, uint32_t startPos = 0),
-			//!				passing in the C style string of stringToFind.
+			//! @brief		Looks for the MString stringToFind inside this string.
+			//! @details	Calls int32_t Find(const char * cStringToFind, uint32_t startPos = 0), passing in the C style string of stringToFind.
 			//! @param		stringToFind	The string to search for.
 			//!	@param		startPos		The 0-based index to start searching from.
-			//! @returns	If stringToFind is found in string, returns the 0-based index of the first
-			//!				occurrence. If stringToFind is not found in string, returns -1.
+			//! @returns	If stringToFind is found in string, returns the 0-based index of the first occurrence. If stringToFind is not found in string, returns -1.
 			int32_t Find(const MString & stringToFind, uint32_t startPos = 0);
 
+			//! @brief		Append a single character onto the end of the current string.
+			//! @param		charToAppend		A single character to append onto the end of the current string.
+			void Append(char charToAppend);
+
 			//! @brief		Append a C-style string onto the end of the current string.
-			//! @param		cStringToAppend		A null-terminated C-style string to append onto the
-			//!									end of the current string.
+			//! @param		cStringToAppend		A null-terminated C-style string to append onto the end of the current string.
 			void Append(const char * cStringToAppend);
 
 			//! @brief		Erases a specific number of characters from the string.

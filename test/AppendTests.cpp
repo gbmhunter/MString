@@ -2,7 +2,7 @@
 //! @file 			AppendTests.cpp
 //! @author 		Geoffrey Hunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 //! @created		2014-08-13
-//! @last-modified 	2014-09-13
+//! @last-modified 	2014-10-31
 //! @brief 			Makes sure the String::Append() method works as expected.
 //! @details
 //!					See README.rst in root dir for more info.
@@ -16,7 +16,7 @@
 //===== USER SOURCE =====//
 #include "../api/MStringApi.hpp"
 
-namespace StringTestsNs
+namespace MStringTestsNs
 {
 
 	MTEST(BasicAppendTest)
@@ -101,4 +101,13 @@ namespace StringTestsNs
 		CHECK_EQUAL(myString1, "Hello, world!");
 	}
 
-} // namespace StringTestsNs
+	MTEST(AppendJustACharTest)
+	{
+		MbeddedNinja::MString myString1("Hello");
+
+		myString1.Append('!');
+
+		CHECK_EQUAL(myString1, "Hello!");
+	}
+
+} // namespace MStringTestsNs

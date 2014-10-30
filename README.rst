@@ -11,8 +11,8 @@ A microcontroller friendly C++ string object specifically designed for embedded 
 
 - Author: gbmhunter <gbmhunter@gmail.com> (www.mbedded.ninja)
 - First Ever Commit: 2014-08-12
-- Last Modified: 2014-10-09
-- Version: v2.2.5.0
+- Last Modified: 2014-10-31
+- Version: v2.2.6.0
 - Company: mbedded.ninja
 - Project: MToolkit Module
 - Language: C++
@@ -129,6 +129,7 @@ Changelog
 ========= ========== ===================================================================================================
 Version   Date       Comment
 ========= ========== ===================================================================================================
+v2.2.6.0  2014-10-31 Added a MString::Append() overload that supports appending a single char to the string, and associated unit tests, closes #61.
 v2.2.5.0  2014-10-09 MString now compiles with C++11.
 v2.2.4.0  2014-10-07 Switched the printf 'ul' and similar specifiers in 'MString.cpp' for portable ones defined in 'inttypes.h', closes #60. Added dependencies to README.
 v2.2.3.0  2014-09-25 Fixed all unit tests so they fit the format 'CHECK_EQUAL(actual, expected)'. Many have actual and expected around the wrong way, closes #58.
